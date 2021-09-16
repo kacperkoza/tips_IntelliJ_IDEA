@@ -1,0 +1,1 @@
+curl -d '{"size":60,"collapse":true,"context":{"id":"test"},"filters":{"country":"1","attribute":"(A OR B)"},"token":0,"serviceId":"ser","category":["A","B","C","D"],"user":{"cookie":null},"order": "test"}' -H "Content-Type: application/json" -H "Accept: application/json" -X POST http://service-url.com

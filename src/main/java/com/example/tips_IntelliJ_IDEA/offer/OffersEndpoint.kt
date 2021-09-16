@@ -1,0 +1,44 @@
+package com.example.tips_IntelliJ_IDEA.offer
+
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
+import org.springframework.web.bind.annotation.RestController
+import java.net.URI
+
+@RestController
+@RequestMapping
+class OffersEndpoint(
+    private val offersService: OffersService
+) {
+
+    @GetMapping("/offers")
+    fun getOffers(
+        @RequestParam("limit") limit: Int?,
+        @RequestParam("offset") offset: Int?,
+    ): Offers {
+        val offers = offersService.getOffers(limit, offset)
+        return Offers(offers)
+    }
+
+    @PostMapping("/users/{userId}/offers")
+    fun addOffer(
+        @PathVariable("userId") userId: String,
+        @RequestBody offer: Offer
+    ) {
+        offersService.add(userId, offer)
+    }
+}
+
+data class Offers(
+    val offers: List<Offer>,
+)
+
+data class Offer(
+    val id: Long,
+    val title: String,
+    val image: URI,
+)
