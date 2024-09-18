@@ -14,8 +14,8 @@
 
 ## 1. Before we start
 
-- `Plugins > Presentation Assistant`
-- `Keymap > Mac OS X 10.5+`
+- `Preferences > Presentation Assistant`
+- `Keymap > Based on the macOS keymap`
 - `Font > Size > 15`  
 [X] - `Enable ligatures!`
 - `Resolution - Scaled (1600x900)`
@@ -47,7 +47,7 @@
 
 Use `ESCAPE` to go back from tool window to editor.
 
-`⌘ ⇧ ← / →` - `Stretch (tool window) to Left / Right`
+`⌃ ⌥ ← / →` - `Stretch (tool window) to Left / Right`
 
 Use it to adjust width and height of any other tool window, for example `Recent Files`
 
@@ -85,9 +85,9 @@ Copy `curl.txt` and paste into `.http` scratch. Edit and then export as new cURL
 
 ### c. Next / previous method
 
-`⌃ ↑` - Previous Method
+`⌃ ⇧ ↑` - `Previous Method`
 
-`⌘ ⇧ A` - `Next Method` - `⌥ ⏎` - Assign new shortcut by using, for example `⌃ ↓`
+`⌃ ⇧ ↓` - `Next Method`
 
 ### d. Last Edit Location
 
@@ -105,6 +105,9 @@ Copy `curl.txt` and paste into `.http` scratch. Edit and then export as new cURL
 ### a. Expand / collapse comments
 
 `⌘ ⇧ A` - Type 'collapse' and choose `Collapse Doc Comments`
+
+
+
 
 ### b. Extend selection. Duplicating, deleting lines, Paste from history
 
@@ -146,7 +149,7 @@ Use it in `Project` view, to run optimizer on a whole directory:
 
 `spgwt` - `Spock: given - when - then`
 
-`⌘ ⌃ T` - `Surround With`
+`⌘ ⌥ T` - `Surround With`
 
 `⌘ ⇧ ⏎` - `Complete Current Statement`
 
@@ -165,9 +168,9 @@ More refactor tools is in `Refactor` menu. Check difference between Java and Kot
 
 - `Search Structurally`
 - `Help > Search`
-- `Help > Keymap reference`
-- `Help > Demos and screencast`
-- `Help > Productivity guide`
+- `Help > Keymap Shortcuts PDF`
+- `Help > IntelliJ IDEA on YouTube`
+- `Help > My Productivity`
 - `Help > Change memory settings`
 
 https://blog.jetbrains.com/kotlin/2021/06/simple-steps-for-improving-your-ide-performance/
