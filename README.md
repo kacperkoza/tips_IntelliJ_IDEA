@@ -14,7 +14,7 @@
 
 ## 1. Before we start
 
-- `Preferences > Presentation Assistant`
+- `CMD , > Presentation Assistant`
 - `Keymap > Based on the macOS keymap`
 - `Font > Size > 15`  
 [X] - `Enable ligatures!`
@@ -22,19 +22,23 @@
 
 ## 2. Basic Navigation
 
+`⌘ ⇧ \` - `Go to endpoint`
+`⌘ ⌥ ⇧ E` - `Navigate > Text` 
 `⌘ O` - `Go to class` - with exact line - `StringUtils:1500`  
 `⌘ ⇧ O` - `Go to file`  
 `⌘ ⌥ O` - `Go to symbol` - Filter with namespace - `String.contains`
 `⌘ ⇧ A` - `Find action` - Find any action that you can use in IDE  
 `⇧ ⇧` - `Search Everywhere`
 
-`⌥ ↑ OR ↓` - (in above window) browse search history
+`⌥ ↑ OR ↓` - (in above windows) browse search history
 
 `⇧ ⇧` -> 2+2*2
 
 ## 3. Switching between windows
 
 `⌘ ⇧ F12` - `Hide All Windows` / `Restore All Windows`
+
+`Enter Distraction Free Mode`
 
 `⌘ ⇧ 1` - `Select File in Project View`
 
@@ -50,6 +54,8 @@ Use `ESCAPE` to go back from tool window to editor.
 `⌃ ⌥ ← / →` - `Stretch (tool window) to Left / Right`
 
 Use it to adjust width and height of any other tool window, for example `Recent Files`
+
+Assign shortcut to any tool window from `Recent Files` (find it via `⌘ A`).
 
 ## 4. Assign new shortcut
 
@@ -70,6 +76,8 @@ Use it to adjust width and height of any other tool window, for example `Recent 
 `⌘ ⇧ N` - `Scratch file`
 
 Copy `curl.txt` and paste into `.http` scratch. Edit and then export as new cURL.
+
+Scratch files are not detected by git. You can always create `.http` file in your project directory and keep it in git.
 
 ## 7. Navigating inside file
 
