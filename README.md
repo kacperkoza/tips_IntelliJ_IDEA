@@ -43,6 +43,9 @@
 `⌘ ⇧ 1` - `Select File in Project View`
 
 `⌘ E` - `Recent files`  
+
+Type in any windows - you can filter the result list.
+
 `⌘ ⇧ E` - `Recent Locations`
 
 `⌘ 1` - `Project`   
@@ -63,11 +66,16 @@ Assign shortcut to any tool window from `Recent Files` (find it via `⌘ A`).
 
 `⌘ ,` - `Keymap`
 
-`⌃ ⌃` - Run Anything (Gradle, Apprunner, any configuration)
+`⌃ ⌃` - Run Anything (Gradle, AppRunner, any configuration)
 
 ## 5. Tabs vs no tabs
 
 `⌘ ,` - `Editor tabs` - `Change to 'none'`
+
+When tabs our enabled, check available actions for tabs.
+For example, you can assign `⌘ ⇧ W` for `Close other tabs`.
+
+`⌘ ⇧ [ / ]` - Select Previous/Next Tab
 
 ## 6. Scratch file
 
@@ -86,10 +94,19 @@ Scratch files are not detected by git. You can always create `.http` file in you
 `⌘ F12` - `File Structure`  
 `⌘ L` - `Go to Line:Column`  
 `F2` - `Next Highlighted Error`
+`⌘ F2` - `Previous Highlighted Error`
 
 ### b. Next Highlighted Usage
 
-`⌃ ⌥ ↑/↓` - `Next Highlighted Usage` - use instead `⌘ B`
+`⌘ B` - `Go to declaration or usages`
+
+Many shortcuts may have different meanings, depending on the context. For example, in `.md` files `⌘ B` is `Bold`.
+
+`⌥ ⌘ B` - `Go to Implementation`
+
+`⌥ F7` - `Find usages`
+
+`⌃ ⌥ ↑/↓` - `Next Highlighted Usage` - use inside the file instead of `Go to declaration` or `Find Usages`
 
 ### c. Next / previous method
 
@@ -113,9 +130,6 @@ Scratch files are not detected by git. You can always create `.http` file in you
 ### a. Expand / collapse comments
 
 `⌘ ⇧ A` - Type 'collapse' and choose `Collapse Doc Comments`
-
-
-
 
 ### b. Extend selection. Duplicating, deleting lines, Paste from history
 
@@ -151,9 +165,13 @@ Scratch files are not detected by git. You can always create `.http` file in you
 
 Use it in `Project` view, to run optimizer on a whole directory:  
 `⌘ ⌥ L` - `Reformat Code`  
+`⌘ ⌥ I` - `Auto-Indent Lines`  
 `⌃ ⌥ O` - `Optimize Imports`
 
 ### h. Live templates, Surround with, Complete current Statement
+
+`⌃ SPACE` - Basic Code Completion 
+It conflicts with macOS shortcut: `Input sources` > `Select previous input source`
 
 `spgwt` - `Spock: given - when - then`
 
@@ -163,6 +181,10 @@ Use it in `Project` view, to run optimizer on a whole directory:
 
 ## 9. Refactoring
 
+`⌘ F6` - `Change Signature`
+
+`F6` - `Move class/file` 
+
 `⌃ T` - `Refactor This` and choose what you need
 
 - `⌘ ⌥ M` - `Extract Method`
@@ -170,7 +192,7 @@ Use it in `Project` view, to run optimizer on a whole directory:
 - `⌘ ⌥ V` - `Extract Variable`
 - `⌘ ⌥ N` - `Inline`
 
-More refactor tools is in `Refactor` menu. Check difference between Java and Kotlin options.
+More refactor tools is in `Refactor` menu. **Check difference between Java and Kotlin options.**
 
 ## 10. Additionally
 
