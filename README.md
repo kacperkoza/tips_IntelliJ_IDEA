@@ -18,16 +18,16 @@
 - `Keymap > Based on the macOS keymap`
 - `Font > Size > 15`  
 [X] - `Enable ligatures!`
-- `Resolution - Scaled (1600x900)`
+- `Resolution - Scaled (1600x900)` for presentation purposes
 
 ## 2. Basic Navigation
-
-`⌘ ⇧ \` - `Go to endpoint`
-`⌘ ⌥ ⇧ E` - `Navigate > Text` 
+ 
 `⌘ O` - `Go to class` - with exact line - `StringUtils:1500`  
 `⌘ ⇧ O` - `Go to file`  
 `⌘ ⌥ O` - `Go to symbol` - Filter with namespace - `String.contains`
-`⌘ ⇧ A` - `Find action` - Find any action that you can use in IDE  
+`⌘ ⇧ A` - `Find action` - Find any action that you can use in IDE
+`⌘ ⇧ \` - `Go to endpoint`
+`⌘ ⌥ ⇧ E` - `Navigate > Text`
 `⇧ ⇧` - `Search Everywhere`
 
 `⌥ ↑ OR ↓` - (in above windows) browse search history
@@ -44,7 +44,7 @@
 
 `⌘ E` - `Recent files`  
 
-Type in any windows - you can filter the result list.
+You can filter the result list by typing some text.
 
 `⌘ ⇧ E` - `Recent Locations`
 
