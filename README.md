@@ -20,13 +20,12 @@ Additionally: [X] - `Enable ligatures`
 - `Resolution - Scaled (1600x900)` for presentation purposes
 
 ## 2. Basic Navigation
- 
 `⌘ O` - `Go to class` - with exact line - `StringUtils:1500`  
 `⌘ ⇧ O` - `Go to file`  
-`⌘ ⌥ O` - `Go to symbol` - Filter with namespace - `String.contains`
-`⌘ ⇧ A` - `Find action` - Find any action that you can use in IDE
-`⌘ ⇧ \` - `Go to endpoint`
-`⌘ ⌥ ⇧ E` - `Navigate > Text`
+`⌘ ⌥ O` - `Go to symbol` - Filter with namespace - `String.contains`  
+`⌘ ⇧ A` - `Find action` - Find any action that you can use in IDE  
+`⌘ ⇧ \` - `Go to endpoint`  
+`⌘ ⌥ ⇧ E` - `Navigate > Text`  
 `⇧ ⇧` - `Search Everywhere`
 
 `⌥ ↑ OR ↓` - (in above windows) browse search history
