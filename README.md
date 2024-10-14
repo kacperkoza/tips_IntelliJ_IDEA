@@ -13,11 +13,10 @@
 ## 0. Introduction
 
 ## 1. Before we start
-
-- `CMD , > Presentation Assistant`
 - `Keymap > Based on the macOS keymap`
+- `CMD , > Presentation Assistant`
 - `Font > Size > 15`  
-[X] - `Enable ligatures!`
+Additionally: [X] - `Enable ligatures`
 - `Resolution - Scaled (1600x900)` for presentation purposes
 
 ## 2. Basic Navigation
@@ -102,9 +101,13 @@ Scratch files are not detected by git. You can always create `.http` file in you
 
 Many shortcuts may have different meanings, depending on the context. For example, in `.md` files `⌘ B` is `Bold`.
 
-`⌥ ⌘ B` - `Go to Implementation`
+`⌘ ⌥  B` - `Go to Implementation`
+
+`⌘ ⌥ F7` - `Show usages`
 
 `⌥ F7` - `Find usages`
+
+`⌘ ⌥ F7` - `Highlight usages in file `
 
 `⌃ ⌥ ↑/↓` - `Next Highlighted Usage` - use inside the file instead of `Go to declaration` or `Find Usages`
 
@@ -127,9 +130,12 @@ Many shortcuts may have different meanings, depending on the context. For exampl
 
 `StringUtils:1500`
 
-### a. Expand / collapse comments
+### a. Expand / collapse comments, folding
 
 `⌘ ⇧ A` - Type 'collapse' and choose `Collapse Doc Comments`
+
+`⌘ +/-` - `Folding > Expand`
+`⌘ ⇧ +/-` - `Folding > Expand All`
 
 ### b. Extend selection. Duplicating, deleting lines, Paste from history
 
@@ -153,6 +159,9 @@ Many shortcuts may have different meanings, depending on the context. For exampl
 ### d. Multi-line cursor, select all occurrences
 
 `⌥ + ⌥ + ↓ / ↑` - `Clone Caret Below / Above`
+
+`⌃ G` - `Add Selection for Next Occurrence`  
+`⌃ ⇧ G` - `Unselect Occurrence`  
 
 `⌃ ⌘ G` - `Select All Occurrences`
 
@@ -194,7 +203,9 @@ It conflicts with macOS shortcut: `Input sources` > `Select previous input sourc
 
 More refactor tools is in `Refactor` menu. **Check difference between Java and Kotlin options.**
 
-## 10. Additionally
+## 10. Copilot
+
+## 11. Additionally
 
 - `Search Structurally`
 - `Help > Search`
@@ -203,17 +214,22 @@ More refactor tools is in `Refactor` menu. **Check difference between Java and K
 - `Help > My Productivity`
 - `Help > Change memory settings`
 
+
+## Resources
+
+https://blog.jetbrains.com/idea/category/tips-tricks/
+
+https://www.youtube.com/user/intellijideavideo
+
 https://blog.jetbrains.com/kotlin/2021/06/simple-steps-for-improving-your-ide-performance/
 
 https://blog.jetbrains.com/idea/2021/08/10-places-you-don-t-need-to-use-the-mouse-in-intellij-idea
 
-http://courses.ics.hawaii.edu/ics314s17/morea/development-environments/reading-intellij-macos-configuration.html
+https://blog.jetbrains.com/idea/2022/10/top-underrated-shortcuts/
 
-https://www.youtube.com/user/intellijideavideo
+http://courses.ics.hawaii.edu/ics314s17/morea/development-environments/reading-intellij-macos-configuration.html
 
 https://itectec.com/askdifferent/macos-how-to-disable-the-minimize-command-m-shortcut-in-mavericks
 
 Plugins:
-- Presentation Assistant
-- Spock Framework Enhancements
-- Key Promoter X
+- Key Promoter X (annoying, in my opinion)
