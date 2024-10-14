@@ -29,11 +29,15 @@ import java.util.function.IntPredicate;
 @FunctionalInterface
 public interface FailableIntPredicate<E extends Throwable> {
 
-    /** FALSE singleton */
+    /**
+     * FALSE singleton
+     */
     @SuppressWarnings("rawtypes")
     FailableIntPredicate FALSE = t -> false;
 
-    /** TRUE singleton */
+    /**
+     * TRUE singleton
+     */
     @SuppressWarnings("rawtypes")
     FailableIntPredicate TRUE = t -> true;
 

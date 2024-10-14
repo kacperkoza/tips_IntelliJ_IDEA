@@ -145,25 +145,39 @@ public class TimedSemaphore {
      */
     public static final int NO_LIMIT = 0;
 
-    /** Constant for the thread pool size for the executor. */
+    /**
+     * Constant for the thread pool size for the executor.
+     */
     private static final int THREAD_POOL_SIZE = 1;
 
-    /** The executor service for managing the timer thread. */
+    /**
+     * The executor service for managing the timer thread.
+     */
     private final ScheduledExecutorService executorService;
 
-    /** Stores the period for this timed semaphore. */
+    /**
+     * Stores the period for this timed semaphore.
+     */
     private final long period;
 
-    /** The time unit for the period. */
+    /**
+     * The time unit for the period.
+     */
     private final TimeUnit unit;
 
-    /** A flag whether the executor service was created by this object. */
+    /**
+     * A flag whether the executor service was created by this object.
+     */
     private final boolean ownExecutor;
 
-    /** A future object representing the timer task. */
+    /**
+     * A future object representing the timer task.
+     */
     private ScheduledFuture<?> task; // @GuardedBy("this")
 
-    /** Stores the total number of invocations of the acquire() method. */
+    /**
+     * Stores the total number of invocations of the acquire() method.
+     */
     private long totalAcquireCount; // @GuardedBy("this")
 
     /**
@@ -172,16 +186,24 @@ public class TimedSemaphore {
      */
     private long periodCount; // @GuardedBy("this")
 
-    /** The limit. */
+    /**
+     * The limit.
+     */
     private int limit; // @GuardedBy("this")
 
-    /** The current counter. */
+    /**
+     * The current counter.
+     */
     private int acquireCount;  // @GuardedBy("this")
 
-    /** The number of invocations of acquire() in the last period. */
+    /**
+     * The number of invocations of acquire() in the last period.
+     */
     private int lastCallsPerPeriod; // @GuardedBy("this")
 
-    /** A flag whether shutdown() was called. */
+    /**
+     * A flag whether shutdown() was called.
+     */
     private boolean shutdown;  // @GuardedBy("this")
 
     /**
@@ -189,8 +211,8 @@ public class TimedSemaphore {
      * the given time period and the limit.
      *
      * @param timePeriod the time period
-     * @param timeUnit the unit for the period
-     * @param limit the limit for the semaphore
+     * @param timeUnit   the unit for the period
+     * @param limit      the limit for the semaphore
      * @throws IllegalArgumentException if the period is less or equals 0
      */
     public TimedSemaphore(final long timePeriod, final TimeUnit timeUnit, final int limit) {
@@ -203,14 +225,14 @@ public class TimedSemaphore {
      * service will be used for creating a periodic task for monitoring the time
      * period. It can be <b>null</b>, then a default service will be created.
      *
-     * @param service the executor service
+     * @param service    the executor service
      * @param timePeriod the time period
-     * @param timeUnit the unit for the period
-     * @param limit the limit for the semaphore
+     * @param timeUnit   the unit for the period
+     * @param limit      the limit for the semaphore
      * @throws IllegalArgumentException if the period is less or equals 0
      */
     public TimedSemaphore(final ScheduledExecutorService service, final long timePeriod,
-            final TimeUnit timeUnit, final int limit) {
+                          final TimeUnit timeUnit, final int limit) {
         Validate.inclusiveBetween(1, Long.MAX_VALUE, timePeriod, "Time period must be greater than 0!");
 
         period = timePeriod;
@@ -296,7 +318,7 @@ public class TimedSemaphore {
      * task which monitors the time period set for this {@code TimedSemaphore}.
      * From now on the semaphore is active.
      *
-     * @throws InterruptedException if the thread gets interrupted
+     * @throws InterruptedException  if the thread gets interrupted
      * @throws IllegalStateException if this semaphore is already shut down
      */
     public synchronized void acquire() throws InterruptedException {

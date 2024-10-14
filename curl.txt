@@ -1,1 +1,26 @@
-curl -d '{"size":60,"collapse":true,"context":{"id":"test"},"filters":{"country":"1","attribute":"(A OR B)"},"token":0,"serviceId":"ser","category":["A","B","C","D"],"user":{"cookie":null},"order": "test"}' -H "Content-Type: application/json" -H "Accept: application/json" -X POST http://service-url.com
+curl -X POST --location "http://service-url.com" \
+    -H "Accept: application/json" \
+    -H "Content-Type: application/json" \
+    -d '{
+          "size": 60,
+          "collapse": true,
+          "context": {
+            "id": "test"
+          },
+          "filters": {
+            "country": "1",
+            "attribute": "(A OR B OR C OR B)"
+          },
+          "token": 0,
+          "serviceId": "ser",
+          "category": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "user": {
+            "cookie": null
+          },
+          "order": "test"
+        }'

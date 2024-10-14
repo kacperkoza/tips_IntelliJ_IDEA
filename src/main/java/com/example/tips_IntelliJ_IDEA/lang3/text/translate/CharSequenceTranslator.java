@@ -44,7 +44,7 @@ public abstract class CharSequenceTranslator {
      *
      * @param input CharSequence that is being translated
      * @param index int representing the current point of translation
-     * @param out Writer to translate the text to
+     * @param out   Writer to translate the text to
      * @return int count of codepoints consumed
      * @throws IOException if and only if the Writer produces an IOException
      */
@@ -52,6 +52,7 @@ public abstract class CharSequenceTranslator {
 
     /**
      * Helper for non-Writer usage.
+     *
      * @param input CharSequence to be translated
      * @return String output of translation
      */
@@ -74,7 +75,7 @@ public abstract class CharSequenceTranslator {
      * tightly coupled with the abstract method of this class.
      *
      * @param input CharSequence that is being translated
-     * @param out Writer to translate the text to
+     * @param out   Writer to translate the text to
      * @throws IOException if and only if the Writer produces an IOException
      */
     public final void translate(final CharSequence input, final Writer out) throws IOException {
@@ -97,8 +98,8 @@ public abstract class CharSequenceTranslator {
                 if (Character.isHighSurrogate(c1) && pos < len) {
                     final char c2 = input.charAt(pos);
                     if (Character.isLowSurrogate(c2)) {
-                      out.write(c2);
-                      pos++;
+                        out.write(c2);
+                        pos++;
                     }
                 }
                 continue;

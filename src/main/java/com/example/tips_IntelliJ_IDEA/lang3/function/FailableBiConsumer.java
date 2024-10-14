@@ -31,7 +31,9 @@ import java.util.function.BiConsumer;
 @FunctionalInterface
 public interface FailableBiConsumer<T, U, E extends Throwable> {
 
-    /** NOP singleton */
+    /**
+     * NOP singleton
+     */
     @SuppressWarnings("rawtypes")
     FailableBiConsumer NOP = (t, u) -> {/* NOP */};
 

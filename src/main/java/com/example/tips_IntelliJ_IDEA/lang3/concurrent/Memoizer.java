@@ -44,11 +44,8 @@ import java.util.concurrent.FutureTask;
  * was also published within Java Concurrency in Practice as a sample.
  * </p>
  *
- * @param <I>
- *            the type of the input to the calculation
- * @param <O>
- *            the type of the output of the calculation
- *
+ * @param <I> the type of the input to the calculation
+ * @param <O> the type of the output of the calculation
  * @since 3.6
  */
 public class Memoizer<I, O> implements Computable<I, O> {
@@ -67,8 +64,7 @@ public class Memoizer<I, O> implements Computable<I, O> {
      * parameter.
      * </p>
      *
-     * @param computable
-     *            the computation whose results should be memorized
+     * @param computable the computation whose results should be memorized
      */
     public Memoizer(final Computable<I, O> computable) {
         this(computable, false);
@@ -81,11 +77,9 @@ public class Memoizer<I, O> implements Computable<I, O> {
      * recalculate on subsequent calls or return the same cached exception.
      * </p>
      *
-     * @param computable
-     *            the computation whose results should be memorized
-     * @param recalculate
-     *            determines whether the computation should be recalculated on
-     *            subsequent calls if the previous call failed
+     * @param computable  the computation whose results should be memorized
+     * @param recalculate determines whether the computation should be recalculated on
+     *                    subsequent calls if the previous call failed
      */
     public Memoizer(final Computable<I, O> computable, final boolean recalculate) {
         this.computable = computable;
@@ -104,11 +98,9 @@ public class Memoizer<I, O> implements Computable<I, O> {
      * previous calculation, the method will attempt again to generate a value.
      * </p>
      *
-     * @param arg
-     *            the argument for the calculation
+     * @param arg the argument for the calculation
      * @return the result of the calculation
-     * @throws InterruptedException
-     *             thrown if the calculation is interrupted
+     * @throws InterruptedException thrown if the calculation is interrupted
      */
     @Override
     public O compute(final I arg) throws InterruptedException {
@@ -143,8 +135,7 @@ public class Memoizer<I, O> implements Computable<I, O> {
      * any other Exception wrapped in an IllegalStateException.
      * </p>
      *
-     * @param throwable
-     *            the throwable to laundered
+     * @param throwable the throwable to laundered
      * @return a RuntimeException, Error or an IllegalStateException
      */
     private RuntimeException launderException(final Throwable throwable) {

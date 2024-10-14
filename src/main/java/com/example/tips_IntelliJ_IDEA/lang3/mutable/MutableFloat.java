@@ -33,7 +33,9 @@ public class MutableFloat extends Number implements Comparable<MutableFloat>, Mu
      */
     private static final long serialVersionUID = 5787169186L;
 
-    /** The mutable value. */
+    /**
+     * The mutable value.
+     */
     private float value;
 
     /**
@@ -45,7 +47,7 @@ public class MutableFloat extends Number implements Comparable<MutableFloat>, Mu
     /**
      * Constructs a new MutableFloat with the specified value.
      *
-     * @param value  the initial value to store
+     * @param value the initial value to store
      */
     public MutableFloat(final float value) {
         this.value = value;
@@ -54,7 +56,7 @@ public class MutableFloat extends Number implements Comparable<MutableFloat>, Mu
     /**
      * Constructs a new MutableFloat with the specified value.
      *
-     * @param value  the initial value to store, not null
+     * @param value the initial value to store, not null
      * @throws NullPointerException if the object is null
      */
     public MutableFloat(final Number value) {
@@ -64,7 +66,7 @@ public class MutableFloat extends Number implements Comparable<MutableFloat>, Mu
     /**
      * Constructs a new MutableFloat parsing the given string.
      *
-     * @param value  the string to parse, not null
+     * @param value the string to parse, not null
      * @throws NumberFormatException if the string cannot be parsed into a float
      * @since 2.5
      */
@@ -73,6 +75,7 @@ public class MutableFloat extends Number implements Comparable<MutableFloat>, Mu
     }
 
     //-----------------------------------------------------------------------
+
     /**
      * Gets the value as a Float instance.
      *
@@ -86,7 +89,7 @@ public class MutableFloat extends Number implements Comparable<MutableFloat>, Mu
     /**
      * Sets the value.
      *
-     * @param value  the value to set
+     * @param value the value to set
      */
     public void setValue(final float value) {
         this.value = value;
@@ -95,7 +98,7 @@ public class MutableFloat extends Number implements Comparable<MutableFloat>, Mu
     /**
      * Sets the value from any Number instance.
      *
-     * @param value  the value to set, not null
+     * @param value the value to set, not null
      * @throws NullPointerException if the object is null
      */
     @Override
@@ -104,6 +107,7 @@ public class MutableFloat extends Number implements Comparable<MutableFloat>, Mu
     }
 
     //-----------------------------------------------------------------------
+
     /**
      * Checks whether the float value is the special NaN value.
      *
@@ -123,6 +127,7 @@ public class MutableFloat extends Number implements Comparable<MutableFloat>, Mu
     }
 
     //-----------------------------------------------------------------------
+
     /**
      * Increments the value.
      *
@@ -192,10 +197,11 @@ public class MutableFloat extends Number implements Comparable<MutableFloat>, Mu
     }
 
     //-----------------------------------------------------------------------
+
     /**
      * Adds a value to the value of this instance.
      *
-     * @param operand  the value to add, not null
+     * @param operand the value to add, not null
      * @since 2.2
      */
     public void add(final float operand) {
@@ -205,7 +211,7 @@ public class MutableFloat extends Number implements Comparable<MutableFloat>, Mu
     /**
      * Adds a value to the value of this instance.
      *
-     * @param operand  the value to add, not null
+     * @param operand the value to add, not null
      * @throws NullPointerException if the object is null
      * @since 2.2
      */
@@ -216,7 +222,7 @@ public class MutableFloat extends Number implements Comparable<MutableFloat>, Mu
     /**
      * Subtracts a value from the value of this instance.
      *
-     * @param operand  the value to subtract
+     * @param operand the value to subtract
      * @since 2.2
      */
     public void subtract(final float operand) {
@@ -226,7 +232,7 @@ public class MutableFloat extends Number implements Comparable<MutableFloat>, Mu
     /**
      * Subtracts a value from the value of this instance.
      *
-     * @param operand  the value to subtract, not null
+     * @param operand the value to subtract, not null
      * @throws NullPointerException if the object is null
      * @since 2.2
      */
@@ -252,8 +258,8 @@ public class MutableFloat extends Number implements Comparable<MutableFloat>, Mu
      * immediately after the addition operation. This method is not thread safe.
      *
      * @param operand the quantity to add, not null
-     * @throws NullPointerException if {@code operand} is null
      * @return the value associated with this instance after adding the operand
+     * @throws NullPointerException if {@code operand} is null
      * @since 3.5
      */
     public float addAndGet(final Number operand) {
@@ -280,8 +286,8 @@ public class MutableFloat extends Number implements Comparable<MutableFloat>, Mu
      * immediately prior to the addition operation. This method is not thread safe.
      *
      * @param operand the quantity to add, not null
-     * @throws NullPointerException if {@code operand} is null
      * @return the value associated with this instance immediately before the operand was added
+     * @throws NullPointerException if {@code operand} is null
      * @since 3.5
      */
     public float getAndAdd(final Number operand) {
@@ -292,6 +298,7 @@ public class MutableFloat extends Number implements Comparable<MutableFloat>, Mu
 
     //-----------------------------------------------------------------------
     // shortValue and byteValue rely on Number implementation
+
     /**
      * Returns the value of this MutableFloat as an int.
      *
@@ -333,6 +340,7 @@ public class MutableFloat extends Number implements Comparable<MutableFloat>, Mu
     }
 
     //-----------------------------------------------------------------------
+
     /**
      * Gets this mutable as an instance of Float.
      *
@@ -343,6 +351,7 @@ public class MutableFloat extends Number implements Comparable<MutableFloat>, Mu
     }
 
     //-----------------------------------------------------------------------
+
     /**
      * Compares this object against some other object. The result is {@code true} if and only if the argument is
      * not {@code null} and is a {@code Float} object that represents a {@code float} that has the
@@ -370,14 +379,14 @@ public class MutableFloat extends Number implements Comparable<MutableFloat>, Mu
      * </ul>
      * This definition allows hashtables to operate properly.
      *
-     * @param obj  the object to compare with, null returns false
+     * @param obj the object to compare with, null returns false
      * @return {@code true} if the objects are the same; {@code false} otherwise.
      * @see Float#floatToIntBits(float)
      */
     @Override
     public boolean equals(final Object obj) {
         return obj instanceof MutableFloat
-            && Float.floatToIntBits(((MutableFloat) obj).value) == Float.floatToIntBits(value);
+                && Float.floatToIntBits(((MutableFloat) obj).value) == Float.floatToIntBits(value);
     }
 
     /**
@@ -391,10 +400,11 @@ public class MutableFloat extends Number implements Comparable<MutableFloat>, Mu
     }
 
     //-----------------------------------------------------------------------
+
     /**
      * Compares this mutable to another in ascending order.
      *
-     * @param other  the other mutable to compare to, not null
+     * @param other the other mutable to compare to, not null
      * @return negative if this is less, zero if equal, positive if greater
      */
     @Override
@@ -403,6 +413,7 @@ public class MutableFloat extends Number implements Comparable<MutableFloat>, Mu
     }
 
     //-----------------------------------------------------------------------
+
     /**
      * Returns the String value of this mutable.
      *

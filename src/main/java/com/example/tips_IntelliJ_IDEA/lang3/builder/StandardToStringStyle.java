@@ -57,7 +57,7 @@ public class StandardToStringStyle extends ToStringStyle {
     /**
      * <p>Sets whether to use the class name.</p>
      *
-     * @param useClassName  the new useClassName flag
+     * @param useClassName the new useClassName flag
      */
     @Override
     public void setUseClassName(final boolean useClassName) { // NOPMD as this is implementing the abstract class
@@ -80,7 +80,7 @@ public class StandardToStringStyle extends ToStringStyle {
     /**
      * <p>Sets whether to output short or long class names.</p>
      *
-     * @param useShortClassName  the new useShortClassName flag
+     * @param useShortClassName the new useShortClassName flag
      * @since 2.0
      */
     @Override
@@ -92,6 +92,7 @@ public class StandardToStringStyle extends ToStringStyle {
 
     /**
      * <p>Gets whether to use the identity hash code.</p>
+     *
      * @return the current useIdentityHashCode flag
      */
     @Override
@@ -102,7 +103,7 @@ public class StandardToStringStyle extends ToStringStyle {
     /**
      * <p>Sets whether to use the identity hash code.</p>
      *
-     * @param useIdentityHashCode  the new useIdentityHashCode flag
+     * @param useIdentityHashCode the new useIdentityHashCode flag
      */
     @Override
     public void setUseIdentityHashCode(final boolean useIdentityHashCode) { // NOPMD as this is implementing the abstract class
@@ -124,7 +125,7 @@ public class StandardToStringStyle extends ToStringStyle {
     /**
      * <p>Sets whether to use the field names passed in.</p>
      *
-     * @param useFieldNames  the new useFieldNames flag
+     * @param useFieldNames the new useFieldNames flag
      */
     @Override
     public void setUseFieldNames(final boolean useFieldNames) { // NOPMD as this is implementing the abstract class
@@ -148,7 +149,7 @@ public class StandardToStringStyle extends ToStringStyle {
      * <p>Sets whether to use full detail when the caller doesn't
      * specify.</p>
      *
-     * @param defaultFullDetail  the new defaultFullDetail flag
+     * @param defaultFullDetail the new defaultFullDetail flag
      */
     @Override
     public void setDefaultFullDetail(final boolean defaultFullDetail) { // NOPMD as this is implementing the abstract class
@@ -170,7 +171,7 @@ public class StandardToStringStyle extends ToStringStyle {
     /**
      * <p>Sets whether to output array content detail.</p>
      *
-     * @param arrayContentDetail  the new arrayContentDetail flag
+     * @param arrayContentDetail the new arrayContentDetail flag
      */
     @Override
     public void setArrayContentDetail(final boolean arrayContentDetail) { // NOPMD as this is implementing the abstract class
@@ -195,7 +196,7 @@ public class StandardToStringStyle extends ToStringStyle {
      * <p>{@code null} is accepted, but will be converted
      * to an empty String.</p>
      *
-     * @param arrayStart  the new array start text
+     * @param arrayStart the new array start text
      */
     @Override
     public void setArrayStart(final String arrayStart) { // NOPMD as this is implementing the abstract class
@@ -220,7 +221,7 @@ public class StandardToStringStyle extends ToStringStyle {
      * <p>{@code null} is accepted, but will be converted
      * to an empty String.</p>
      *
-     * @param arrayEnd  the new array end text
+     * @param arrayEnd the new array end text
      */
     @Override
     public void setArrayEnd(final String arrayEnd) { // NOPMD as this is implementing the abstract class
@@ -245,7 +246,7 @@ public class StandardToStringStyle extends ToStringStyle {
      * <p>{@code null} is accepted, but will be converted
      * to an empty String.</p>
      *
-     * @param arraySeparator  the new array separator text
+     * @param arraySeparator the new array separator text
      */
     @Override
     public void setArraySeparator(final String arraySeparator) { // NOPMD as this is implementing the abstract class
@@ -270,7 +271,7 @@ public class StandardToStringStyle extends ToStringStyle {
      * <p>{@code null} is accepted, but will be converted
      * to an empty String.</p>
      *
-     * @param contentStart  the new content start text
+     * @param contentStart the new content start text
      */
     @Override
     public void setContentStart(final String contentStart) { // NOPMD as this is implementing the abstract class
@@ -295,7 +296,7 @@ public class StandardToStringStyle extends ToStringStyle {
      * <p>{@code null} is accepted, but will be converted
      * to an empty String.</p>
      *
-     * @param contentEnd  the new content end text
+     * @param contentEnd the new content end text
      */
     @Override
     public void setContentEnd(final String contentEnd) { // NOPMD as this is implementing the abstract class
@@ -320,7 +321,7 @@ public class StandardToStringStyle extends ToStringStyle {
      * <p>{@code null} is accepted, but will be converted
      * to an empty String.</p>
      *
-     * @param fieldNameValueSeparator  the new field name value separator text
+     * @param fieldNameValueSeparator the new field name value separator text
      */
     @Override
     public void setFieldNameValueSeparator(final String fieldNameValueSeparator) { // NOPMD as this is implementing the abstract class
@@ -345,7 +346,7 @@ public class StandardToStringStyle extends ToStringStyle {
      * <p>{@code null} is accepted, but will be converted
      * to an empty String.</p>
      *
-     * @param fieldSeparator  the new field separator text
+     * @param fieldSeparator the new field separator text
      */
     @Override
     public void setFieldSeparator(final String fieldSeparator) { // NOPMD as this is implementing the abstract class
@@ -370,7 +371,7 @@ public class StandardToStringStyle extends ToStringStyle {
      * <p>Sets whether the field separator should be added at the start
      * of each buffer.</p>
      *
-     * @param fieldSeparatorAtStart  the fieldSeparatorAtStart flag
+     * @param fieldSeparatorAtStart the fieldSeparatorAtStart flag
      * @since 2.0
      */
     @Override
@@ -396,7 +397,7 @@ public class StandardToStringStyle extends ToStringStyle {
      * <p>Sets whether the field separator should be added at the end
      * of each buffer.</p>
      *
-     * @param fieldSeparatorAtEnd  the fieldSeparatorAtEnd flag
+     * @param fieldSeparatorAtEnd the fieldSeparatorAtEnd flag
      * @since 2.0
      */
     @Override
@@ -422,7 +423,7 @@ public class StandardToStringStyle extends ToStringStyle {
      * <p>{@code null} is accepted, but will be converted
      * to an empty String.</p>
      *
-     * @param nullText  the new text to output when {@code null} found
+     * @param nullText the new text to output when {@code null} found
      */
     @Override
     public void setNullText(final String nullText) { // NOPMD as this is implementing the abstract class
@@ -453,7 +454,7 @@ public class StandardToStringStyle extends ToStringStyle {
      * <p>{@code null} is accepted, but will be converted to
      * an empty String.</p>
      *
-     * @param sizeStartText  the new start of size text
+     * @param sizeStartText the new start of size text
      */
     @Override
     public void setSizeStartText(final String sizeStartText) { // NOPMD as this is implementing the abstract class
@@ -484,7 +485,7 @@ public class StandardToStringStyle extends ToStringStyle {
      * <p>{@code null} is accepted, but will be converted
      * to an empty String.</p>
      *
-     * @param sizeEndText  the new end of size text
+     * @param sizeEndText the new end of size text
      */
     @Override
     public void setSizeEndText(final String sizeEndText) { // NOPMD as this is implementing the abstract class
@@ -515,7 +516,7 @@ public class StandardToStringStyle extends ToStringStyle {
      * <p>{@code null} is accepted, but will be converted to
      * an empty String.</p>
      *
-     * @param summaryObjectStartText  the new start of summary text
+     * @param summaryObjectStartText the new start of summary text
      */
     @Override
     public void setSummaryObjectStartText(final String summaryObjectStartText) { // NOPMD as this is implementing the abstract class
@@ -546,7 +547,7 @@ public class StandardToStringStyle extends ToStringStyle {
      * <p>{@code null} is accepted, but will be converted to
      * an empty String.</p>
      *
-     * @param summaryObjectEndText  the new end of summary text
+     * @param summaryObjectEndText the new end of summary text
      */
     @Override
     public void setSummaryObjectEndText(final String summaryObjectEndText) { // NOPMD as this is implementing the abstract class

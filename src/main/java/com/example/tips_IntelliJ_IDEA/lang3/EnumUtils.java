@@ -40,10 +40,11 @@ public class EnumUtils {
 
     /**
      * Validate {@code enumClass}.
-     * @param <E> the type of the enumeration
+     *
+     * @param <E>       the type of the enumeration
      * @param enumClass to check
      * @return {@code enumClass}
-     * @throws NullPointerException if {@code enumClass} is {@code null}
+     * @throws NullPointerException     if {@code enumClass} is {@code null}
      * @throws IllegalArgumentException if {@code enumClass} is not an enum class
      * @since 3.2
      */
@@ -55,17 +56,18 @@ public class EnumUtils {
 
     /**
      * Validate that {@code enumClass} is compatible with representation in a {@code long}.
-     * @param <E> the type of the enumeration
+     *
+     * @param <E>       the type of the enumeration
      * @param enumClass to check
      * @return {@code enumClass}
-     * @throws NullPointerException if {@code enumClass} is {@code null}
+     * @throws NullPointerException     if {@code enumClass} is {@code null}
      * @throws IllegalArgumentException if {@code enumClass} is not an enum class or has more than 64 values
      * @since 3.0.1
      */
     private static <E extends Enum<E>> Class<E> checkBitVectorable(final Class<E> enumClass) {
         final E[] constants = asEnum(enumClass).getEnumConstants();
         Validate.isTrue(constants.length <= Long.SIZE, CANNOT_STORE_S_S_VALUES_IN_S_BITS,
-            Integer.valueOf(constants.length), enumClass.getSimpleName(), Integer.valueOf(Long.SIZE));
+                Integer.valueOf(constants.length), enumClass.getSimpleName(), Integer.valueOf(Long.SIZE));
 
         return enumClass;
     }
@@ -82,10 +84,10 @@ public class EnumUtils {
      * @param values    the values we want to convert, not {@code null}
      * @param <E>       the type of the enumeration
      * @return a long whose value provides a binary representation of the given set of enum values.
-     * @throws NullPointerException if {@code enumClass} or {@code values} is {@code null}
+     * @throws NullPointerException     if {@code enumClass} or {@code values} is {@code null}
      * @throws IllegalArgumentException if {@code enumClass} is not an enum class or has more than 64 values
-     * @since 3.0.1
      * @see #generateBitVectors(Class, Iterable)
+     * @since 3.0.1
      */
     @SafeVarargs
     public static <E extends Enum<E>> long generateBitVector(final Class<E> enumClass, final E... values) {
@@ -105,11 +107,11 @@ public class EnumUtils {
      * @param values    the values we want to convert, not {@code null}, neither containing {@code null}
      * @param <E>       the type of the enumeration
      * @return a long whose value provides a binary representation of the given set of enum values.
-     * @throws NullPointerException if {@code enumClass} or {@code values} is {@code null}
+     * @throws NullPointerException     if {@code enumClass} or {@code values} is {@code null}
      * @throws IllegalArgumentException if {@code enumClass} is not an enum class or has more than 64 values,
      *                                  or if any {@code values} {@code null}
-     * @since 3.0.1
      * @see #generateBitVectors(Class, Iterable)
+     * @since 3.0.1
      */
     public static <E extends Enum<E>> long generateBitVector(final Class<E> enumClass, final Iterable<? extends E> values) {
         checkBitVectorable(enumClass);
@@ -133,8 +135,8 @@ public class EnumUtils {
      * @param values    the values we want to convert, not {@code null}, neither containing {@code null}
      * @param <E>       the type of the enumeration
      * @return a long[] whose values provide a binary representation of the given set of enum values
-     *         with least significant digits rightmost.
-     * @throws NullPointerException if {@code enumClass} or {@code values} is {@code null}
+     * with least significant digits rightmost.
+     * @throws NullPointerException     if {@code enumClass} or {@code values} is {@code null}
      * @throws IllegalArgumentException if {@code enumClass} is not an enum class, or if any {@code values} {@code null}
      * @since 3.2
      */
@@ -163,8 +165,8 @@ public class EnumUtils {
      * @param values    the values we want to convert, not {@code null}, neither containing {@code null}
      * @param <E>       the type of the enumeration
      * @return a long[] whose values provide a binary representation of the given set of enum values
-     *         with least significant digits rightmost.
-     * @throws NullPointerException if {@code enumClass} or {@code values} is {@code null}
+     * with least significant digits rightmost.
+     * @throws NullPointerException     if {@code enumClass} or {@code values} is {@code null}
      * @throws IllegalArgumentException if {@code enumClass} is not an enum class, or if any {@code values} {@code null}
      * @since 3.2
      */
@@ -190,9 +192,9 @@ public class EnumUtils {
      * <p>This method differs from {@link Enum#valueOf} in that it does not throw an exception
      * for an invalid enum name.</p>
      *
-     * @param <E> the type of the enumeration
-     * @param enumClass  the class of the enum to query, not null
-     * @param enumName   the enum name, null returns null
+     * @param <E>       the type of the enumeration
+     * @param enumClass the class of the enum to query, not null
+     * @param enumName  the enum name, null returns null
      * @return the enum, null if not found
      */
     public static <E extends Enum<E>> E getEnum(final Class<E> enumClass, final String enumName) {
@@ -205,7 +207,7 @@ public class EnumUtils {
      * <p>This method differs from {@link Enum#valueOf} in that it does not throw an exception
      * for an invalid enum name.</p>
      *
-     * @param <E> the type of the enumeration
+     * @param <E>         the type of the enumeration
      * @param enumClass   the class of the enum to query, not null
      * @param enumName    the enum name, null returns default enum
      * @param defaultEnum the default enum
@@ -229,9 +231,9 @@ public class EnumUtils {
      * <p>This method differs from {@link Enum#valueOf} in that it does not throw an exception
      * for an invalid enum name and performs case insensitive matching of the name.</p>
      *
-     * @param <E>         the type of the enumeration
-     * @param enumClass   the class of the enum to query, not null
-     * @param enumName    the enum name, null returns null
+     * @param <E>       the type of the enumeration
+     * @param enumClass the class of the enum to query, not null
+     * @param enumName  the enum name, null returns null
      * @return the enum, null if not found
      * @since 3.8
      */
@@ -269,8 +271,8 @@ public class EnumUtils {
      *
      * <p>This method is useful when you need a list of enums rather than an array.</p>
      *
-     * @param <E> the type of the enumeration
-     * @param enumClass  the class of the enum to query, not null
+     * @param <E>       the type of the enumeration
+     * @param enumClass the class of the enum to query, not null
      * @return the modifiable list of enums, never null
      */
     public static <E extends Enum<E>> List<E> getEnumList(final Class<E> enumClass) {
@@ -282,13 +284,13 @@ public class EnumUtils {
      *
      * <p>This method is useful when you need a map of enums by name.</p>
      *
-     * @param <E> the type of the enumeration
-     * @param enumClass  the class of the enum to query, not null
+     * @param <E>       the type of the enumeration
+     * @param enumClass the class of the enum to query, not null
      * @return the modifiable map of enum names to enums, never null
      */
     public static <E extends Enum<E>> Map<String, E> getEnumMap(final Class<E> enumClass) {
         final Map<String, E> map = new LinkedHashMap<>();
-        for (final E e: enumClass.getEnumConstants()) {
+        for (final E e : enumClass.getEnumConstants()) {
             map.put(e.name(), e);
         }
         return map;
@@ -300,9 +302,9 @@ public class EnumUtils {
      * <p>This method differs from {@link Enum#valueOf} in that checks if the name is
      * a valid enum without needing to catch the exception.</p>
      *
-     * @param <E> the type of the enumeration
-     * @param enumClass  the class of the enum to query, not null
-     * @param enumName   the enum name, null returns false
+     * @param <E>       the type of the enumeration
+     * @param enumClass the class of the enum to query, not null
+     * @param enumName  the enum name, null returns false
      * @return true if the enum name is valid, otherwise false
      */
     public static <E extends Enum<E>> boolean isValidEnum(final Class<E> enumClass, final String enumName) {
@@ -316,9 +318,9 @@ public class EnumUtils {
      * a valid enum without needing to catch the exception
      * and performs case insensitive matching of the name.</p>
      *
-     * @param <E> the type of the enumeration
-     * @param enumClass  the class of the enum to query, not null
-     * @param enumName   the enum name, null returns false
+     * @param <E>       the type of the enumeration
+     * @param enumClass the class of the enum to query, not null
+     * @param enumName  the enum name, null returns false
      * @return true if the enum name is valid, otherwise false
      * @since 3.8
      */
@@ -331,11 +333,12 @@ public class EnumUtils {
      * enum values that it represents.</p>
      *
      * <p>If you store this value, beware any changes to the enum that would affect ordinal values.</p>
+     *
      * @param enumClass the class of the enum we are working with, not {@code null}
      * @param value     the long value representation of a set of enum values
      * @param <E>       the type of the enumeration
      * @return a set of enum values
-     * @throws NullPointerException if {@code enumClass} is {@code null}
+     * @throws NullPointerException     if {@code enumClass} is {@code null}
      * @throws IllegalArgumentException if {@code enumClass} is not an enum class or has more than 64 values
      * @since 3.0.1
      */
@@ -349,11 +352,12 @@ public class EnumUtils {
      * enum values that it represents.</p>
      *
      * <p>If you store this value, beware any changes to the enum that would affect ordinal values.</p>
+     *
      * @param enumClass the class of the enum we are working with, not {@code null}
-     * @param values     the long[] bearing the representation of a set of enum values, least significant digits rightmost, not {@code null}
+     * @param values    the long[] bearing the representation of a set of enum values, least significant digits rightmost, not {@code null}
      * @param <E>       the type of the enumeration
      * @return a set of enum values
-     * @throws NullPointerException if {@code enumClass} is {@code null}
+     * @throws NullPointerException     if {@code enumClass} is {@code null}
      * @throws IllegalArgumentException if {@code enumClass} is not an enum class
      * @since 3.2
      */

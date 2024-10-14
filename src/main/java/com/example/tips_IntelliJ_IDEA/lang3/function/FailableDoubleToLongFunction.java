@@ -28,7 +28,9 @@ import java.util.function.DoubleToLongFunction;
 @FunctionalInterface
 public interface FailableDoubleToLongFunction<E extends Throwable> {
 
-    /** NOP singleton */
+    /**
+     * NOP singleton
+     */
     @SuppressWarnings("rawtypes")
     FailableDoubleToLongFunction NOP = t -> 0;
 

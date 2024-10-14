@@ -16,11 +16,7 @@
  */
 package com.example.tips_IntelliJ_IDEA.offer;
 
-import com.example.tips_IntelliJ_IDEA.lang3.ArrayUtils;
-import com.example.tips_IntelliJ_IDEA.lang3.CharSequenceUtils;
-import com.example.tips_IntelliJ_IDEA.lang3.CharUtils;
-import com.example.tips_IntelliJ_IDEA.lang3.Charsets;
-import com.example.tips_IntelliJ_IDEA.lang3.ObjectUtils;
+import com.example.tips_IntelliJ_IDEA.lang3.*;
 import com.example.tips_IntelliJ_IDEA.lang3.function.ToBooleanBiFunction;
 import com.example.tips_IntelliJ_IDEA.lang3.text.WordUtils;
 
@@ -1243,7 +1239,7 @@ public class StringUtils {
      * @since 2.0
      * @since 3.0 Changed signature from containsNone(String, char[]) to containsNone(CharSequence, char...)
      */
-    public static boolean  containsNone(final CharSequence cs, final char... searchChars) {
+    public static boolean containsNone(final CharSequence cs, final char... searchChars) {
         if (cs == null || searchChars == null) {
             return true;
         }
@@ -1581,6 +1577,10 @@ public class StringUtils {
         return new String(chs, 0, count);
     }
 
+    private static int indexOfDifference(String str1, String str2) {
+        return 0;
+    }
+
     /**
      * <p>Compares two Strings, and returns the portion where they differ.
      * More precisely, return the remainder of the second String,
@@ -1620,10 +1620,6 @@ public class StringUtils {
             return EMPTY;
         }
         return str2.substring(at);
-    }
-
-    private static int indexOfDifference(String str1, String str2) {
-        return 0;
     }
 
     /**

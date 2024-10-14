@@ -89,22 +89,34 @@ import java.util.concurrent.atomic.AtomicLong;
  * @since 3.0
  */
 public class BasicThreadFactory implements ThreadFactory {
-    /** A counter for the threads created by this factory. */
+    /**
+     * A counter for the threads created by this factory.
+     */
     private final AtomicLong threadCounter;
 
-    /** Stores the wrapped factory. */
+    /**
+     * Stores the wrapped factory.
+     */
     private final ThreadFactory wrappedFactory;
 
-    /** Stores the uncaught exception handler. */
+    /**
+     * Stores the uncaught exception handler.
+     */
     private final Thread.UncaughtExceptionHandler uncaughtExceptionHandler;
 
-    /** Stores the naming pattern for newly created threads. */
+    /**
+     * Stores the naming pattern for newly created threads.
+     */
     private final String namingPattern;
 
-    /** Stores the priority. */
+    /**
+     * Stores the priority.
+     */
     private final Integer priority;
 
-    /** Stores the daemon status flag. */
+    /**
+     * Stores the daemon status flag.
+     */
     private final Boolean daemon;
 
     /**
@@ -249,24 +261,33 @@ public class BasicThreadFactory implements ThreadFactory {
      * chaining is supported. Refer to the documentation of {@code
      * BasicThreadFactory} for a usage example.
      * </p>
-     *
      */
     public static class Builder
-        implements com.example.tips_IntelliJ_IDEA.lang3.builder.Builder<BasicThreadFactory> {
+            implements com.example.tips_IntelliJ_IDEA.lang3.builder.Builder<BasicThreadFactory> {
 
-        /** The wrapped factory. */
+        /**
+         * The wrapped factory.
+         */
         private ThreadFactory wrappedFactory;
 
-        /** The uncaught exception handler. */
+        /**
+         * The uncaught exception handler.
+         */
         private Thread.UncaughtExceptionHandler exceptionHandler;
 
-        /** The naming pattern. */
+        /**
+         * The naming pattern.
+         */
         private String namingPattern;
 
-        /** The priority. */
+        /**
+         * The priority.
+         */
         private Integer priority;
 
-        /** The daemon flag. */
+        /**
+         * The daemon flag.
+         */
         private Boolean daemon;
 
         /**
@@ -274,10 +295,10 @@ public class BasicThreadFactory implements ThreadFactory {
          * BasicThreadFactory}.
          *
          * @param factory the wrapped {@code ThreadFactory} (must not be
-         * <b>null</b>)
+         *                <b>null</b>)
          * @return a reference to this {@code Builder}
          * @throws NullPointerException if the passed in {@code ThreadFactory}
-         * is <b>null</b>
+         *                              is <b>null</b>
          */
         public Builder wrappedFactory(final ThreadFactory factory) {
             Validate.notNull(factory, "factory");
@@ -331,7 +352,7 @@ public class BasicThreadFactory implements ThreadFactory {
          * new {@code BasicThreadFactory}.
          *
          * @param handler the {@code UncaughtExceptionHandler} (must not be
-         * <b>null</b>)
+         *                <b>null</b>)
          * @return a reference to this {@code Builder}
          * @throws NullPointerException if the exception handler is <b>null</b>
          */

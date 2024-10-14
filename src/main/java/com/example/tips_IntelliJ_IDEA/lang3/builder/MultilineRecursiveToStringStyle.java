@@ -65,14 +65,19 @@ public class MultilineRecursiveToStringStyle extends RecursiveToStringStyle {
 
     /**
      * Required for serialization support.
+     *
      * @see java.io.Serializable
      */
     private static final long serialVersionUID = 1L;
 
-    /** Indenting of inner lines. */
+    /**
+     * Indenting of inner lines.
+     */
     private static final int INDENT = 2;
 
-    /** Current indenting. */
+    /**
+     * Current indenting.
+     */
     private int spaces = 2;
 
     /**

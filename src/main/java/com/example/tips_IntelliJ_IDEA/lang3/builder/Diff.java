@@ -33,9 +33,7 @@ import java.lang.reflect.Type;
  * produce a {@link DiffResult}, containing the differences between two objects.
  * </p>
  *
- *
- * @param <T>
- *            The type of object contained within this {@code Diff}. Differences
+ * @param <T> The type of object contained within this {@code Diff}. Differences
  *            between primitive objects are stored as their Object wrapper
  *            equivalent.
  * @since 3.3
@@ -52,8 +50,7 @@ public abstract class Diff<T> extends Pair<T, T> {
      * Constructs a new {@code Diff} for the given field name.
      * </p>
      *
-     * @param fieldName
-     *            the name of the field
+     * @param fieldName the name of the field
      */
     protected Diff(final String fieldName) {
         this.type = ObjectUtils.defaultIfNull(
@@ -93,7 +90,6 @@ public abstract class Diff<T> extends Pair<T, T> {
      * [fieldname: left-value, right-value]
      * </pre>
      *
-     *
      * @return the string representation
      */
     @Override
@@ -106,8 +102,7 @@ public abstract class Diff<T> extends Pair<T, T> {
      * Throws {@code UnsupportedOperationException}.
      * </p>
      *
-     * @param value
-     *            ignored
+     * @param value ignored
      * @return nothing
      */
     @Override

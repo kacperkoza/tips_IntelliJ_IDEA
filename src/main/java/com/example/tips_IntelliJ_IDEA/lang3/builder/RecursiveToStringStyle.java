@@ -68,8 +68,8 @@ public class RecursiveToStringStyle extends ToStringStyle {
     @Override
     public void appendDetail(final StringBuffer buffer, final String fieldName, final Object value) {
         if (!ClassUtils.isPrimitiveWrapper(value.getClass()) &&
-            !String.class.equals(value.getClass()) &&
-            accept(value.getClass())) {
+                !String.class.equals(value.getClass()) &&
+                accept(value.getClass())) {
             buffer.append(ReflectionToStringBuilder.toString(value, this));
         } else {
             super.appendDetail(buffer, fieldName, value);
@@ -88,8 +88,7 @@ public class RecursiveToStringStyle extends ToStringStyle {
      * By default, this method always returns {@code true}, but may be overwritten by
      * sub-classes to filter specific classes.
      *
-     * @param clazz
-     *            The class to test.
+     * @param clazz The class to test.
      * @return Whether or not to recursively format the given {@code Class}.
      */
     protected boolean accept(final Class<?> clazz) {

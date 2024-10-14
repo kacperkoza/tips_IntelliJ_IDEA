@@ -13,6 +13,7 @@
 ## 0. Introduction
 
 ## 1. Before we start
+- `Theme: dark/light`
 - `Keymap > Based on the macOS keymap`
 - `CMD , > Presentation Assistant`
 - `Font > Size > 15`  
@@ -20,12 +21,12 @@ Additionally: [X] - `Enable ligatures`
 - `Resolution - Scaled (1600x900)` for presentation purposes
 
 ## 2. Basic Navigation
+`⌘ ⇧ \` - `Go to endpoint`  
+`⌘ ⌥ ⇧ E` - `Navigate > Text`  
 `⌘ O` - `Go to class` - with exact line - `StringUtils:1500`  
 `⌘ ⇧ O` - `Go to file`  
 `⌘ ⌥ O` - `Go to symbol` - Filter with namespace - `String.contains`  
 `⌘ ⇧ A` - `Find action` - Find any action that you can use in IDE  
-`⌘ ⇧ \` - `Go to endpoint`  
-`⌘ ⌥ ⇧ E` - `Navigate > Text`  
 `⇧ ⇧` - `Search Everywhere`
 
 `⌥ ↑ OR ↓` - (in above windows) browse search history
@@ -38,11 +39,11 @@ Additionally: [X] - `Enable ligatures`
 
 `Enter Distraction Free Mode`
 
-`⌘ ⇧ 1` - `Select File in Project View`
-
-`⌘ E` - `Recent files`  
+`⌘ E` - `Recent files`
 
 You can filter the result list by typing some text.
+
+`⌘ ⇧ 1` - `Select File in Project View`
 
 `⌘ ⇧ E` - `Recent Locations`
 
@@ -53,6 +54,8 @@ You can filter the result list by typing some text.
 Use `ESCAPE` to go back from tool window to editor.
 
 `⌃ ⌥ ← / →` - `Stretch (tool window) to Left / Right`
+
+`⌘ ⇧ '` - `Maximixe Tool Window`
 
 Use it to adjust width and height of any other tool window, for example `Recent Files`
 
@@ -84,6 +87,10 @@ For example, you can assign `⌘ ⇧ W` for `Close other tabs`.
 Copy `curl.txt` and paste into `.http` scratch. Edit and then export as new cURL.
 
 Scratch files are not detected by git. You can always create `.http` file in your project directory and keep it in git.
+
+Find and use tools what you need, for example Bookmarks. 
+
+`⌘ ⇧ E` > `Bookmarks` (`⌘ 2`)
 
 ## 7. Navigating inside file
 
@@ -203,6 +210,17 @@ It conflicts with macOS shortcut: `Input sources` > `Select previous input sourc
 More refactor tools is in `Refactor` menu. **Check difference between Java and Kotlin options.**
 
 ## 10. Copilot
+
+Enable suggestions
+
+if (accountId != null) {
+    // Copilot: accountId is not null
+}
+
+`Open GitHub Copilot Chat Inline Chat` > "Write curl request for this endpoint"
+
+and of course - assign a shortcut if you use it frequently
+
 
 ## 11. Additionally
 

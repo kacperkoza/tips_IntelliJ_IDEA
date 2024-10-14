@@ -30,7 +30,9 @@ import java.util.function.ToIntBiFunction;
 @FunctionalInterface
 public interface FailableToIntBiFunction<T, U, E extends Throwable> {
 
-    /** NOP singleton */
+    /**
+     * NOP singleton
+     */
     @SuppressWarnings("rawtypes")
     FailableToIntBiFunction NOP = (t, u) -> 0;
 

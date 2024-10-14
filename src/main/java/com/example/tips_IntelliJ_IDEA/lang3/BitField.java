@@ -29,7 +29,7 @@ package com.example.tips_IntelliJ_IDEA.lang3;
  * <p>As an example, consider a car painting machine that accepts
  * paint instructions as integers. Bit fields can be used to encode this:</p>
  *
- *<pre>
+ * <pre>
  *    // blue, green and red are 1 byte values (0-255) stored in the three least
  *    // significant bytes
  *    BitField blue = new BitField(0xFF);
@@ -41,21 +41,21 @@ package com.example.tips_IntelliJ_IDEA.lang3;
  *
  *    // isMetallic is a single bit flag
  *    BitField isMetallic = new BitField(0x1000000);
- *</pre>
+ * </pre>
  *
  * <p>Using these {@code BitField} instances, a paint instruction can be
  * encoded into an integer:</p>
  *
- *<pre>
+ * <pre>
  *    int paintInstruction = 0;
  *    paintInstruction = red.setValue(paintInstruction, 35);
  *    paintInstruction = green.setValue(paintInstruction, 100);
  *    paintInstruction = blue.setValue(paintInstruction, 255);
- *</pre>
+ * </pre>
  *
  * <p>Flags and data can be retrieved from the integer:</p>
  *
- *<pre>
+ * <pre>
  *    // Prints true if red, green or blue is non-zero
  *    System.out.println(anyColor.isSet(paintInstruction));   // prints true
  *
@@ -66,7 +66,7 @@ package com.example.tips_IntelliJ_IDEA.lang3;
  *
  *    // Prints true if isMetallic was set
  *    System.out.println(isMetallic.isSet(paintInstruction)); // prints false
- *</pre>
+ * </pre>
  *
  * @since 2.0
  */
@@ -79,8 +79,8 @@ public class BitField {
      * <p>Creates a BitField instance.</p>
      *
      * @param mask the mask specifying which bits apply to this
-     *  BitField. Bits that are set in this mask are the bits
-     *  that this BitField operates on
+     *             BitField. Bits that are set in this mask are the bits
+     *             that this BitField operates on
      */
     public BitField(final int mask) {
         _mask = mask;
@@ -96,10 +96,10 @@ public class BitField {
      * value is stored as a BitField (and so shifted left so many
      * bits).</p>
      *
-     * @see #setValue(int,int)
      * @param holder the int data containing the bits we're interested
-     *  in
+     *               in
      * @return the selected bits, shifted right appropriately
+     * @see #setValue(int, int)
      */
     public int getValue(final int holder) {
         return getRawValue(holder) >> _shift_count;
@@ -114,10 +114,10 @@ public class BitField {
      * value is stored as a BitField (and so shifted left so many
      * bits).</p>
      *
-     * @see #setShortValue(short,short)
      * @param holder the short data containing the bits we're
-     *  interested in
+     *               interested in
      * @return the selected bits, shifted right appropriately
+     * @see #setShortValue(short, short)
      */
     public short getShortValue(final short holder) {
         return (short) getValue(holder);
@@ -127,7 +127,7 @@ public class BitField {
      * <p>Obtains the value for the specified BitField, unshifted.</p>
      *
      * @param holder the int data containing the bits we're
-     *  interested in
+     *               interested in
      * @return the selected bits
      */
     public int getRawValue(final int holder) {
@@ -138,7 +138,7 @@ public class BitField {
      * <p>Obtains the value for the specified BitField, unshifted.</p>
      *
      * @param holder the short data containing the bits we're
-     *  interested in
+     *               interested in
      * @return the selected bits
      */
     public short getShortRawValue(final short holder) {
@@ -154,9 +154,9 @@ public class BitField {
      * bits are set.</p>
      *
      * @param holder the int data containing the bits we're interested
-     *  in
+     *               in
      * @return {@code true} if any of the bits are set,
-     *  else {@code false}
+     * else {@code false}
      */
     public boolean isSet(final int holder) {
         return (holder & _mask) != 0;
@@ -170,9 +170,9 @@ public class BitField {
      * for this method to return {@code true}.</p>
      *
      * @param holder the int data containing the bits we're
-     *  interested in
+     *               interested in
      * @return {@code true} if all of the bits are set,
-     *  else {@code false}
+     * else {@code false}
      */
     public boolean isAllSet(final int holder) {
         return (holder & _mask) == _mask;
@@ -181,12 +181,12 @@ public class BitField {
     /**
      * <p>Replaces the bits with new values.</p>
      *
-     * @see #getValue(int)
      * @param holder the int data containing the bits we're
-     *  interested in
-     * @param value the new value for the specified bits
+     *               interested in
+     * @param value  the new value for the specified bits
      * @return the value of holder with the bits from the value
-     *  parameter replacing the old bits
+     * parameter replacing the old bits
+     * @see #getValue(int)
      */
     public int setValue(final int holder, final int value) {
         return (holder & ~_mask) | ((value << _shift_count) & _mask);
@@ -195,12 +195,12 @@ public class BitField {
     /**
      * <p>Replaces the bits with new values.</p>
      *
-     * @see #getShortValue(short)
      * @param holder the short data containing the bits we're
-     *  interested in
-     * @param value the new value for the specified bits
+     *               interested in
+     * @param value  the new value for the specified bits
      * @return the value of holder with the bits from the value
-     *  parameter replacing the old bits
+     * parameter replacing the old bits
+     * @see #getShortValue(short)
      */
     public short setShortValue(final short holder, final short value) {
         return (short) setValue(holder, value);
@@ -210,9 +210,9 @@ public class BitField {
      * <p>Clears the bits.</p>
      *
      * @param holder the int data containing the bits we're
-     *  interested in
+     *               interested in
      * @return the value of holder with the specified bits cleared
-     *  (set to {@code 0})
+     * (set to {@code 0})
      */
     public int clear(final int holder) {
         return holder & ~_mask;
@@ -222,9 +222,9 @@ public class BitField {
      * <p>Clears the bits.</p>
      *
      * @param holder the short data containing the bits we're
-     *  interested in
+     *               interested in
      * @return the value of holder with the specified bits cleared
-     *  (set to {@code 0})
+     * (set to {@code 0})
      */
     public short clearShort(final short holder) {
         return (short) clear(holder);
@@ -234,10 +234,9 @@ public class BitField {
      * <p>Clears the bits.</p>
      *
      * @param holder the byte data containing the bits we're
-     *  interested in
-     *
+     *               interested in
      * @return the value of holder with the specified bits cleared
-     *  (set to {@code 0})
+     * (set to {@code 0})
      */
     public byte clearByte(final byte holder) {
         return (byte) clear(holder);
@@ -247,9 +246,9 @@ public class BitField {
      * <p>Sets the bits.</p>
      *
      * @param holder the int data containing the bits we're
-     *  interested in
+     *               interested in
      * @return the value of holder with the specified bits set
-     *  to {@code 1}
+     * to {@code 1}
      */
     public int set(final int holder) {
         return holder | _mask;
@@ -259,9 +258,9 @@ public class BitField {
      * <p>Sets the bits.</p>
      *
      * @param holder the short data containing the bits we're
-     *  interested in
+     *               interested in
      * @return the value of holder with the specified bits set
-     *  to {@code 1}
+     * to {@code 1}
      */
     public short setShort(final short holder) {
         return (short) set(holder);
@@ -271,10 +270,9 @@ public class BitField {
      * <p>Sets the bits.</p>
      *
      * @param holder the byte data containing the bits we're
-     *  interested in
-     *
+     *               interested in
      * @return the value of holder with the specified bits set
-     *  to {@code 1}
+     * to {@code 1}
      */
     public byte setByte(final byte holder) {
         return (byte) set(holder);
@@ -284,10 +282,10 @@ public class BitField {
      * <p>Sets a boolean BitField.</p>
      *
      * @param holder the int data containing the bits we're
-     *  interested in
-     * @param flag indicating whether to set or clear the bits
+     *               interested in
+     * @param flag   indicating whether to set or clear the bits
      * @return the value of holder with the specified bits set or
-     *         cleared
+     * cleared
      */
     public int setBoolean(final int holder, final boolean flag) {
         return flag ? set(holder) : clear(holder);
@@ -297,10 +295,10 @@ public class BitField {
      * <p>Sets a boolean BitField.</p>
      *
      * @param holder the short data containing the bits we're
-     *  interested in
-     * @param flag indicating whether to set or clear the bits
+     *               interested in
+     * @param flag   indicating whether to set or clear the bits
      * @return the value of holder with the specified bits set or
-     *  cleared
+     * cleared
      */
     public short setShortBoolean(final short holder, final boolean flag) {
         return flag ? setShort(holder) : clearShort(holder);
@@ -310,10 +308,10 @@ public class BitField {
      * <p>Sets a boolean BitField.</p>
      *
      * @param holder the byte data containing the bits we're
-     *  interested in
-     * @param flag indicating whether to set or clear the bits
+     *               interested in
+     * @param flag   indicating whether to set or clear the bits
      * @return the value of holder with the specified bits set or
-     *  cleared
+     * cleared
      */
     public byte setByteBoolean(final byte holder, final boolean flag) {
         return flag ? setByte(holder) : clearByte(holder);

@@ -22,6 +22,7 @@ package com.example.tips_IntelliJ_IDEA.lang3;
  * <p>The original error is wrapped within this one.</p>
  *
  * <p>#NotThreadSafe# because Throwable is not thread-safe</p>
+ *
  * @since 1.0
  */
 public class SerializationException extends RuntimeException {
@@ -44,7 +45,7 @@ public class SerializationException extends RuntimeException {
      * <p>Constructs a new {@code SerializationException} with specified
      * detail message.</p>
      *
-     * @param msg  The error message.
+     * @param msg The error message.
      */
     public SerializationException(final String msg) {
         super(msg);
@@ -54,8 +55,8 @@ public class SerializationException extends RuntimeException {
      * <p>Constructs a new {@code SerializationException} with specified
      * nested {@code Throwable}.</p>
      *
-     * @param cause  The {@code Exception} or {@code Error}
-     *  that caused this exception to be thrown.
+     * @param cause The {@code Exception} or {@code Error}
+     *              that caused this exception to be thrown.
      */
     public SerializationException(final Throwable cause) {
         super(cause);
@@ -65,9 +66,9 @@ public class SerializationException extends RuntimeException {
      * <p>Constructs a new {@code SerializationException} with specified
      * detail message and nested {@code Throwable}.</p>
      *
-     * @param msg    The error message.
-     * @param cause  The {@code Exception} or {@code Error}
-     *  that caused this exception to be thrown.
+     * @param msg   The error message.
+     * @param cause The {@code Exception} or {@code Error}
+     *              that caused this exception to be thrown.
      */
     public SerializationException(final String msg, final Throwable cause) {
         super(msg, cause);

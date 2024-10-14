@@ -161,7 +161,7 @@ public abstract class StrMatcher {
     /**
      * Constructor that creates a matcher from a character.
      *
-     * @param ch  the character to match, must not be null
+     * @param ch the character to match, must not be null
      * @return a new Matcher for the given char
      */
     public static StrMatcher charMatcher(final char ch) {
@@ -171,7 +171,7 @@ public abstract class StrMatcher {
     /**
      * Constructor that creates a matcher from a set of characters.
      *
-     * @param chars  the characters to match, null or empty matches nothing
+     * @param chars the characters to match, null or empty matches nothing
      * @return a new matcher for the given char[]
      */
     public static StrMatcher charSetMatcher(final char... chars) {
@@ -187,7 +187,7 @@ public abstract class StrMatcher {
     /**
      * Constructor that creates a matcher from a string representing a set of characters.
      *
-     * @param chars  the characters to match, null or empty matches nothing
+     * @param chars the characters to match, null or empty matches nothing
      * @return a new Matcher for the given characters
      */
     public static StrMatcher charSetMatcher(final String chars) {
@@ -203,7 +203,7 @@ public abstract class StrMatcher {
     /**
      * Constructor that creates a matcher from a string.
      *
-     * @param str  the string to match, null or empty matches nothing
+     * @param str the string to match, null or empty matches nothing
      * @return a new Matcher for the given String
      */
     public static StrMatcher stringMatcher(final String str) {
@@ -214,6 +214,7 @@ public abstract class StrMatcher {
     }
 
     //-----------------------------------------------------------------------
+
     /**
      * Constructor.
      */
@@ -239,10 +240,10 @@ public abstract class StrMatcher {
      * It must return zero for no match, or a positive number if a match was found.
      * The number indicates the number of characters that matched.
      *
-     * @param buffer  the text content to match against, do not change
-     * @param pos  the starting position for the match, valid for buffer
-     * @param bufferStart  the first active index in the buffer, valid for buffer
-     * @param bufferEnd  the end index (exclusive) of the active buffer, valid for buffer
+     * @param buffer      the text content to match against, do not change
+     * @param pos         the starting position for the match, valid for buffer
+     * @param bufferStart the first active index in the buffer, valid for buffer
+     * @param bufferEnd   the end index (exclusive) of the active buffer, valid for buffer
      * @return the number of matching characters, zero for no match
      */
     public abstract int isMatch(char[] buffer, int pos, int bufferStart, int bufferEnd);
@@ -262,8 +263,8 @@ public abstract class StrMatcher {
      * It must return zero for no match, or a positive number if a match was found.
      * The number indicates the number of characters that matched.
      *
-     * @param buffer  the text content to match against, do not change
-     * @param pos  the starting position for the match, valid for buffer
+     * @param buffer the text content to match against, do not change
+     * @param pos    the starting position for the match, valid for buffer
      * @return the number of matching characters, zero for no match
      * @since 2.4
      */
@@ -272,17 +273,20 @@ public abstract class StrMatcher {
     }
 
     //-----------------------------------------------------------------------
+
     /**
      * Class used to define a set of characters for matching purposes.
      */
     static final class CharSetMatcher extends StrMatcher {
-        /** The set of characters to match. */
+        /**
+         * The set of characters to match.
+         */
         private final char[] chars;
 
         /**
          * Constructor that creates a matcher from a character array.
          *
-         * @param chars  the characters to match, must not be null
+         * @param chars the characters to match, must not be null
          */
         CharSetMatcher(final char[] chars) {
             this.chars = ArraySorter.sort(chars.clone());
@@ -291,10 +295,10 @@ public abstract class StrMatcher {
         /**
          * Returns whether or not the given character matches.
          *
-         * @param buffer  the text content to match against, do not change
-         * @param pos  the starting position for the match, valid for buffer
-         * @param bufferStart  the first active index in the buffer, valid for buffer
-         * @param bufferEnd  the end index of the active buffer, valid for buffer
+         * @param buffer      the text content to match against, do not change
+         * @param pos         the starting position for the match, valid for buffer
+         * @param bufferStart the first active index in the buffer, valid for buffer
+         * @param bufferEnd   the end index of the active buffer, valid for buffer
          * @return the number of matching characters, zero for no match
          */
         @Override
@@ -304,17 +308,20 @@ public abstract class StrMatcher {
     }
 
     //-----------------------------------------------------------------------
+
     /**
      * Class used to define a character for matching purposes.
      */
     static final class CharMatcher extends StrMatcher {
-        /** The character to match. */
+        /**
+         * The character to match.
+         */
         private final char ch;
 
         /**
          * Constructor that creates a matcher that matches a single character.
          *
-         * @param ch  the character to match
+         * @param ch the character to match
          */
         CharMatcher(final char ch) {
             this.ch = ch;
@@ -323,10 +330,10 @@ public abstract class StrMatcher {
         /**
          * Returns whether or not the given character matches.
          *
-         * @param buffer  the text content to match against, do not change
-         * @param pos  the starting position for the match, valid for buffer
-         * @param bufferStart  the first active index in the buffer, valid for buffer
-         * @param bufferEnd  the end index of the active buffer, valid for buffer
+         * @param buffer      the text content to match against, do not change
+         * @param pos         the starting position for the match, valid for buffer
+         * @param bufferStart the first active index in the buffer, valid for buffer
+         * @param bufferEnd   the end index of the active buffer, valid for buffer
          * @return the number of matching characters, zero for no match
          */
         @Override
@@ -336,17 +343,20 @@ public abstract class StrMatcher {
     }
 
     //-----------------------------------------------------------------------
+
     /**
      * Class used to define a set of characters for matching purposes.
      */
     static final class StringMatcher extends StrMatcher {
-        /** The string to match, as a character array. */
+        /**
+         * The string to match, as a character array.
+         */
         private final char[] chars;
 
         /**
          * Constructor that creates a matcher from a String.
          *
-         * @param str  the string to match, must not be null
+         * @param str the string to match, must not be null
          */
         StringMatcher(final String str) {
             chars = str.toCharArray();
@@ -355,10 +365,10 @@ public abstract class StrMatcher {
         /**
          * Returns whether or not the given text matches the stored string.
          *
-         * @param buffer  the text content to match against, do not change
-         * @param pos  the starting position for the match, valid for buffer
-         * @param bufferStart  the first active index in the buffer, valid for buffer
-         * @param bufferEnd  the end index of the active buffer, valid for buffer
+         * @param buffer      the text content to match against, do not change
+         * @param pos         the starting position for the match, valid for buffer
+         * @param bufferStart the first active index in the buffer, valid for buffer
+         * @param bufferEnd   the end index of the active buffer, valid for buffer
          * @return the number of matching characters, zero for no match
          */
         @Override
@@ -383,6 +393,7 @@ public abstract class StrMatcher {
     }
 
     //-----------------------------------------------------------------------
+
     /**
      * Class used to match no characters.
      */
@@ -397,10 +408,10 @@ public abstract class StrMatcher {
         /**
          * Always returns {@code false}.
          *
-         * @param buffer  the text content to match against, do not change
-         * @param pos  the starting position for the match, valid for buffer
-         * @param bufferStart  the first active index in the buffer, valid for buffer
-         * @param bufferEnd  the end index of the active buffer, valid for buffer
+         * @param buffer      the text content to match against, do not change
+         * @param pos         the starting position for the match, valid for buffer
+         * @param bufferStart the first active index in the buffer, valid for buffer
+         * @param bufferEnd   the end index of the active buffer, valid for buffer
          * @return the number of matching characters, zero for no match
          */
         @Override
@@ -410,6 +421,7 @@ public abstract class StrMatcher {
     }
 
     //-----------------------------------------------------------------------
+
     /**
      * Class used to match whitespace as per trim().
      */
@@ -424,10 +436,10 @@ public abstract class StrMatcher {
         /**
          * Returns whether or not the given character matches.
          *
-         * @param buffer  the text content to match against, do not change
-         * @param pos  the starting position for the match, valid for buffer
-         * @param bufferStart  the first active index in the buffer, valid for buffer
-         * @param bufferEnd  the end index of the active buffer, valid for buffer
+         * @param buffer      the text content to match against, do not change
+         * @param pos         the starting position for the match, valid for buffer
+         * @param bufferStart the first active index in the buffer, valid for buffer
+         * @param bufferEnd   the end index of the active buffer, valid for buffer
          * @return the number of matching characters, zero for no match
          */
         @Override

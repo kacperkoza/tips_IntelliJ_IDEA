@@ -113,7 +113,7 @@ public class ArraySorter {
     /**
      * Sorts and returns the given array.
      *
-     * @param <T> the array type.
+     * @param <T>   the array type.
      * @param array the array to sort.
      * @return the given array.
      * @see Arrays#sort(Object[])
@@ -126,10 +126,10 @@ public class ArraySorter {
     /**
      * Sorts and returns the given array.
      *
-     * @param <T> the array type.
-     * @param array the array to sort.
+     * @param <T>        the array type.
+     * @param array      the array to sort.
      * @param comparator the comparator to determine the order of the array. A {@code null} value uses the elements'
-     *        {@link Comparable natural ordering}.
+     *                   {@link Comparable natural ordering}.
      * @return the given array.
      * @see Arrays#sort(Object[])
      */

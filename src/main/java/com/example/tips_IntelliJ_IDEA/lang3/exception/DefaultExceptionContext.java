@@ -39,10 +39,14 @@ import java.util.Set;
  */
 public class DefaultExceptionContext implements ExceptionContext, Serializable {
 
-    /** The serialization version. */
+    /**
+     * The serialization version.
+     */
     private static final long serialVersionUID = 20110706L;
 
-    /** The list storing the label-data pairs. */
+    /**
+     * The list storing the label-data pairs.
+     */
     private final List<Pair<String, Object>> contextValues = new ArrayList<>();
 
     /**
@@ -114,7 +118,7 @@ public class DefaultExceptionContext implements ExceptionContext, Serializable {
     /**
      * Builds the message containing the contextual information.
      *
-     * @param baseMessage  the base exception message <b>without</b> context information appended
+     * @param baseMessage the base exception message <b>without</b> context information appended
      * @return the exception message <b>with</b> context information appended, never null
      */
     @Override

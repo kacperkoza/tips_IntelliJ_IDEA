@@ -32,8 +32,8 @@ import java.util.List;
  * <p>
  * Use a {@link DiffBuilder} to build a {@code DiffResult} comparing two objects.
  * </p>
- * @param <T> type of the left and right object.
  *
+ * @param <T> type of the left and right object.
  * @since 3.3
  */
 public class DiffResult<T> implements Iterable<Diff<?>> {
@@ -59,20 +59,16 @@ public class DiffResult<T> implements Iterable<Diff<?>> {
      * objects.
      * </p>
      *
-     * @param lhs
-     *            the left hand object
-     * @param rhs
-     *            the right hand object
-     * @param diffList
-     *            the list of differences, may be empty
-     * @param style
-     *            the style to use for the {@link #toString()} method. May be
-     *            {@code null}, in which case
-     *            {@link ToStringStyle#DEFAULT_STYLE} is used
+     * @param lhs      the left hand object
+     * @param rhs      the right hand object
+     * @param diffList the list of differences, may be empty
+     * @param style    the style to use for the {@link #toString()} method. May be
+     *                 {@code null}, in which case
+     *                 {@link ToStringStyle#DEFAULT_STYLE} is used
      * @throws NullPointerException if {@code lhs}, {@code rhs} or {@code diffs} is {@code null}
      */
     DiffResult(final T lhs, final T rhs, final List<Diff<?>> diffList,
-            final ToStringStyle style) {
+               final ToStringStyle style) {
         Validate.notNull(lhs, "lhs");
         Validate.notNull(rhs, "rhs");
         Validate.notNull(diffList, "diffList");
@@ -184,9 +180,7 @@ public class DiffResult<T> implements Iterable<Diff<?>> {
      * this {@code DiffResult}, using the supplied {@code ToStringStyle}.
      * </p>
      *
-     * @param style
-     *            the {@code ToStringStyle} to use when outputting the objects
-     *
+     * @param style the {@code ToStringStyle} to use when outputting the objects
      * @return a {@code String} description of the differences.
      */
     public String toString(final ToStringStyle style) {

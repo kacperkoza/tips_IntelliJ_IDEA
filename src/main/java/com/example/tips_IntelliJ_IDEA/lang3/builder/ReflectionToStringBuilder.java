@@ -25,11 +25,7 @@ import com.example.tips_IntelliJ_IDEA.lang3.Validate;
 import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 /**
  * <p>
@@ -118,12 +114,9 @@ public class ReflectionToStringBuilder extends ToStringBuilder {
      * Superclass fields will be appended.
      * </p>
      *
-     * @param object
-     *            the Object to be output
+     * @param object the Object to be output
      * @return the String result
-     * @throws IllegalArgumentException
-     *             if the Object is {@code null}
-     *
+     * @throws IllegalArgumentException if the Object is {@code null}
      * @see ToStringExclude
      * @see ToStringSummary
      */
@@ -151,14 +144,10 @@ public class ReflectionToStringBuilder extends ToStringBuilder {
      * If the style is {@code null}, the default {@code ToStringStyle} is used.
      * </p>
      *
-     * @param object
-     *            the Object to be output
-     * @param style
-     *            the style of the {@code toString} to create, may be {@code null}
+     * @param object the Object to be output
+     * @param style  the style of the {@code toString} to create, may be {@code null}
      * @return the String result
-     * @throws IllegalArgumentException
-     *             if the Object or {@code ToStringStyle} is {@code null}
-     *
+     * @throws IllegalArgumentException if the Object or {@code ToStringStyle} is {@code null}
      * @see ToStringExclude
      * @see ToStringSummary
      */
@@ -190,16 +179,11 @@ public class ReflectionToStringBuilder extends ToStringBuilder {
      * If the style is {@code null}, the default {@code ToStringStyle} is used.
      * </p>
      *
-     * @param object
-     *            the Object to be output
-     * @param style
-     *            the style of the {@code toString} to create, may be {@code null}
-     * @param outputTransients
-     *            whether to include transient fields
+     * @param object           the Object to be output
+     * @param style            the style of the {@code toString} to create, may be {@code null}
+     * @param outputTransients whether to include transient fields
      * @return the String result
-     * @throws IllegalArgumentException
-     *             if the Object is {@code null}
-     *
+     * @throws IllegalArgumentException if the Object is {@code null}
      * @see ToStringExclude
      * @see ToStringSummary
      */
@@ -236,18 +220,12 @@ public class ReflectionToStringBuilder extends ToStringBuilder {
      * If the style is {@code null}, the default {@code ToStringStyle} is used.
      * </p>
      *
-     * @param object
-     *            the Object to be output
-     * @param style
-     *            the style of the {@code toString} to create, may be {@code null}
-     * @param outputTransients
-     *            whether to include transient fields
-     * @param outputStatics
-     *            whether to include static fields
+     * @param object           the Object to be output
+     * @param style            the style of the {@code toString} to create, may be {@code null}
+     * @param outputTransients whether to include transient fields
+     * @param outputStatics    whether to include static fields
      * @return the String result
-     * @throws IllegalArgumentException
-     *             if the Object is {@code null}
-     *
+     * @throws IllegalArgumentException if the Object is {@code null}
      * @see ToStringExclude
      * @see ToStringSummary
      * @since 2.1
@@ -286,22 +264,14 @@ public class ReflectionToStringBuilder extends ToStringBuilder {
      * If the style is {@code null}, the default {@code ToStringStyle} is used.
      * </p>
      *
-     * @param <T>
-     *            the type of the object
-     * @param object
-     *            the Object to be output
-     * @param style
-     *            the style of the {@code toString} to create, may be {@code null}
-     * @param outputTransients
-     *            whether to include transient fields
-     * @param outputStatics
-     *            whether to include static fields
-     * @param reflectUpToClass
-     *            the superclass to reflect up to (inclusive), may be {@code null}
+     * @param <T>              the type of the object
+     * @param object           the Object to be output
+     * @param style            the style of the {@code toString} to create, may be {@code null}
+     * @param outputTransients whether to include transient fields
+     * @param outputStatics    whether to include static fields
+     * @param reflectUpToClass the superclass to reflect up to (inclusive), may be {@code null}
      * @return the String result
-     * @throws IllegalArgumentException
-     *             if the Object is {@code null}
-     *
+     * @throws IllegalArgumentException if the Object is {@code null}
      * @see ToStringExclude
      * @see ToStringSummary
      * @since 2.1
@@ -343,24 +313,15 @@ public class ReflectionToStringBuilder extends ToStringBuilder {
      * If the style is {@code null}, the default {@code ToStringStyle} is used.
      * </p>
      *
-     * @param <T>
-     *            the type of the object
-     * @param object
-     *            the Object to be output
-     * @param style
-     *            the style of the {@code toString} to create, may be {@code null}
-     * @param outputTransients
-     *            whether to include transient fields
-     * @param outputStatics
-     *            whether to include static fields
-     * @param excludeNullValues
-     *            whether to exclude fields whose values are null
-     * @param reflectUpToClass
-     *            the superclass to reflect up to (inclusive), may be {@code null}
+     * @param <T>               the type of the object
+     * @param object            the Object to be output
+     * @param style             the style of the {@code toString} to create, may be {@code null}
+     * @param outputTransients  whether to include transient fields
+     * @param outputStatics     whether to include static fields
+     * @param excludeNullValues whether to exclude fields whose values are null
+     * @param reflectUpToClass  the superclass to reflect up to (inclusive), may be {@code null}
      * @return the String result
-     * @throws IllegalArgumentException
-     *             if the Object is {@code null}
-     *
+     * @throws IllegalArgumentException if the Object is {@code null}
      * @see ToStringExclude
      * @see ToStringSummary
      * @since 3.6
@@ -375,10 +336,8 @@ public class ReflectionToStringBuilder extends ToStringBuilder {
     /**
      * Builds a String for a toString method excluding the given field names.
      *
-     * @param object
-     *            The object to "toString".
-     * @param excludeFieldNames
-     *            The field names to exclude. Null excludes nothing.
+     * @param object            The object to "toString".
+     * @param excludeFieldNames The field names to exclude. Null excludes nothing.
      * @return The toString value.
      */
     public static String toStringExclude(final Object object, final Collection<String> excludeFieldNames) {
@@ -390,8 +349,7 @@ public class ReflectionToStringBuilder extends ToStringBuilder {
      * entries. Note that {@link Arrays#sort(Object[])} will throw an {@link NullPointerException} if an array element
      * is {@code null}.
      *
-     * @param collection
-     *            The collection to convert
+     * @param collection The collection to convert
      * @return A new array of Strings.
      */
     static String[] toNoNullStringArray(final Collection<String> collection) {
@@ -406,8 +364,7 @@ public class ReflectionToStringBuilder extends ToStringBuilder {
      * (arrays and collections). Note that {@link Arrays#sort(Object[])} will throw an {@link NullPointerException}
      * if an array element is {@code null}.
      *
-     * @param array
-     *            The array to check
+     * @param array The array to check
      * @return The given array or a new array without null.
      */
     static String[] toNoNullStringArray(final Object[] array) {
@@ -424,10 +381,8 @@ public class ReflectionToStringBuilder extends ToStringBuilder {
     /**
      * Builds a String for a toString method excluding the given field names.
      *
-     * @param object
-     *            The object to "toString".
-     * @param excludeFieldNames
-     *            The field names to exclude
+     * @param object            The object to "toString".
+     * @param excludeFieldNames The field names to exclude
      * @return The toString value.
      */
     public static String toStringExclude(final Object object, final String... excludeFieldNames) {
@@ -474,10 +429,8 @@ public class ReflectionToStringBuilder extends ToStringBuilder {
      * This constructor outputs using the default style set with {@code setDefaultStyle}.
      * </p>
      *
-     * @param object
-     *            the Object to build a {@code toString} for, must not be {@code null}
-     * @throws IllegalArgumentException
-     *             if the Object passed in is {@code null}
+     * @param object the Object to build a {@code toString} for, must not be {@code null}
+     * @throws IllegalArgumentException if the Object passed in is {@code null}
      */
     public ReflectionToStringBuilder(final Object object) {
         super(checkNotNull(object));
@@ -492,12 +445,9 @@ public class ReflectionToStringBuilder extends ToStringBuilder {
      * If the style is {@code null}, the default style is used.
      * </p>
      *
-     * @param object
-     *            the Object to build a {@code toString} for, must not be {@code null}
-     * @param style
-     *            the style of the {@code toString} to create, may be {@code null}
-     * @throws IllegalArgumentException
-     *             if the Object passed in is {@code null}
+     * @param object the Object to build a {@code toString} for, must not be {@code null}
+     * @param style  the style of the {@code toString} to create, may be {@code null}
+     * @throws IllegalArgumentException if the Object passed in is {@code null}
      */
     public ReflectionToStringBuilder(final Object object, final ToStringStyle style) {
         super(checkNotNull(object), style);
@@ -516,14 +466,10 @@ public class ReflectionToStringBuilder extends ToStringBuilder {
      * If the buffer is {@code null}, a new one is created.
      * </p>
      *
-     * @param object
-     *            the Object to build a {@code toString} for
-     * @param style
-     *            the style of the {@code toString} to create, may be {@code null}
-     * @param buffer
-     *            the {@code StringBuffer} to populate, may be {@code null}
-     * @throws IllegalArgumentException
-     *             if the Object passed in is {@code null}
+     * @param object the Object to build a {@code toString} for
+     * @param style  the style of the {@code toString} to create, may be {@code null}
+     * @param buffer the {@code StringBuffer} to populate, may be {@code null}
+     * @throws IllegalArgumentException if the Object passed in is {@code null}
      */
     public ReflectionToStringBuilder(final Object object, final ToStringStyle style, final StringBuffer buffer) {
         super(checkNotNull(object), style, buffer);
@@ -532,20 +478,13 @@ public class ReflectionToStringBuilder extends ToStringBuilder {
     /**
      * Constructor.
      *
-     * @param <T>
-     *            the type of the object
-     * @param object
-     *            the Object to build a {@code toString} for
-     * @param style
-     *            the style of the {@code toString} to create, may be {@code null}
-     * @param buffer
-     *            the {@code StringBuffer} to populate, may be {@code null}
-     * @param reflectUpToClass
-     *            the superclass to reflect up to (inclusive), may be {@code null}
-     * @param outputTransients
-     *            whether to include transient fields
-     * @param outputStatics
-     *            whether to include static fields
+     * @param <T>              the type of the object
+     * @param object           the Object to build a {@code toString} for
+     * @param style            the style of the {@code toString} to create, may be {@code null}
+     * @param buffer           the {@code StringBuffer} to populate, may be {@code null}
+     * @param reflectUpToClass the superclass to reflect up to (inclusive), may be {@code null}
+     * @param outputTransients whether to include transient fields
+     * @param outputStatics    whether to include static fields
      * @since 2.1
      */
     public <T> ReflectionToStringBuilder(
@@ -560,22 +499,14 @@ public class ReflectionToStringBuilder extends ToStringBuilder {
     /**
      * Constructor.
      *
-     * @param <T>
-     *            the type of the object
-     * @param object
-     *            the Object to build a {@code toString} for
-     * @param style
-     *            the style of the {@code toString} to create, may be {@code null}
-     * @param buffer
-     *            the {@code StringBuffer} to populate, may be {@code null}
-     * @param reflectUpToClass
-     *            the superclass to reflect up to (inclusive), may be {@code null}
-     * @param outputTransients
-     *            whether to include transient fields
-     * @param outputStatics
-     *            whether to include static fields
-     * @param excludeNullValues
-     *            whether to exclude fields who value is null
+     * @param <T>               the type of the object
+     * @param object            the Object to build a {@code toString} for
+     * @param style             the style of the {@code toString} to create, may be {@code null}
+     * @param buffer            the {@code StringBuffer} to populate, may be {@code null}
+     * @param reflectUpToClass  the superclass to reflect up to (inclusive), may be {@code null}
+     * @param outputTransients  whether to include transient fields
+     * @param outputStatics     whether to include static fields
+     * @param excludeNullValues whether to exclude fields who value is null
      * @since 3.6
      */
     public <T> ReflectionToStringBuilder(
@@ -597,8 +528,7 @@ public class ReflectionToStringBuilder extends ToStringBuilder {
      * <li>Inner class fields are not appended.</li>
      * </ul>
      *
-     * @param field
-     *            The Field to test.
+     * @param field The Field to test.
      * @return Whether or not to append the given {@code Field}.
      */
     protected boolean accept(final Field field) {
@@ -615,7 +545,7 @@ public class ReflectionToStringBuilder extends ToStringBuilder {
             return false;
         }
         if (this.excludeFieldNames != null
-            && Arrays.binarySearch(this.excludeFieldNames, field.getName()) >= 0) {
+                && Arrays.binarySearch(this.excludeFieldNames, field.getName()) >= 0) {
             // Reject fields from the getExcludeFieldNames list.
             return false;
         }
@@ -632,8 +562,7 @@ public class ReflectionToStringBuilder extends ToStringBuilder {
      * {@code Object.toString()} had been called and not implemented by the object.
      * </p>
      *
-     * @param clazz
-     *            The class of object parameter
+     * @param clazz The class of object parameter
      */
     protected void appendFieldsIn(final Class<?> clazz) {
         if (clazz.isArray()) {
@@ -687,15 +616,10 @@ public class ReflectionToStringBuilder extends ToStringBuilder {
      * Calls {@code java.lang.reflect.Field.get(Object)}.
      * </p>
      *
-     * @param field
-     *            The Field to query.
+     * @param field The Field to query.
      * @return The Object from the given Field.
-     *
-     * @throws IllegalArgumentException
-     *             see {@link Field#get(Object)}
-     * @throws IllegalAccessException
-     *             see {@link Field#get(Object)}
-     *
+     * @throws IllegalArgumentException see {@link Field#get(Object)}
+     * @throws IllegalAccessException   see {@link Field#get(Object)}
      * @see Field#get(Object)
      */
     protected Object getValue(final Field field) throws IllegalAccessException {
@@ -742,8 +666,7 @@ public class ReflectionToStringBuilder extends ToStringBuilder {
      * Append to the {@code toString} an {@code Object} array.
      * </p>
      *
-     * @param array
-     *            the array to add to the {@code toString}
+     * @param array the array to add to the {@code toString}
      * @return this
      */
     public ReflectionToStringBuilder reflectionAppendArray(final Object array) {
@@ -756,8 +679,7 @@ public class ReflectionToStringBuilder extends ToStringBuilder {
      * Sets whether or not to append static fields.
      * </p>
      *
-     * @param appendStatics
-     *            Whether or not to append static fields.
+     * @param appendStatics Whether or not to append static fields.
      * @since 2.1
      */
     public void setAppendStatics(final boolean appendStatics) {
@@ -769,8 +691,7 @@ public class ReflectionToStringBuilder extends ToStringBuilder {
      * Sets whether or not to append transient fields.
      * </p>
      *
-     * @param appendTransients
-     *            Whether or not to append transient fields.
+     * @param appendTransients Whether or not to append transient fields.
      */
     public void setAppendTransients(final boolean appendTransients) {
         this.appendTransients = appendTransients;
@@ -781,8 +702,7 @@ public class ReflectionToStringBuilder extends ToStringBuilder {
      * Sets whether or not to append fields whose values are null.
      * </p>
      *
-     * @param excludeNullValues
-     *            Whether or not to append fields whose values are null.
+     * @param excludeNullValues Whether or not to append fields whose values are null.
      * @since 3.6
      */
     public void setExcludeNullValues(final boolean excludeNullValues) {
@@ -792,8 +712,7 @@ public class ReflectionToStringBuilder extends ToStringBuilder {
     /**
      * Sets the field names to exclude.
      *
-     * @param excludeFieldNamesParam
-     *            The excludeFieldNames to excluding from toString or {@code null}.
+     * @param excludeFieldNamesParam The excludeFieldNames to excluding from toString or {@code null}.
      * @return {@code this}
      */
     public ReflectionToStringBuilder setExcludeFieldNames(final String... excludeFieldNamesParam) {
@@ -811,8 +730,7 @@ public class ReflectionToStringBuilder extends ToStringBuilder {
      * Sets the last super class to stop appending fields for.
      * </p>
      *
-     * @param clazz
-     *            The last super class to stop appending fields for.
+     * @param clazz The last super class to stop appending fields for.
      */
     public void setUpToClass(final Class<?> clazz) {
         if (clazz != null) {

@@ -35,7 +35,7 @@ package com.example.tips_IntelliJ_IDEA.lang3;
  *   }
  * }
  * </pre>
- *
+ * <p>
  * This class was originally added in Lang 2.0, but removed in 3.0.
  *
  * @since 3.2
@@ -79,7 +79,7 @@ public class NotImplementedException extends UnsupportedOperationException {
      * Constructs a NotImplementedException.
      *
      * @param message description of the exception
-     * @param cause cause of the exception
+     * @param cause   cause of the exception
      * @since 3.2
      */
     public NotImplementedException(final String message, final Throwable cause) {
@@ -90,7 +90,7 @@ public class NotImplementedException extends UnsupportedOperationException {
      * Constructs a NotImplementedException.
      *
      * @param message description of the exception
-     * @param code code indicating a resource for more information regarding the lack of implementation
+     * @param code    code indicating a resource for more information regarding the lack of implementation
      * @since 3.2
      */
     public NotImplementedException(final String message, final String code) {
@@ -102,7 +102,7 @@ public class NotImplementedException extends UnsupportedOperationException {
      * Constructs a NotImplementedException.
      *
      * @param cause cause of the exception
-     * @param code code indicating a resource for more information regarding the lack of implementation
+     * @param code  code indicating a resource for more information regarding the lack of implementation
      * @since 3.2
      */
     public NotImplementedException(final Throwable cause, final String code) {
@@ -114,8 +114,8 @@ public class NotImplementedException extends UnsupportedOperationException {
      * Constructs a NotImplementedException.
      *
      * @param message description of the exception
-     * @param cause cause of the exception
-     * @param code code indicating a resource for more information regarding the lack of implementation
+     * @param cause   cause of the exception
+     * @param code    code indicating a resource for more information regarding the lack of implementation
      * @since 3.2
      */
     public NotImplementedException(final String message, final Throwable cause, final String code) {

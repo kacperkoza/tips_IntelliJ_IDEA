@@ -31,6 +31,7 @@ import java.util.Set;
  * <p>Instances are immutable, but instances of subclasses may not be.</p>
  *
  * <p>#ThreadSafe#</p>
+ *
  * @since 1.0
  */
 public class CharSet implements Serializable {
@@ -44,30 +45,35 @@ public class CharSet implements Serializable {
 
     /**
      * A CharSet defining no characters.
+     *
      * @since 2.0
      */
     public static final CharSet EMPTY = new CharSet((String) null);
 
     /**
      * A CharSet defining ASCII alphabetic characters "a-zA-Z".
+     *
      * @since 2.0
      */
     public static final CharSet ASCII_ALPHA = new CharSet("a-zA-Z");
 
     /**
      * A CharSet defining ASCII alphabetic characters "a-z".
+     *
      * @since 2.0
      */
     public static final CharSet ASCII_ALPHA_LOWER = new CharSet("a-z");
 
     /**
      * A CharSet defining ASCII alphabetic characters "A-Z".
+     *
      * @since 2.0
      */
     public static final CharSet ASCII_ALPHA_UPPER = new CharSet("A-Z");
 
     /**
      * A CharSet defining ASCII alphabetic characters "0-9".
+     *
      * @since 2.0
      */
     public static final CharSet ASCII_NUMERIC = new CharSet("0-9");
@@ -75,6 +81,7 @@ public class CharSet implements Serializable {
     /**
      * A Map of the common cases used in the factory.
      * Subclasses can add more common patterns if desired
+     *
      * @since 2.0
      */
     protected static final Map<String, CharSet> COMMON = Collections.synchronizedMap(new HashMap<>());
@@ -89,10 +96,13 @@ public class CharSet implements Serializable {
         COMMON.put("0-9", ASCII_NUMERIC);
     }
 
-    /** The set of CharRange objects. */
+    /**
+     * The set of CharRange objects.
+     */
     private final Set<CharRange> set = Collections.synchronizedSet(new HashSet<>());
 
     //-----------------------------------------------------------------------
+
     /**
      * <p>Factory method to create a new CharSet using a special syntax.</p>
      *
@@ -150,7 +160,7 @@ public class CharSet implements Serializable {
      *
      * <p>All CharSet objects returned by this method will be immutable.</p>
      *
-     * @param setStrs  Strings to merge into the set, may be null
+     * @param setStrs Strings to merge into the set, may be null
      * @return a CharSet instance
      * @since 2.4
      */
@@ -168,11 +178,12 @@ public class CharSet implements Serializable {
     }
 
     //-----------------------------------------------------------------------
+
     /**
      * <p>Constructs a new CharSet using the set syntax.
      * Each string is merged in with the set.</p>
      *
-     * @param set  Strings to merge into the initial set
+     * @param set Strings to merge into the initial set
      * @throws NullPointerException if set is {@code null}
      */
     protected CharSet(final String... set) {
@@ -182,10 +193,11 @@ public class CharSet implements Serializable {
     }
 
     //-----------------------------------------------------------------------
+
     /**
      * <p>Add a set definition string to the {@code CharSet}.</p>
      *
-     * @param str  set definition string
+     * @param str set definition string
      */
     protected void add(final String str) {
         if (str == null) {
@@ -217,6 +229,7 @@ public class CharSet implements Serializable {
     }
 
     //-----------------------------------------------------------------------
+
     /**
      * <p>Gets the internal set as an array of CharRange objects.</p>
      *
@@ -230,15 +243,16 @@ public class CharSet implements Serializable {
     }
 
     //-----------------------------------------------------------------------
+
     /**
      * <p>Does the {@code CharSet} contain the specified
      * character {@code ch}.</p>
      *
-     * @param ch  the character to check for
+     * @param ch the character to check for
      * @return {@code true} if the set contains the characters
      */
     public boolean contains(final char ch) {
-        synchronized(set) {
+        synchronized (set) {
             for (final CharRange range : set) {
                 if (range.contains(ch)) {
                     return true;
@@ -250,6 +264,7 @@ public class CharSet implements Serializable {
 
     // Basics
     //-----------------------------------------------------------------------
+
     /**
      * <p>Compares two {@code CharSet} objects, returning true if they represent
      * exactly the same set of characters defined in the same way.</p>
@@ -257,7 +272,7 @@ public class CharSet implements Serializable {
      * <p>The two sets {@code abc} and {@code a-c} are <i>not</i>
      * equal according to this method.</p>
      *
-     * @param obj  the object to compare to
+     * @param obj the object to compare to
      * @return true if equal
      * @since 2.0
      */

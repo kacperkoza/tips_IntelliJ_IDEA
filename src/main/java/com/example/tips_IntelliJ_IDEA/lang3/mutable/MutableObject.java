@@ -34,7 +34,9 @@ public class MutableObject<T> implements Mutable<T>, Serializable {
      */
     private static final long serialVersionUID = 86241875189L;
 
-    /** The mutable value. */
+    /**
+     * The mutable value.
+     */
     private T value;
 
     /**
@@ -46,13 +48,14 @@ public class MutableObject<T> implements Mutable<T>, Serializable {
     /**
      * Constructs a new MutableObject with the specified value.
      *
-     * @param value  the initial value to store
+     * @param value the initial value to store
      */
     public MutableObject(final T value) {
         this.value = value;
     }
 
     //-----------------------------------------------------------------------
+
     /**
      * Gets the value.
      *
@@ -66,7 +69,7 @@ public class MutableObject<T> implements Mutable<T>, Serializable {
     /**
      * Sets the value.
      *
-     * @param value  the value to set
+     * @param value the value to set
      */
     @Override
     public void setValue(final T value) {
@@ -74,6 +77,7 @@ public class MutableObject<T> implements Mutable<T>, Serializable {
     }
 
     //-----------------------------------------------------------------------
+
     /**
      * <p>
      * Compares this object against the specified object. The result is {@code true} if and only if the argument
@@ -81,10 +85,10 @@ public class MutableObject<T> implements Mutable<T>, Serializable {
      * value as this object.
      * </p>
      *
-     * @param obj  the object to compare with, {@code null} returns {@code false}
-     * @return  {@code true} if the objects are the same;
-     *          {@code true} if the objects have equivalent {@code value} fields;
-     *          {@code false} otherwise.
+     * @param obj the object to compare with, {@code null} returns {@code false}
+     * @return {@code true} if the objects are the same;
+     * {@code true} if the objects have equivalent {@code value} fields;
+     * {@code false} otherwise.
      */
     @Override
     public boolean equals(final Object obj) {
@@ -112,6 +116,7 @@ public class MutableObject<T> implements Mutable<T>, Serializable {
     }
 
     //-----------------------------------------------------------------------
+
     /**
      * Returns the String value of this mutable.
      *

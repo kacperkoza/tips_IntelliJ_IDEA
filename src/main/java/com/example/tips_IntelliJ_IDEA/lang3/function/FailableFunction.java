@@ -31,7 +31,9 @@ import java.util.function.Function;
 @FunctionalInterface
 public interface FailableFunction<T, R, E extends Throwable> {
 
-    /** NOP singleton */
+    /**
+     * NOP singleton
+     */
     @SuppressWarnings("rawtypes")
     FailableFunction NOP = t -> null;
 
@@ -61,9 +63,9 @@ public interface FailableFunction<T, R, E extends Throwable> {
     /**
      * Returns a composed {@code FailableFunction} like {@link Function#andThen(Function)}.
      *
-     * @param <V> the output type of the {@code after} function, and of the composed function.
-     * @return a composed {@code FailableFunction} like {@link Function#andThen(Function)}.
+     * @param <V>   the output type of the {@code after} function, and of the composed function.
      * @param after the operation to perform after this one.
+     * @return a composed {@code FailableFunction} like {@link Function#andThen(Function)}.
      * @throws NullPointerException when {@code after} is null.
      */
     default <V> FailableFunction<T, V, E> andThen(final FailableFunction<? super R, ? extends V, E> after) {
@@ -83,7 +85,7 @@ public interface FailableFunction<T, R, E extends Throwable> {
     /**
      * Returns a composed {@code FailableFunction} like {@link Function#compose(Function)}.
      *
-     * @param <V> the input type to the {@code before} function, and to the composed function.
+     * @param <V>    the input type to the {@code before} function, and to the composed function.
      * @param before the operator to apply before this one.
      * @return a a composed {@code FailableFunction} like {@link Function#compose(Function)}.
      * @throws NullPointerException if before is null.

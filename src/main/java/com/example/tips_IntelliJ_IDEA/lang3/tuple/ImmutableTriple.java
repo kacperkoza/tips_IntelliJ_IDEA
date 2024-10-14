@@ -29,7 +29,6 @@ package com.example.tips_IntelliJ_IDEA.lang3.tuple;
  * @param <L> the left element type
  * @param <M> the middle element type
  * @param <R> the right element type
- *
  * @since 3.2
  */
 public final class ImmutableTriple<L, M, R> extends Triple<L, M, R> {
@@ -51,7 +50,9 @@ public final class ImmutableTriple<L, M, R> extends Triple<L, M, R> {
     @SuppressWarnings("rawtypes")
     private static final ImmutableTriple NULL = of(null, null, null);
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = 1L;
 
     /**
@@ -61,7 +62,6 @@ public final class ImmutableTriple<L, M, R> extends Triple<L, M, R> {
      * @param <M> the middle element type
      * @param <R> the right element type
      * @return the empty array singleton that can be assigned without compiler warning.
-     *
      * @since 3.10.
      */
     @SuppressWarnings("unchecked")
@@ -88,29 +88,36 @@ public final class ImmutableTriple<L, M, R> extends Triple<L, M, R> {
      * <p>This factory allows the triple to be created using inference to
      * obtain the generic types.</p>
      *
-     * @param <L> the left element type
-     * @param <M> the middle element type
-     * @param <R> the right element type
-     * @param left  the left element, may be null
-     * @param middle  the middle element, may be null
+     * @param <L>    the left element type
+     * @param <M>    the middle element type
+     * @param <R>    the right element type
+     * @param left   the left element, may be null
+     * @param middle the middle element, may be null
      * @param right  the right element, may be null
      * @return a triple formed from the three parameters, not null
      */
     public static <L, M, R> ImmutableTriple<L, M, R> of(final L left, final M middle, final R right) {
         return new ImmutableTriple<>(left, middle, right);
     }
-    /** Left object */
+
+    /**
+     * Left object
+     */
     public final L left;
-    /** Middle object */
+    /**
+     * Middle object
+     */
     public final M middle;
 
-    /** Right object */
+    /**
+     * Right object
+     */
     public final R right;
 
     /**
      * Create a new triple instance.
      *
-     * @param left  the left value, may be null
+     * @param left   the left value, may be null
      * @param middle the middle value, may be null
      * @param right  the right value, may be null
      */
@@ -121,6 +128,7 @@ public final class ImmutableTriple<L, M, R> extends Triple<L, M, R> {
     }
 
     //-----------------------------------------------------------------------
+
     /**
      * {@inheritDoc}
      */

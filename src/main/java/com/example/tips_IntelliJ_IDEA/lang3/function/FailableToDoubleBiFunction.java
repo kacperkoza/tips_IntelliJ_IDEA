@@ -30,7 +30,9 @@ import java.util.function.ToDoubleBiFunction;
 @FunctionalInterface
 public interface FailableToDoubleBiFunction<T, U, E extends Throwable> {
 
-    /** NOP singleton */
+    /**
+     * NOP singleton
+     */
     @SuppressWarnings("rawtypes")
     FailableToDoubleBiFunction NOP = (t, u) -> 0d;
 

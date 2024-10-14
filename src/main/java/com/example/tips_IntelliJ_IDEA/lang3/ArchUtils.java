@@ -29,6 +29,7 @@ import java.util.stream.Stream;
  * Important: The os.arch System Property returns the architecture used by the JVM
  * not of the operating system.
  * </p>
+ *
  * @since 3.6
  */
 public class ArchUtils {
@@ -82,7 +83,7 @@ public class ArchUtils {
     /**
      * Adds the given {@link Processor} with the given key {@link String} to the map.
      *
-     * @param key The key as {@link String}.
+     * @param key       The key as {@link String}.
      * @param processor The {@link Processor} to add.
      * @throws IllegalStateException If the key already exists.
      */
@@ -96,7 +97,7 @@ public class ArchUtils {
     /**
      * Adds the given {@link Processor} with the given keys to the map.
      *
-     * @param keys The keys.
+     * @param keys      The keys.
      * @param processor The {@link Processor} to add.
      * @throws IllegalStateException If the key already exists.
      */

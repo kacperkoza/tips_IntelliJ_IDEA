@@ -161,7 +161,7 @@ public enum JavaVersion {
     /**
      * Constructor.
      *
-     * @param value  the float value
+     * @param value the float value
      * @param name  the standard name, not null
      */
     JavaVersion(final float value, final String name) {
@@ -170,13 +170,14 @@ public enum JavaVersion {
     }
 
     //-----------------------------------------------------------------------
+
     /**
      * <p>Whether this version of Java is at least the version of Java passed in.</p>
      *
      * <p>For example:<br>
-     *  {@code myVersion.atLeast(JavaVersion.JAVA_1_4)}<p>
+     * {@code myVersion.atLeast(JavaVersion.JAVA_1_4)}<p>
      *
-     * @param requiredVersion  the version to check against, not null
+     * @param requiredVersion the version to check against, not null
      * @return true if this version is equal to or greater than the specified version
      */
     public boolean atLeast(final JavaVersion requiredVersion) {
@@ -184,13 +185,14 @@ public enum JavaVersion {
     }
 
     //-----------------------------------------------------------------------
+
     /**
      * <p>Whether this version of Java is at most the version of Java passed in.</p>
      *
      * <p>For example:<br>
-     *  {@code myVersion.atMost(JavaVersion.JAVA_1_4)}<p>
+     * {@code myVersion.atMost(JavaVersion.JAVA_1_4)}<p>
      *
-     * @param requiredVersion  the version to check against, not null
+     * @param requiredVersion the version to check against, not null
      * @return true if this version is equal to or greater than the specified version
      * @since 3.9
      */
@@ -226,58 +228,59 @@ public enum JavaVersion {
             return null;
         }
         switch (versionStr) {
-        case "0.9":
-            return JAVA_0_9;
-        case "1.1":
-            return JAVA_1_1;
-        case "1.2":
-            return JAVA_1_2;
-        case "1.3":
-            return JAVA_1_3;
-        case "1.4":
-            return JAVA_1_4;
-        case "1.5":
-            return JAVA_1_5;
-        case "1.6":
-            return JAVA_1_6;
-        case "1.7":
-            return JAVA_1_7;
-        case "1.8":
-            return JAVA_1_8;
-        case "9":
-            return JAVA_9;
-        case "10":
-            return JAVA_10;
-        case "11":
-            return JAVA_11;
-        case "12":
-            return JAVA_12;
-        case "13":
-            return JAVA_13;
-        case "14":
-            return JAVA_14;
-        case "15":
-            return JAVA_15;
-        case "16":
-            return JAVA_16;
-        case "17":
-            return JAVA_17;
-        default:
-            final float v = toFloatVersion(versionStr);
-            if ((v - 1.) < 1.) { // then we need to check decimals > .9
-                final int firstComma = Math.max(versionStr.indexOf('.'), versionStr.indexOf(','));
-                final int end = Math.max(versionStr.length(), versionStr.indexOf(',', firstComma));
-                if (Float.parseFloat(versionStr.substring(firstComma + 1, end)) > .9f) {
+            case "0.9":
+                return JAVA_0_9;
+            case "1.1":
+                return JAVA_1_1;
+            case "1.2":
+                return JAVA_1_2;
+            case "1.3":
+                return JAVA_1_3;
+            case "1.4":
+                return JAVA_1_4;
+            case "1.5":
+                return JAVA_1_5;
+            case "1.6":
+                return JAVA_1_6;
+            case "1.7":
+                return JAVA_1_7;
+            case "1.8":
+                return JAVA_1_8;
+            case "9":
+                return JAVA_9;
+            case "10":
+                return JAVA_10;
+            case "11":
+                return JAVA_11;
+            case "12":
+                return JAVA_12;
+            case "13":
+                return JAVA_13;
+            case "14":
+                return JAVA_14;
+            case "15":
+                return JAVA_15;
+            case "16":
+                return JAVA_16;
+            case "17":
+                return JAVA_17;
+            default:
+                final float v = toFloatVersion(versionStr);
+                if ((v - 1.) < 1.) { // then we need to check decimals > .9
+                    final int firstComma = Math.max(versionStr.indexOf('.'), versionStr.indexOf(','));
+                    final int end = Math.max(versionStr.length(), versionStr.indexOf(',', firstComma));
+                    if (Float.parseFloat(versionStr.substring(firstComma + 1, end)) > .9f) {
+                        return JAVA_RECENT;
+                    }
+                } else if (v > 10) {
                     return JAVA_RECENT;
                 }
-            } else if (v > 10) {
-                return JAVA_RECENT;
-            }
-            return null;
+                return null;
         }
     }
 
     //-----------------------------------------------------------------------
+
     /**
      * <p>The string value is overridden to return the standard name.</p>
      *

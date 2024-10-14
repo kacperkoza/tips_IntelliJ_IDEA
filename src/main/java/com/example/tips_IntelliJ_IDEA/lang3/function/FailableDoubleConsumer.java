@@ -29,7 +29,9 @@ import java.util.function.DoubleConsumer;
 @FunctionalInterface
 public interface FailableDoubleConsumer<E extends Throwable> {
 
-    /** NOP singleton */
+    /**
+     * NOP singleton
+     */
     @SuppressWarnings("rawtypes")
     FailableDoubleConsumer NOP = t -> {/* NOP */};
 

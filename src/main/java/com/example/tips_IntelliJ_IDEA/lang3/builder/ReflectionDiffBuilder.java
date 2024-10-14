@@ -60,8 +60,8 @@ import static com.example.tips_IntelliJ_IDEA.lang3.reflect.FieldUtils.readField;
  * {@code DiffResult.toString()} method. This style choice can be overridden by
  * calling {@link DiffResult#toString(ToStringStyle)}.
  * </p>
- * @param <T>
- *            type of the left and right object to diff.
+ *
+ * @param <T> type of the left and right object to diff.
  * @see Diffable
  * @see Diff
  * @see DiffResult
@@ -84,15 +84,12 @@ public class ReflectionDiffBuilder<T> implements Builder<DiffResult<T>> {
      * not evaluate any calls to {@code append(...)} and will return an empty
      * {@link DiffResult} when {@link #build()} is executed.
      * </p>
-     * @param lhs
-     *            {@code this} object
-     * @param rhs
-     *            the object to diff against
-     * @param style
-     *            the style will use when outputting the objects, {@code null}
-     *            uses the default
-     * @throws IllegalArgumentException
-     *             if {@code lhs} or {@code rhs} is {@code null}
+     *
+     * @param lhs   {@code this} object
+     * @param rhs   the object to diff against
+     * @param style the style will use when outputting the objects, {@code null}
+     *              uses the default
+     * @throws IllegalArgumentException if {@code lhs} or {@code rhs} is {@code null}
      */
     public ReflectionDiffBuilder(final T lhs, final T rhs, final ToStringStyle style) {
         this.left = lhs;

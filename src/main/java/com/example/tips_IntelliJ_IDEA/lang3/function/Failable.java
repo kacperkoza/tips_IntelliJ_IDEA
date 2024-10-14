@@ -26,13 +26,7 @@ import java.lang.reflect.UndeclaredThrowableException;
 import java.util.Collection;
 import java.util.Objects;
 import java.util.concurrent.Callable;
-import java.util.function.BiConsumer;
-import java.util.function.BiFunction;
-import java.util.function.BiPredicate;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.Predicate;
-import java.util.function.Supplier;
+import java.util.function.*;
 import java.util.stream.Stream;
 
 /**
@@ -73,11 +67,11 @@ public class Failable {
      * Consumes a consumer and rethrows any exception as a {@link RuntimeException}.
      *
      * @param consumer the consumer to consume
-     * @param object1 the first object to consume by {@code consumer}
-     * @param object2 the second object to consume by {@code consumer}
-     * @param <T> the type of the first argument the consumer accepts
-     * @param <U> the type of the second argument the consumer accepts
-     * @param <E> the type of checked exception the consumer may throw
+     * @param object1  the first object to consume by {@code consumer}
+     * @param object2  the second object to consume by {@code consumer}
+     * @param <T>      the type of the first argument the consumer accepts
+     * @param <U>      the type of the second argument the consumer accepts
+     * @param <E>      the type of checked exception the consumer may throw
      */
     public static <T, U, E extends Throwable> void accept(final FailableBiConsumer<T, U, E> consumer, final T object1,
                                                           final U object2) {
@@ -88,9 +82,9 @@ public class Failable {
      * Consumes a consumer and rethrows any exception as a {@link RuntimeException}.
      *
      * @param consumer the consumer to consume
-     * @param object the object to consume by {@code consumer}
-     * @param <T> the type the consumer accepts
-     * @param <E> the type of checked exception the consumer may throw
+     * @param object   the object to consume by {@code consumer}
+     * @param <T>      the type the consumer accepts
+     * @param <E>      the type of checked exception the consumer may throw
      */
     public static <T, E extends Throwable> void accept(final FailableConsumer<T, E> consumer, final T object) {
         run(() -> consumer.accept(object));
@@ -100,8 +94,8 @@ public class Failable {
      * Consumes a consumer and rethrows any exception as a {@link RuntimeException}.
      *
      * @param consumer the consumer to consume
-     * @param value the value to consume by {@code consumer}
-     * @param <E> the type of checked exception the consumer may throw
+     * @param value    the value to consume by {@code consumer}
+     * @param <E>      the type of checked exception the consumer may throw
      */
     public static <E extends Throwable> void accept(final FailableDoubleConsumer<E> consumer, final double value) {
         run(() -> consumer.accept(value));
@@ -111,8 +105,8 @@ public class Failable {
      * Consumes a consumer and rethrows any exception as a {@link RuntimeException}.
      *
      * @param consumer the consumer to consume
-     * @param value the value to consume by {@code consumer}
-     * @param <E> the type of checked exception the consumer may throw
+     * @param value    the value to consume by {@code consumer}
+     * @param <E>      the type of checked exception the consumer may throw
      */
     public static <E extends Throwable> void accept(final FailableIntConsumer<E> consumer, final int value) {
         run(() -> consumer.accept(value));
@@ -122,8 +116,8 @@ public class Failable {
      * Consumes a consumer and rethrows any exception as a {@link RuntimeException}.
      *
      * @param consumer the consumer to consume
-     * @param value the value to consume by {@code consumer}
-     * @param <E> the type of checked exception the consumer may throw
+     * @param value    the value to consume by {@code consumer}
+     * @param <E>      the type of checked exception the consumer may throw
      */
     public static <E extends Throwable> void accept(final FailableLongConsumer<E> consumer, final long value) {
         run(() -> consumer.accept(value));
@@ -133,12 +127,12 @@ public class Failable {
      * Applies a function and rethrows any exception as a {@link RuntimeException}.
      *
      * @param function the function to apply
-     * @param input1 the first input to apply {@code function} on
-     * @param input2 the second input to apply {@code function} on
-     * @param <T> the type of the first argument the function accepts
-     * @param <U> the type of the second argument the function accepts
-     * @param <R> the return type of the function
-     * @param <E> the type of checked exception the function may throw
+     * @param input1   the first input to apply {@code function} on
+     * @param input2   the second input to apply {@code function} on
+     * @param <T>      the type of the first argument the function accepts
+     * @param <U>      the type of the second argument the function accepts
+     * @param <R>      the return type of the function
+     * @param <E>      the type of checked exception the function may throw
      * @return the value returned from the function
      */
     public static <T, U, R, E extends Throwable> R apply(final FailableBiFunction<T, U, R, E> function, final T input1,
@@ -150,10 +144,10 @@ public class Failable {
      * Applies a function and rethrows any exception as a {@link RuntimeException}.
      *
      * @param function the function to apply
-     * @param input the input to apply {@code function} on
-     * @param <T> the type of the argument the function accepts
-     * @param <R> the return type of the function
-     * @param <E> the type of checked exception the function may throw
+     * @param input    the input to apply {@code function} on
+     * @param <T>      the type of the argument the function accepts
+     * @param <R>      the return type of the function
+     * @param <E>      the type of checked exception the function may throw
      * @return the value returned from the function
      */
     public static <T, R, E extends Throwable> R apply(final FailableFunction<T, R, E> function, final T input) {
@@ -164,21 +158,21 @@ public class Failable {
      * Applies a function and rethrows any exception as a {@link RuntimeException}.
      *
      * @param function the function to apply
-     * @param left the first input to apply {@code function} on
-     * @param right the second input to apply {@code function} on
-     * @param <E> the type of checked exception the function may throw
+     * @param left     the first input to apply {@code function} on
+     * @param right    the second input to apply {@code function} on
+     * @param <E>      the type of checked exception the function may throw
      * @return the value returned from the function
      */
     public static <E extends Throwable> double applyAsDouble(final FailableDoubleBinaryOperator<E> function,
-        final double left, final double right) {
+                                                             final double left, final double right) {
         return getAsDouble(() -> function.applyAsDouble(left, right));
     }
 
     /**
      * Converts the given {@link FailableBiConsumer} into a standard {@link BiConsumer}.
      *
-     * @param <T> the type of the first argument of the consumers
-     * @param <U> the type of the second argument of the consumers
+     * @param <T>      the type of the first argument of the consumers
+     * @param <U>      the type of the second argument of the consumers
      * @param consumer a failable {@code BiConsumer}
      * @return a standard {@code BiConsumer}
      */
@@ -189,9 +183,9 @@ public class Failable {
     /**
      * Converts the given {@link FailableBiFunction} into a standard {@link BiFunction}.
      *
-     * @param <T> the type of the first argument of the input of the functions
-     * @param <U> the type of the second argument of the input of the functions
-     * @param <R> the type of the output of the functions
+     * @param <T>      the type of the first argument of the input of the functions
+     * @param <U>      the type of the second argument of the input of the functions
+     * @param <R>      the type of the output of the functions
      * @param function a {@code FailableBiFunction}
      * @return a standard {@code BiFunction}
      */
@@ -202,8 +196,8 @@ public class Failable {
     /**
      * Converts the given {@link FailableBiPredicate} into a standard {@link BiPredicate}.
      *
-     * @param <T> the type of the first argument used by the predicates
-     * @param <U> the type of the second argument used by the predicates
+     * @param <T>       the type of the first argument used by the predicates
+     * @param <U>       the type of the second argument used by the predicates
      * @param predicate a {@code FailableBiPredicate}
      * @return a standard {@code BiPredicate}
      */
@@ -214,7 +208,7 @@ public class Failable {
     /**
      * Converts the given {@link FailableCallable} into a standard {@link Callable}.
      *
-     * @param <V> the type used by the callables
+     * @param <V>      the type used by the callables
      * @param callable a {@code FailableCallable}
      * @return a standard {@code Callable}
      */
@@ -225,7 +219,7 @@ public class Failable {
     /**
      * Converts the given {@link FailableConsumer} into a standard {@link Consumer}.
      *
-     * @param <T> the type used by the consumers
+     * @param <T>      the type used by the consumers
      * @param consumer a {@code FailableConsumer}
      * @return a standard {@code Consumer}
      */
@@ -236,8 +230,8 @@ public class Failable {
     /**
      * Converts the given {@link FailableFunction} into a standard {@link Function}.
      *
-     * @param <T> the type of the input of the functions
-     * @param <R> the type of the output of the functions
+     * @param <T>      the type of the input of the functions
+     * @param <R>      the type of the output of the functions
      * @param function a {code FailableFunction}
      * @return a standard {@code Function}
      */
@@ -248,7 +242,7 @@ public class Failable {
     /**
      * Converts the given {@link FailablePredicate} into a standard {@link Predicate}.
      *
-     * @param <T> the type used by the predicates
+     * @param <T>       the type used by the predicates
      * @param predicate a {@code FailablePredicate}
      * @return a standard {@code Predicate}
      */
@@ -269,7 +263,7 @@ public class Failable {
     /**
      * Converts the given {@link FailableSupplier} into a standard {@link Supplier}.
      *
-     * @param <T> the type supplied by the suppliers
+     * @param <T>      the type supplied by the suppliers
      * @param supplier a {@code FailableSupplier}
      * @return a standard {@code Supplier}
      */
@@ -281,8 +275,8 @@ public class Failable {
      * Calls a callable and rethrows any exception as a {@link RuntimeException}.
      *
      * @param callable the callable to call
-     * @param <V> the return type of the callable
-     * @param <E> the type of checked exception the callable may throw
+     * @param <V>      the return type of the callable
+     * @param <E>      the type of checked exception the callable may throw
      * @return the value returned from the callable
      */
     public static <V, E extends Throwable> V call(final FailableCallable<V, E> callable) {
@@ -293,8 +287,8 @@ public class Failable {
      * Invokes a supplier, and returns the result.
      *
      * @param supplier The supplier to invoke.
-     * @param <T> The suppliers output type.
-     * @param <E> The type of checked exception, which the supplier can throw.
+     * @param <T>      The suppliers output type.
+     * @param <E>      The type of checked exception, which the supplier can throw.
      * @return The object, which has been created by the supplier
      */
     public static <T, E extends Throwable> T get(final FailableSupplier<T, E> supplier) {
@@ -309,7 +303,7 @@ public class Failable {
      * Invokes a boolean supplier, and returns the result.
      *
      * @param supplier The boolean supplier to invoke.
-     * @param <E> The type of checked exception, which the supplier can throw.
+     * @param <E>      The type of checked exception, which the supplier can throw.
      * @return The boolean, which has been created by the supplier
      */
     public static <E extends Throwable> boolean getAsBoolean(final FailableBooleanSupplier<E> supplier) {
@@ -324,7 +318,7 @@ public class Failable {
      * Invokes a double supplier, and returns the result.
      *
      * @param supplier The double supplier to invoke.
-     * @param <E> The type of checked exception, which the supplier can throw.
+     * @param <E>      The type of checked exception, which the supplier can throw.
      * @return The double, which has been created by the supplier
      */
     public static <E extends Throwable> double getAsDouble(final FailableDoubleSupplier<E> supplier) {
@@ -339,7 +333,7 @@ public class Failable {
      * Invokes an int supplier, and returns the result.
      *
      * @param supplier The int supplier to invoke.
-     * @param <E> The type of checked exception, which the supplier can throw.
+     * @param <E>      The type of checked exception, which the supplier can throw.
      * @return The int, which has been created by the supplier
      */
     public static <E extends Throwable> int getAsInt(final FailableIntSupplier<E> supplier) {
@@ -354,7 +348,7 @@ public class Failable {
      * Invokes a long supplier, and returns the result.
      *
      * @param supplier The long supplier to invoke.
-     * @param <E> The type of checked exception, which the supplier can throw.
+     * @param <E>      The type of checked exception, which the supplier can throw.
      * @return The long, which has been created by the supplier
      */
     public static <E extends Throwable> long getAsLong(final FailableLongSupplier<E> supplier) {
@@ -369,7 +363,7 @@ public class Failable {
      * Invokes a short supplier, and returns the result.
      *
      * @param supplier The short supplier to invoke.
-     * @param <E> The type of checked exception, which the supplier can throw.
+     * @param <E>      The type of checked exception, which the supplier can throw.
      * @return The short, which has been created by the supplier
      */
     public static <E extends Throwable> short getAsShort(final FailableShortSupplier<E> supplier) {
@@ -424,7 +418,7 @@ public class Failable {
      * Runs a runnable and rethrows any exception as a {@link RuntimeException}.
      *
      * @param runnable The runnable to run
-     * @param <E> the type of checked exception the runnable may throw
+     * @param <E>      the type of checked exception the runnable may throw
      */
     public static <E extends Throwable> void run(final FailableRunnable<E> runnable) {
         try {
@@ -443,7 +437,7 @@ public class Failable {
      * </pre>
      *
      * @param collection The collection, which is being converted into a {@link FailableStream}.
-     * @param <E> The collections element type. (In turn, the result streams element type.)
+     * @param <E>        The collections element type. (In turn, the result streams element type.)
      * @return The created {@link FailableStream}.
      */
     public static <E> Streams.FailableStream<E> stream(final Collection<E> collection) {
@@ -457,7 +451,7 @@ public class Failable {
      * {@link Function}, {@link Consumer}, etc.
      *
      * @param stream The stream, which is being converted into a {@link FailableStream}.
-     * @param <T> The streams element type.
+     * @param <T>    The streams element type.
      * @return The created {@link FailableStream}.
      */
     public static <T> Streams.FailableStream<T> stream(final Stream<T> stream) {
@@ -468,15 +462,15 @@ public class Failable {
      * Tests a predicate and rethrows any exception as a {@link RuntimeException}.
      *
      * @param predicate the predicate to test
-     * @param object1 the first input to test by {@code predicate}
-     * @param object2 the second input to test by {@code predicate}
-     * @param <T> the type of the first argument the predicate tests
-     * @param <U> the type of the second argument the predicate tests
-     * @param <E> the type of checked exception the predicate may throw
+     * @param object1   the first input to test by {@code predicate}
+     * @param object2   the second input to test by {@code predicate}
+     * @param <T>       the type of the first argument the predicate tests
+     * @param <U>       the type of the second argument the predicate tests
+     * @param <E>       the type of checked exception the predicate may throw
      * @return the boolean value returned by the predicate
      */
     public static <T, U, E extends Throwable> boolean test(final FailableBiPredicate<T, U, E> predicate,
-        final T object1, final U object2) {
+                                                           final T object1, final U object2) {
         return getAsBoolean(() -> predicate.test(object1, object2));
     }
 
@@ -484,9 +478,9 @@ public class Failable {
      * Tests a predicate and rethrows any exception as a {@link RuntimeException}.
      *
      * @param predicate the predicate to test
-     * @param object the input to test by {@code predicate}
-     * @param <T> the type of argument the predicate tests
-     * @param <E> the type of checked exception the predicate may throw
+     * @param object    the input to test by {@code predicate}
+     * @param <T>       the type of argument the predicate tests
+     * @param <E>       the type of checked exception the predicate may throw
      * @return the boolean value returned by the predicate
      */
     public static <T, E extends Throwable> boolean test(final FailablePredicate<T, E> predicate, final T object) {
@@ -505,17 +499,17 @@ public class Failable {
      * Functions.tryWithResources(useInputStream(fis), null, () -&gt; fis.close());
      * </pre>
      *
-     * @param action The action to execute. This object <em>will</em> always be invoked.
+     * @param action       The action to execute. This object <em>will</em> always be invoked.
      * @param errorHandler An optional error handler, which will be invoked finally, if any error occurred. The error
-     *        handler will receive the first error, AKA {@link Throwable}.
-     * @param resources The resource actions to execute. <em>All</em> resource actions will be invoked, in the given
-     *        order. A resource action is an instance of {@link FailableRunnable}, which will be executed.
+     *                     handler will receive the first error, AKA {@link Throwable}.
+     * @param resources    The resource actions to execute. <em>All</em> resource actions will be invoked, in the given
+     *                     order. A resource action is an instance of {@link FailableRunnable}, which will be executed.
      * @see #tryWithResources(FailableRunnable, FailableRunnable...)
      */
     @SafeVarargs
     public static void tryWithResources(final FailableRunnable<? extends Throwable> action,
-        final FailableConsumer<Throwable, ? extends Throwable> errorHandler,
-        final FailableRunnable<? extends Throwable>... resources) {
+                                        final FailableConsumer<Throwable, ? extends Throwable> errorHandler,
+                                        final FailableRunnable<? extends Throwable>... resources) {
         final FailableConsumer<Throwable, ? extends Throwable> actualErrorHandler;
         if (errorHandler == null) {
             actualErrorHandler = Failable::rethrow;
@@ -565,14 +559,14 @@ public class Failable {
      * Functions.tryWithResources(useInputStream(fis), () -&gt; fis.close());
      * </pre>
      *
-     * @param action The action to execute. This object <em>will</em> always be invoked.
+     * @param action    The action to execute. This object <em>will</em> always be invoked.
      * @param resources The resource actions to execute. <em>All</em> resource actions will be invoked, in the given
-     *        order. A resource action is an instance of {@link FailableRunnable}, which will be executed.
+     *                  order. A resource action is an instance of {@link FailableRunnable}, which will be executed.
      * @see #tryWithResources(FailableRunnable, FailableConsumer, FailableRunnable...)
      */
     @SafeVarargs
     public static void tryWithResources(final FailableRunnable<? extends Throwable> action,
-        final FailableRunnable<? extends Throwable>... resources) {
+                                        final FailableRunnable<? extends Throwable>... resources) {
         tryWithResources(action, null, resources);
     }
 

@@ -22,7 +22,7 @@ import java.util.Comparator;
 
 /**
  * Compares Object's {@link Object#toString()} values.
- *
+ * <p>
  * This class is stateless.
  *
  * @since 3.10
@@ -31,7 +31,7 @@ public final class ObjectToStringComparator implements Comparator<Object>, Seria
 
     /**
      * Singleton instance.
-     *
+     * <p>
      * This class is stateless.
      */
     public static final ObjectToStringComparator INSTANCE = new ObjectToStringComparator();

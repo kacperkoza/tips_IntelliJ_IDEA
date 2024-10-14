@@ -49,16 +49,20 @@ import java.util.concurrent.atomic.AtomicReference;
  * case.
  * </p>
  *
- * @since 3.0
  * @param <T> the type of the object managed by this initializer class
+ * @since 3.0
  */
 public abstract class AtomicSafeInitializer<T> implements
         ConcurrentInitializer<T> {
-    /** A guard which ensures that initialize() is called only once. */
+    /**
+     * A guard which ensures that initialize() is called only once.
+     */
     private final AtomicReference<AtomicSafeInitializer<T>> factory =
             new AtomicReference<>();
 
-    /** Holds the reference to the managed object. */
+    /**
+     * Holds the reference to the managed object.
+     */
     private final AtomicReference<T> reference = new AtomicReference<>();
 
     /**
@@ -66,7 +70,7 @@ public abstract class AtomicSafeInitializer<T> implements
      *
      * @return lazily initialized object
      * @throws ConcurrentException if the initialization of the object causes an
-     * exception
+     *                             exception
      */
     @Override
     public final T get() throws ConcurrentException {

@@ -37,11 +37,11 @@ public class EventUtils {
     /**
      * Adds an event listener to the specified source.  This looks for an "add" method corresponding to the event
      * type (addActionListener, for example).
-     * @param eventSource   the event source
-     * @param listenerType  the event listener type
-     * @param listener      the listener
-     * @param <L>           the event listener type
      *
+     * @param eventSource  the event source
+     * @param listenerType the event listener type
+     * @param listener     the listener
+     * @param <L>          the event listener type
      * @throws IllegalArgumentException if the object doesn't support the listener type
      */
     public static <L> void addEventListener(final Object eventSource, final Class<L> listenerType, final L listener) {
@@ -53,7 +53,7 @@ public class EventUtils {
                     + " method which takes a parameter of type " + listenerType.getName() + ".");
         } catch (final IllegalAccessException e) {
             throw new IllegalArgumentException("Class " + eventSource.getClass().getName()
-                    + " does not have an accessible add" + listenerType.getSimpleName ()
+                    + " does not have an accessible add" + listenerType.getSimpleName()
                     + " method which takes a parameter of type " + listenerType.getName() + ".");
         } catch (final InvocationTargetException e) {
             throw new RuntimeException("Unable to add listener.", e.getCause());
@@ -72,9 +72,9 @@ public class EventUtils {
      *                     supported)
      */
     public static <L> void bindEventsToMethod(final Object target, final String methodName, final Object eventSource,
-            final Class<L> listenerType, final String... eventTypes) {
+                                              final Class<L> listenerType, final String... eventTypes) {
         final L listener = listenerType.cast(Proxy.newProxyInstance(target.getClass().getClassLoader(),
-                new Class[] { listenerType }, new EventBindingInvocationHandler(target, methodName, eventTypes)));
+                new Class[]{listenerType}, new EventBindingInvocationHandler(target, methodName, eventTypes)));
         addEventListener(eventSource, listenerType, listener);
     }
 
@@ -86,7 +86,7 @@ public class EventUtils {
         /**
          * Creates a new instance of {@code EventBindingInvocationHandler}.
          *
-         * @param target the target object for method invocations
+         * @param target     the target object for method invocations
          * @param methodName the name of the method to be invoked
          * @param eventTypes the names of the supported event types
          */
@@ -99,8 +99,8 @@ public class EventUtils {
         /**
          * Handles a method invocation on the proxy object.
          *
-         * @param proxy the proxy instance
-         * @param method the method to be invoked
+         * @param proxy      the proxy instance
+         * @param method     the method to be invoked
          * @param parameters the parameters for the method invocation
          * @return the result of the method call
          * @throws Throwable if an error occurs

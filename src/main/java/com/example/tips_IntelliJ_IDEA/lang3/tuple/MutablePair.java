@@ -25,7 +25,6 @@ import java.util.Map;
  *
  * @param <L> the left element type
  * @param <R> the right element type
- *
  * @since 3.0
  */
 public class MutablePair<L, R> extends Pair<L, R> {
@@ -40,7 +39,9 @@ public class MutablePair<L, R> extends Pair<L, R> {
      */
     public static final MutablePair<?, ?>[] EMPTY_ARRAY = new MutablePair[0];
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = 4954918890077093841L;
 
     /**
@@ -49,7 +50,6 @@ public class MutablePair<L, R> extends Pair<L, R> {
      * @param <L> the left element type
      * @param <R> the right element type
      * @return the empty array singleton that can be assigned without compiler warning.
-     *
      * @since 3.10.
      */
     @SuppressWarnings("unchecked")
@@ -63,10 +63,10 @@ public class MutablePair<L, R> extends Pair<L, R> {
      * <p>This factory allows the pair to be created using inference to
      * obtain the generic types.</p>
      *
-     * @param <L> the left element type
-     * @param <R> the right element type
+     * @param <L>   the left element type
+     * @param <R>   the right element type
      * @param left  the left element, may be null
-     * @param right  the right element, may be null
+     * @param right the right element, may be null
      * @return a pair formed from the two parameters, not null
      */
     public static <L, R> MutablePair<L, R> of(final L left, final R right) {
@@ -79,8 +79,8 @@ public class MutablePair<L, R> extends Pair<L, R> {
      * <p>This factory allows the pair to be created using inference to
      * obtain the generic types.</p>
      *
-     * @param <L> the left element type
-     * @param <R> the right element type
+     * @param <L>  the left element type
+     * @param <R>  the right element type
      * @param pair the existing pair.
      * @return a pair formed from the two parameters, not null
      */
@@ -97,10 +97,14 @@ public class MutablePair<L, R> extends Pair<L, R> {
         return new MutablePair<>(left, right);
     }
 
-    /** Left object */
+    /**
+     * Left object
+     */
     public L left;
 
-    /** Right object */
+    /**
+     * Right object
+     */
     public R right;
 
     /**
@@ -113,7 +117,7 @@ public class MutablePair<L, R> extends Pair<L, R> {
      * Create a new pair instance.
      *
      * @param left  the left value, may be null
-     * @param right  the right value, may be null
+     * @param right the right value, may be null
      */
     public MutablePair(final L left, final R right) {
         this.left = left;
@@ -121,6 +125,7 @@ public class MutablePair<L, R> extends Pair<L, R> {
     }
 
     //-----------------------------------------------------------------------
+
     /**
      * {@inheritDoc}
      */
@@ -140,7 +145,7 @@ public class MutablePair<L, R> extends Pair<L, R> {
     /**
      * Sets the left element of the pair.
      *
-     * @param left  the new value of the left element, may be null
+     * @param left the new value of the left element, may be null
      */
     public void setLeft(final L left) {
         this.left = left;
@@ -149,7 +154,7 @@ public class MutablePair<L, R> extends Pair<L, R> {
     /**
      * Sets the right element of the pair.
      *
-     * @param right  the new value of the right element, may be null
+     * @param right the new value of the right element, may be null
      */
     public void setRight(final R right) {
         this.right = right;
@@ -159,7 +164,7 @@ public class MutablePair<L, R> extends Pair<L, R> {
      * Sets the {@code Map.Entry} value.
      * This sets the right element of the pair.
      *
-     * @param value  the right value to set, not null
+     * @param value the right value to set, not null
      * @return the old value for the right element
      */
     @Override

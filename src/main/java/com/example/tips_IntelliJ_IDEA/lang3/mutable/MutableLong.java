@@ -35,7 +35,9 @@ public class MutableLong extends Number implements Comparable<MutableLong>, Muta
      */
     private static final long serialVersionUID = 62986528375L;
 
-    /** The mutable value. */
+    /**
+     * The mutable value.
+     */
     private long value;
 
     /**
@@ -47,7 +49,7 @@ public class MutableLong extends Number implements Comparable<MutableLong>, Muta
     /**
      * Constructs a new MutableLong with the specified value.
      *
-     * @param value  the initial value to store
+     * @param value the initial value to store
      */
     public MutableLong(final long value) {
         this.value = value;
@@ -56,7 +58,7 @@ public class MutableLong extends Number implements Comparable<MutableLong>, Muta
     /**
      * Constructs a new MutableLong with the specified value.
      *
-     * @param value  the initial value to store, not null
+     * @param value the initial value to store, not null
      * @throws NullPointerException if the object is null
      */
     public MutableLong(final Number value) {
@@ -66,7 +68,7 @@ public class MutableLong extends Number implements Comparable<MutableLong>, Muta
     /**
      * Constructs a new MutableLong parsing the given string.
      *
-     * @param value  the string to parse, not null
+     * @param value the string to parse, not null
      * @throws NumberFormatException if the string cannot be parsed into a long
      * @since 2.5
      */
@@ -75,6 +77,7 @@ public class MutableLong extends Number implements Comparable<MutableLong>, Muta
     }
 
     //-----------------------------------------------------------------------
+
     /**
      * Gets the value as a Long instance.
      *
@@ -88,7 +91,7 @@ public class MutableLong extends Number implements Comparable<MutableLong>, Muta
     /**
      * Sets the value.
      *
-     * @param value  the value to set
+     * @param value the value to set
      */
     public void setValue(final long value) {
         this.value = value;
@@ -97,7 +100,7 @@ public class MutableLong extends Number implements Comparable<MutableLong>, Muta
     /**
      * Sets the value from any Number instance.
      *
-     * @param value  the value to set, not null
+     * @param value the value to set, not null
      * @throws NullPointerException if the object is null
      */
     @Override
@@ -106,6 +109,7 @@ public class MutableLong extends Number implements Comparable<MutableLong>, Muta
     }
 
     //-----------------------------------------------------------------------
+
     /**
      * Increments the value.
      *
@@ -175,10 +179,11 @@ public class MutableLong extends Number implements Comparable<MutableLong>, Muta
     }
 
     //-----------------------------------------------------------------------
+
     /**
      * Adds a value to the value of this instance.
      *
-     * @param operand  the value to add, not null
+     * @param operand the value to add, not null
      * @since 2.2
      */
     public void add(final long operand) {
@@ -188,7 +193,7 @@ public class MutableLong extends Number implements Comparable<MutableLong>, Muta
     /**
      * Adds a value to the value of this instance.
      *
-     * @param operand  the value to add, not null
+     * @param operand the value to add, not null
      * @throws NullPointerException if the object is null
      * @since 2.2
      */
@@ -199,7 +204,7 @@ public class MutableLong extends Number implements Comparable<MutableLong>, Muta
     /**
      * Subtracts a value from the value of this instance.
      *
-     * @param operand  the value to subtract, not null
+     * @param operand the value to subtract, not null
      * @since 2.2
      */
     public void subtract(final long operand) {
@@ -209,7 +214,7 @@ public class MutableLong extends Number implements Comparable<MutableLong>, Muta
     /**
      * Subtracts a value from the value of this instance.
      *
-     * @param operand  the value to subtract, not null
+     * @param operand the value to subtract, not null
      * @throws NullPointerException if the object is null
      * @since 2.2
      */
@@ -235,8 +240,8 @@ public class MutableLong extends Number implements Comparable<MutableLong>, Muta
      * immediately after the addition operation. This method is not thread safe.
      *
      * @param operand the quantity to add, not null
-     * @throws NullPointerException if {@code operand} is null
      * @return the value associated with this instance after adding the operand
+     * @throws NullPointerException if {@code operand} is null
      * @since 3.5
      */
     public long addAndGet(final Number operand) {
@@ -263,8 +268,8 @@ public class MutableLong extends Number implements Comparable<MutableLong>, Muta
      * immediately prior to the addition operation. This method is not thread safe.
      *
      * @param operand the quantity to add, not null
-     * @throws NullPointerException if {@code operand} is null
      * @return the value associated with this instance immediately before the operand was added
+     * @throws NullPointerException if {@code operand} is null
      * @since 3.5
      */
     public long getAndAdd(final Number operand) {
@@ -275,6 +280,7 @@ public class MutableLong extends Number implements Comparable<MutableLong>, Muta
 
     //-----------------------------------------------------------------------
     // shortValue and byteValue rely on Number implementation
+
     /**
      * Returns the value of this MutableLong as an int.
      *
@@ -316,6 +322,7 @@ public class MutableLong extends Number implements Comparable<MutableLong>, Muta
     }
 
     //-----------------------------------------------------------------------
+
     /**
      * Gets this mutable as an instance of Long.
      *
@@ -326,12 +333,13 @@ public class MutableLong extends Number implements Comparable<MutableLong>, Muta
     }
 
     //-----------------------------------------------------------------------
+
     /**
      * Compares this object to the specified object. The result is {@code true} if and only if the argument
      * is not {@code null} and is a {@code MutableLong} object that contains the same {@code long}
      * value as this object.
      *
-     * @param obj  the object to compare with, null returns false
+     * @param obj the object to compare with, null returns false
      * @return {@code true} if the objects are the same; {@code false} otherwise.
      */
     @Override
@@ -353,10 +361,11 @@ public class MutableLong extends Number implements Comparable<MutableLong>, Muta
     }
 
     //-----------------------------------------------------------------------
+
     /**
      * Compares this mutable to another in ascending order.
      *
-     * @param other  the other mutable to compare to, not null
+     * @param other the other mutable to compare to, not null
      * @return negative if this is less, zero if equal, positive if greater
      */
     @Override
@@ -365,6 +374,7 @@ public class MutableLong extends Number implements Comparable<MutableLong>, Muta
     }
 
     //-----------------------------------------------------------------------
+
     /**
      * Returns the String value of this mutable.
      *

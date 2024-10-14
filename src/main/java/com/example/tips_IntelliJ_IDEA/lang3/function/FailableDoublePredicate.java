@@ -29,11 +29,15 @@ import java.util.function.DoublePredicate;
 @FunctionalInterface
 public interface FailableDoublePredicate<E extends Throwable> {
 
-    /** FALSE singleton */
+    /**
+     * FALSE singleton
+     */
     @SuppressWarnings("rawtypes")
     FailableDoublePredicate FALSE = t -> false;
 
-    /** TRUE singleton */
+    /**
+     * TRUE singleton
+     */
     @SuppressWarnings("rawtypes")
     FailableDoublePredicate TRUE = t -> true;
 

@@ -28,7 +28,9 @@ import java.util.function.IntUnaryOperator;
  */
 public interface FailableIntUnaryOperator<E extends Throwable> {
 
-    /** NOP singleton */
+    /**
+     * NOP singleton
+     */
     @SuppressWarnings("rawtypes")
     FailableIntUnaryOperator NOP = t -> 0;
 

@@ -30,7 +30,9 @@ import java.util.function.Consumer;
 @FunctionalInterface
 public interface FailableConsumer<T, E extends Throwable> {
 
-    /** NOP singleton */
+    /**
+     * NOP singleton
+     */
     @SuppressWarnings("rawtypes")
     FailableConsumer NOP = t -> {/* NOP */};
 

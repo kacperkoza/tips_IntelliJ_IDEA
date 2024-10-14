@@ -16,14 +16,10 @@
  */
 package com.example.tips_IntelliJ_IDEA.lang3.time;
 
-import com.example.tips_IntelliJ_IDEA.offer.StringUtils;
 import com.example.tips_IntelliJ_IDEA.lang3.Validate;
+import com.example.tips_IntelliJ_IDEA.offer.StringUtils;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.TimeZone;
+import java.util.*;
 
 /**
  * <p>Duration formatting utilities and constants. The following table describes the tokens
@@ -46,6 +42,7 @@ import java.util.TimeZone;
  * Token values are printed using decimal digits.
  * A token character can be repeated to ensure that the field occupies a certain minimum
  * size. Values will be left-padded with 0 unless padding is disabled in the method invocation.
+ *
  * @since 2.1
  */
 public class DurationFormatUtils {
@@ -69,12 +66,13 @@ public class DurationFormatUtils {
     public static final String ISO_EXTENDED_FORMAT_PATTERN = "'P'yyyy'Y'M'M'd'DT'H'H'm'M's.SSS'S'";
 
     //-----------------------------------------------------------------------
+
     /**
      * <p>Formats the time gap as a string.</p>
      *
      * <p>The format used is ISO 8601-like: {@code HH:mm:ss.SSS}.</p>
      *
-     * @param durationMillis  the duration to format
+     * @param durationMillis the duration to format
      * @return the formatted duration, not null
      * @throws IllegalArgumentException if durationMillis is negative
      */
@@ -90,7 +88,7 @@ public class DurationFormatUtils {
      * <p>This method formats durations using the days and lower fields of the
      * ISO format pattern, such as P7D6TH5M4.321S.</p>
      *
-     * @param durationMillis  the duration to format
+     * @param durationMillis the duration to format
      * @return the formatted duration, not null
      * @throws IllegalArgumentException if durationMillis is negative
      */
@@ -104,8 +102,8 @@ public class DurationFormatUtils {
      * <p>This method formats durations using the days and lower fields of the
      * format pattern. Months and larger are not used.</p>
      *
-     * @param durationMillis  the duration to format
-     * @param format  the way in which to format the duration, not null
+     * @param durationMillis the duration to format
+     * @param format         the way in which to format the duration, not null
      * @return the formatted duration, not null
      * @throws IllegalArgumentException if durationMillis is negative
      */
@@ -120,9 +118,9 @@ public class DurationFormatUtils {
      * <p>This method formats durations using the days and lower fields of the
      * format pattern. Months and larger are not used.</p>
      *
-     * @param durationMillis  the duration to format
-     * @param format  the way in which to format the duration, not null
-     * @param padWithZeros  whether to pad the left hand side of numbers with 0's
+     * @param durationMillis the duration to format
+     * @param format         the way in which to format the duration, not null
+     * @param padWithZeros   whether to pad the left hand side of numbers with 0's
      * @return the formatted duration, not null
      * @throws IllegalArgumentException if durationMillis is negative
      */
@@ -131,25 +129,25 @@ public class DurationFormatUtils {
 
         final Token[] tokens = lexx(format);
 
-        long days         = 0;
-        long hours        = 0;
-        long minutes      = 0;
-        long seconds      = 0;
+        long days = 0;
+        long hours = 0;
+        long minutes = 0;
+        long seconds = 0;
         long milliseconds = durationMillis;
 
-        if (Token.containsTokenWithValue(tokens, d) ) {
+        if (Token.containsTokenWithValue(tokens, d)) {
             days = milliseconds / DateUtils.MILLIS_PER_DAY;
             milliseconds = milliseconds - (days * DateUtils.MILLIS_PER_DAY);
         }
-        if (Token.containsTokenWithValue(tokens, H) ) {
+        if (Token.containsTokenWithValue(tokens, H)) {
             hours = milliseconds / DateUtils.MILLIS_PER_HOUR;
             milliseconds = milliseconds - (hours * DateUtils.MILLIS_PER_HOUR);
         }
-        if (Token.containsTokenWithValue(tokens, m) ) {
+        if (Token.containsTokenWithValue(tokens, m)) {
             minutes = milliseconds / DateUtils.MILLIS_PER_MINUTE;
             milliseconds = milliseconds - (minutes * DateUtils.MILLIS_PER_MINUTE);
         }
-        if (Token.containsTokenWithValue(tokens, s) ) {
+        if (Token.containsTokenWithValue(tokens, s)) {
             seconds = milliseconds / DateUtils.MILLIS_PER_SECOND;
             milliseconds = milliseconds - (seconds * DateUtils.MILLIS_PER_SECOND);
         }
@@ -163,16 +161,16 @@ public class DurationFormatUtils {
      * <p>This method formats durations using the days and lower fields of the
      * format pattern. Months and larger are not used.</p>
      *
-     * @param durationMillis  the elapsed time to report in milliseconds
+     * @param durationMillis               the elapsed time to report in milliseconds
      * @param suppressLeadingZeroElements  suppresses leading 0 elements
-     * @param suppressTrailingZeroElements  suppresses trailing 0 elements
+     * @param suppressTrailingZeroElements suppresses trailing 0 elements
      * @return the formatted text in days/hours/minutes/seconds, not null
      * @throws IllegalArgumentException if durationMillis is negative
      */
     public static String formatDurationWords(
-        final long durationMillis,
-        final boolean suppressLeadingZeroElements,
-        final boolean suppressTrailingZeroElements) {
+            final long durationMillis,
+            final boolean suppressLeadingZeroElements,
+            final boolean suppressTrailingZeroElements) {
 
         // This method is generally replaceable by the format method, but
         // there are a series of tweaks and special cases that require
@@ -223,13 +221,14 @@ public class DurationFormatUtils {
     }
 
     //-----------------------------------------------------------------------
+
     /**
      * <p>Formats the time gap as a string.</p>
      *
      * <p>The format used is the ISO 8601 period format.</p>
      *
-     * @param startMillis  the start of the duration to format
-     * @param endMillis  the end of the duration to format
+     * @param startMillis the start of the duration to format
+     * @param endMillis   the end of the duration to format
      * @return the formatted duration, not null
      * @throws IllegalArgumentException if startMillis is greater than endMillis
      */
@@ -241,9 +240,9 @@ public class DurationFormatUtils {
      * <p>Formats the time gap as a string, using the specified format.
      * Padding the left hand side of numbers with zeroes is optional.
      *
-     * @param startMillis  the start of the duration
-     * @param endMillis  the end of the duration
-     * @param format  the way in which to format the duration, not null
+     * @param startMillis the start of the duration
+     * @param endMillis   the end of the duration
+     * @param format      the way in which to format the duration, not null
      * @return the formatted duration, not null
      * @throws IllegalArgumentException if startMillis is greater than endMillis
      */
@@ -268,15 +267,15 @@ public class DurationFormatUtils {
      * library is recommended.</p>
      *
      * @param startMillis  the start of the duration
-     * @param endMillis  the end of the duration
-     * @param format  the way in which to format the duration, not null
-     * @param padWithZeros  whether to pad the left hand side of numbers with 0's
-     * @param timezone  the millis are defined in
+     * @param endMillis    the end of the duration
+     * @param format       the way in which to format the duration, not null
+     * @param padWithZeros whether to pad the left hand side of numbers with 0's
+     * @param timezone     the millis are defined in
      * @return the formatted duration, not null
      * @throws IllegalArgumentException if startMillis is greater than endMillis
      */
     public static String formatPeriod(final long startMillis, final long endMillis, final String format, final boolean padWithZeros,
-            final TimeZone timezone) {
+                                      final TimeZone timezone) {
         Validate.isTrue(startMillis <= endMillis, "startMillis must not be greater than endMillis");
 
 
@@ -408,22 +407,23 @@ public class DurationFormatUtils {
     }
 
     //-----------------------------------------------------------------------
+
     /**
      * <p>The internal method to do the formatting.</p>
      *
-     * @param tokens  the tokens
-     * @param years  the number of years
-     * @param months  the number of months
-     * @param days  the number of days
-     * @param hours  the number of hours
-     * @param minutes  the number of minutes
-     * @param seconds  the number of seconds
-     * @param milliseconds  the number of millis
-     * @param padWithZeros  whether to pad
+     * @param tokens       the tokens
+     * @param years        the number of years
+     * @param months       the number of months
+     * @param days         the number of days
+     * @param hours        the number of hours
+     * @param minutes      the number of minutes
+     * @param seconds      the number of seconds
+     * @param milliseconds the number of millis
+     * @param padWithZeros whether to pad
      * @return the formatted string
      */
     static String format(final Token[] tokens, final long years, final long months, final long days, final long hours, final long minutes, final long seconds,
-            final long milliseconds, final boolean padWithZeros) {
+                         final long milliseconds, final boolean padWithZeros) {
         final StringBuilder buffer = new StringBuilder();
         boolean lastOutputSeconds = false;
         for (final Token token : tokens) {
@@ -467,9 +467,9 @@ public class DurationFormatUtils {
      * <p>Converts a {@code long} to a {@code String} with optional
      * zero padding.</p>
      *
-     * @param value the value to convert
+     * @param value        the value to convert
      * @param padWithZeros whether to pad with zeroes
-     * @param count the size to pad to (ignored if {@code padWithZeros} is false)
+     * @param count        the size to pad to (ignored if {@code padWithZeros} is false)
      * @return the string result
      */
     private static String paddedValue(final long value, final boolean padWithZeros, final int count) {
@@ -488,7 +488,7 @@ public class DurationFormatUtils {
     /**
      * Parses a classic date format string into Tokens
      *
-     * @param format  the format to parse, not null
+     * @param format the format to parse, not null
      * @return array of Token[]
      */
     static Token[] lexx(final String format) {
@@ -507,44 +507,44 @@ public class DurationFormatUtils {
             }
             String value = null;
             switch (ch) {
-            // TODO: Need to handle escaping of '
-            case '\'':
-                if (inLiteral) {
-                    buffer = null;
-                    inLiteral = false;
-                } else {
-                    buffer = new StringBuilder();
-                    list.add(new Token(buffer));
-                    inLiteral = true;
-                }
-                break;
-            case 'y':
-                value = y;
-                break;
-            case 'M':
-                value = M;
-                break;
-            case 'd':
-                value = d;
-                break;
-            case 'H':
-                value = H;
-                break;
-            case 'm':
-                value = m;
-                break;
-            case 's':
-                value = s;
-                break;
-            case 'S':
-                value = S;
-                break;
-            default:
-                if (buffer == null) {
-                    buffer = new StringBuilder();
-                    list.add(new Token(buffer));
-                }
-                buffer.append(ch);
+                // TODO: Need to handle escaping of '
+                case '\'':
+                    if (inLiteral) {
+                        buffer = null;
+                        inLiteral = false;
+                    } else {
+                        buffer = new StringBuilder();
+                        list.add(new Token(buffer));
+                        inLiteral = true;
+                    }
+                    break;
+                case 'y':
+                    value = y;
+                    break;
+                case 'M':
+                    value = M;
+                    break;
+                case 'd':
+                    value = d;
+                    break;
+                case 'H':
+                    value = H;
+                    break;
+                case 'm':
+                    value = m;
+                    break;
+                case 's':
+                    value = s;
+                    break;
+                case 'S':
+                    value = S;
+                    break;
+                default:
+                    if (buffer == null) {
+                        buffer = new StringBuilder();
+                        list.add(new Token(buffer));
+                    }
+                    buffer.append(ch);
             }
 
             if (value != null) {
@@ -569,14 +569,16 @@ public class DurationFormatUtils {
      */
     static class Token {
 
-        /** Empty array. */
+        /**
+         * Empty array.
+         */
         private static final Token[] EMPTY_ARRAY = new Token[0];
 
         /**
          * Helper method to determine if a set of tokens contain a value
          *
          * @param tokens set to look in
-         * @param value to look for
+         * @param value  to look for
          * @return boolean {@code true} if contained
          */
         static boolean containsTokenWithValue(final Token[] tokens, final Object value) {

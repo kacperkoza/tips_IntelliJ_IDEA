@@ -29,7 +29,9 @@ import java.util.function.ObjIntConsumer;
 @FunctionalInterface
 public interface FailableObjIntConsumer<T, E extends Throwable> {
 
-    /** NOP singleton */
+    /**
+     * NOP singleton
+     */
     @SuppressWarnings("rawtypes")
     FailableObjIntConsumer NOP = (t, u) -> {/* NOP */};
 
@@ -48,7 +50,7 @@ public interface FailableObjIntConsumer<T, E extends Throwable> {
      * Accepts the consumer.
      *
      * @param object the object parameter for the consumable to accept.
-     * @param value the int parameter for the consumable to accept.
+     * @param value  the int parameter for the consumable to accept.
      * @throws E Thrown when the consumer fails.
      */
     void accept(T object, int value) throws E;

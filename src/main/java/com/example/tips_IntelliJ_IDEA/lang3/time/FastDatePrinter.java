@@ -25,12 +25,7 @@ import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.DateFormatSymbols;
 import java.text.FieldPosition;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-import java.util.TimeZone;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
@@ -43,7 +38,7 @@ import java.util.concurrent.ConcurrentMap;
  *
  * <p>Since FastDatePrinter is thread safe, you can use a static member instance:</p>
  * <code>
- *     private static final DatePrinter DATE_PRINTER = FastDateFormat.getInstance("yyyy-MM-dd");
+ * private static final DatePrinter DATE_PRINTER = FastDateFormat.getInstance("yyyy-MM-dd");
  * </code>
  *
  * <p>This class can be used as a direct replacement to
@@ -75,8 +70,8 @@ import java.util.concurrent.ConcurrentMap;
  * 'YYY' will be formatted as '2003', while it was '03' in former Java
  * versions. FastDatePrinter implements the behavior of Java 7.</p>
  *
- * @since 3.2
  * @see FastDateParser
+ * @since 3.2
  */
 public class FastDatePrinter implements DatePrinter, Serializable {
     // A lot of the speed in this class comes from caching, but some comes
@@ -91,7 +86,9 @@ public class FastDatePrinter implements DatePrinter, Serializable {
     // taking the value and adding (mathematically) the ASCII value for '0'.
     // So, don't change this code! It works and is very fast.
 
-    /** Empty array. */
+    /**
+     * Empty array.
+     */
     private static final Rule[] EMPTY_RULE_ARRAY = new Rule[0];
 
     /**
@@ -141,14 +138,15 @@ public class FastDatePrinter implements DatePrinter, Serializable {
 
     // Constructor
     //-----------------------------------------------------------------------
+
     /**
      * <p>Constructs a new FastDatePrinter.</p>
      * Use {@link FastDateFormat#getInstance(String, TimeZone, Locale)}  or another variation of the
      * factory methods of {@link FastDateFormat} to get a cached FastDatePrinter instance.
      *
      * @param pattern  {@link java.text.SimpleDateFormat} compatible pattern
-     * @param timeZone  non-null time zone to use
-     * @param locale  non-null locale to use
+     * @param timeZone non-null time zone to use
+     * @param locale   non-null locale to use
      * @throws NullPointerException if pattern, timeZone, or locale is null.
      */
     protected FastDatePrinter(final String pattern, final TimeZone timeZone, final Locale locale) {
@@ -167,7 +165,7 @@ public class FastDatePrinter implements DatePrinter, Serializable {
         mRules = rulesList.toArray(EMPTY_RULE_ARRAY);
 
         int len = 0;
-        for (int i=mRules.length; --i >= 0; ) {
+        for (int i = mRules.length; --i >= 0; ) {
             len += mRules[i].estimateLength();
         }
 
@@ -176,6 +174,7 @@ public class FastDatePrinter implements DatePrinter, Serializable {
 
     // Parse the pattern
     //-----------------------------------------------------------------------
+
     /**
      * <p>Returns a list of Rules given a pattern.</p>
      *
@@ -210,105 +209,105 @@ public class FastDatePrinter implements DatePrinter, Serializable {
             final char c = token.charAt(0);
 
             switch (c) {
-            case 'G': // era designator (text)
-                rule = new TextField(Calendar.ERA, ERAs);
-                break;
-            case 'y': // year (number)
-            case 'Y': // week year
-                if (tokenLen == 2) {
-                    rule = TwoDigitYearField.INSTANCE;
-                } else {
-                    rule = selectNumberRule(Calendar.YEAR, Math.max(tokenLen, 4));
-                }
-                if (c == 'Y') {
-                    rule = new WeekYear((NumberRule) rule);
-                }
-                break;
-            case 'M': // month in year (text and number)
-                if (tokenLen >= 4) {
-                    rule = new TextField(Calendar.MONTH, months);
-                } else if (tokenLen == 3) {
-                    rule = new TextField(Calendar.MONTH, shortMonths);
-                } else if (tokenLen == 2) {
-                    rule = TwoDigitMonthField.INSTANCE;
-                } else {
-                    rule = UnpaddedMonthField.INSTANCE;
-                }
-                break;
-            case 'd': // day in month (number)
-                rule = selectNumberRule(Calendar.DAY_OF_MONTH, tokenLen);
-                break;
-            case 'h': // hour in am/pm (number, 1..12)
-                rule = new TwelveHourField(selectNumberRule(Calendar.HOUR, tokenLen));
-                break;
-            case 'H': // hour in day (number, 0..23)
-                rule = selectNumberRule(Calendar.HOUR_OF_DAY, tokenLen);
-                break;
-            case 'm': // minute in hour (number)
-                rule = selectNumberRule(Calendar.MINUTE, tokenLen);
-                break;
-            case 's': // second in minute (number)
-                rule = selectNumberRule(Calendar.SECOND, tokenLen);
-                break;
-            case 'S': // millisecond (number)
-                rule = selectNumberRule(Calendar.MILLISECOND, tokenLen);
-                break;
-            case 'E': // day in week (text)
-                rule = new TextField(Calendar.DAY_OF_WEEK, tokenLen < 4 ? shortWeekdays : weekdays);
-                break;
-            case 'u': // day in week (number)
-                rule = new DayInWeekField(selectNumberRule(Calendar.DAY_OF_WEEK, tokenLen));
-                break;
-            case 'D': // day in year (number)
-                rule = selectNumberRule(Calendar.DAY_OF_YEAR, tokenLen);
-                break;
-            case 'F': // day of week in month (number)
-                rule = selectNumberRule(Calendar.DAY_OF_WEEK_IN_MONTH, tokenLen);
-                break;
-            case 'w': // week in year (number)
-                rule = selectNumberRule(Calendar.WEEK_OF_YEAR, tokenLen);
-                break;
-            case 'W': // week in month (number)
-                rule = selectNumberRule(Calendar.WEEK_OF_MONTH, tokenLen);
-                break;
-            case 'a': // am/pm marker (text)
-                rule = new TextField(Calendar.AM_PM, AmPmStrings);
-                break;
-            case 'k': // hour in day (1..24)
-                rule = new TwentyFourHourField(selectNumberRule(Calendar.HOUR_OF_DAY, tokenLen));
-                break;
-            case 'K': // hour in am/pm (0..11)
-                rule = selectNumberRule(Calendar.HOUR, tokenLen);
-                break;
-            case 'X': // ISO 8601
-                rule = Iso8601_Rule.getRule(tokenLen);
-                break;
-            case 'z': // time zone (text)
-                if (tokenLen >= 4) {
-                    rule = new TimeZoneNameRule(mTimeZone, mLocale, TimeZone.LONG);
-                } else {
-                    rule = new TimeZoneNameRule(mTimeZone, mLocale, TimeZone.SHORT);
-                }
-                break;
-            case 'Z': // time zone (value)
-                if (tokenLen == 1) {
-                    rule = TimeZoneNumberRule.INSTANCE_NO_COLON;
-                } else if (tokenLen == 2) {
-                    rule = Iso8601_Rule.ISO8601_HOURS_COLON_MINUTES;
-                } else {
-                    rule = TimeZoneNumberRule.INSTANCE_COLON;
-                }
-                break;
-            case '\'': // literal text
-                final String sub = token.substring(1);
-                if (sub.length() == 1) {
-                    rule = new CharacterLiteral(sub.charAt(0));
-                } else {
-                    rule = new StringLiteral(sub);
-                }
-                break;
-            default:
-                throw new IllegalArgumentException("Illegal pattern component: " + token);
+                case 'G': // era designator (text)
+                    rule = new TextField(Calendar.ERA, ERAs);
+                    break;
+                case 'y': // year (number)
+                case 'Y': // week year
+                    if (tokenLen == 2) {
+                        rule = TwoDigitYearField.INSTANCE;
+                    } else {
+                        rule = selectNumberRule(Calendar.YEAR, Math.max(tokenLen, 4));
+                    }
+                    if (c == 'Y') {
+                        rule = new WeekYear((NumberRule) rule);
+                    }
+                    break;
+                case 'M': // month in year (text and number)
+                    if (tokenLen >= 4) {
+                        rule = new TextField(Calendar.MONTH, months);
+                    } else if (tokenLen == 3) {
+                        rule = new TextField(Calendar.MONTH, shortMonths);
+                    } else if (tokenLen == 2) {
+                        rule = TwoDigitMonthField.INSTANCE;
+                    } else {
+                        rule = UnpaddedMonthField.INSTANCE;
+                    }
+                    break;
+                case 'd': // day in month (number)
+                    rule = selectNumberRule(Calendar.DAY_OF_MONTH, tokenLen);
+                    break;
+                case 'h': // hour in am/pm (number, 1..12)
+                    rule = new TwelveHourField(selectNumberRule(Calendar.HOUR, tokenLen));
+                    break;
+                case 'H': // hour in day (number, 0..23)
+                    rule = selectNumberRule(Calendar.HOUR_OF_DAY, tokenLen);
+                    break;
+                case 'm': // minute in hour (number)
+                    rule = selectNumberRule(Calendar.MINUTE, tokenLen);
+                    break;
+                case 's': // second in minute (number)
+                    rule = selectNumberRule(Calendar.SECOND, tokenLen);
+                    break;
+                case 'S': // millisecond (number)
+                    rule = selectNumberRule(Calendar.MILLISECOND, tokenLen);
+                    break;
+                case 'E': // day in week (text)
+                    rule = new TextField(Calendar.DAY_OF_WEEK, tokenLen < 4 ? shortWeekdays : weekdays);
+                    break;
+                case 'u': // day in week (number)
+                    rule = new DayInWeekField(selectNumberRule(Calendar.DAY_OF_WEEK, tokenLen));
+                    break;
+                case 'D': // day in year (number)
+                    rule = selectNumberRule(Calendar.DAY_OF_YEAR, tokenLen);
+                    break;
+                case 'F': // day of week in month (number)
+                    rule = selectNumberRule(Calendar.DAY_OF_WEEK_IN_MONTH, tokenLen);
+                    break;
+                case 'w': // week in year (number)
+                    rule = selectNumberRule(Calendar.WEEK_OF_YEAR, tokenLen);
+                    break;
+                case 'W': // week in month (number)
+                    rule = selectNumberRule(Calendar.WEEK_OF_MONTH, tokenLen);
+                    break;
+                case 'a': // am/pm marker (text)
+                    rule = new TextField(Calendar.AM_PM, AmPmStrings);
+                    break;
+                case 'k': // hour in day (1..24)
+                    rule = new TwentyFourHourField(selectNumberRule(Calendar.HOUR_OF_DAY, tokenLen));
+                    break;
+                case 'K': // hour in am/pm (0..11)
+                    rule = selectNumberRule(Calendar.HOUR, tokenLen);
+                    break;
+                case 'X': // ISO 8601
+                    rule = Iso8601_Rule.getRule(tokenLen);
+                    break;
+                case 'z': // time zone (text)
+                    if (tokenLen >= 4) {
+                        rule = new TimeZoneNameRule(mTimeZone, mLocale, TimeZone.LONG);
+                    } else {
+                        rule = new TimeZoneNameRule(mTimeZone, mLocale, TimeZone.SHORT);
+                    }
+                    break;
+                case 'Z': // time zone (value)
+                    if (tokenLen == 1) {
+                        rule = TimeZoneNumberRule.INSTANCE_NO_COLON;
+                    } else if (tokenLen == 2) {
+                        rule = Iso8601_Rule.ISO8601_HOURS_COLON_MINUTES;
+                    } else {
+                        rule = TimeZoneNumberRule.INSTANCE_COLON;
+                    }
+                    break;
+                case '\'': // literal text
+                    final String sub = token.substring(1);
+                    if (sub.length() == 1) {
+                        rule = new CharacterLiteral(sub.charAt(0));
+                    } else {
+                        rule = new StringLiteral(sub);
+                    }
+                    break;
+                default:
+                    throw new IllegalArgumentException("Illegal pattern component: " + token);
             }
 
             rules.add(rule);
@@ -321,7 +320,7 @@ public class FastDatePrinter implements DatePrinter, Serializable {
      * <p>Performs the parsing of tokens.</p>
      *
      * @param pattern  the pattern
-     * @param indexRef  index references
+     * @param indexRef index references
      * @return parsed token
      */
     protected String parseToken(final String pattern, final int[] indexRef) {
@@ -363,7 +362,7 @@ public class FastDatePrinter implements DatePrinter, Serializable {
                         inLiteral = !inLiteral;
                     }
                 } else if (!inLiteral &&
-                         (c >= 'A' && c <= 'Z' || c >= 'a' && c <= 'z')) {
+                        (c >= 'A' && c <= 'Z' || c >= 'a' && c <= 'z')) {
                     i--;
                     break;
                 } else {
@@ -379,31 +378,33 @@ public class FastDatePrinter implements DatePrinter, Serializable {
     /**
      * <p>Gets an appropriate rule for the padding required.</p>
      *
-     * @param field  the field to get a rule for
-     * @param padding  the padding required
+     * @param field   the field to get a rule for
+     * @param padding the padding required
      * @return a new rule with the correct padding
      */
     protected NumberRule selectNumberRule(final int field, final int padding) {
         switch (padding) {
-        case 1:
-            return new UnpaddedNumberField(field);
-        case 2:
-            return new TwoDigitNumberField(field);
-        default:
-            return new PaddedNumberField(field, padding);
+            case 1:
+                return new UnpaddedNumberField(field);
+            case 2:
+                return new TwoDigitNumberField(field);
+            default:
+                return new PaddedNumberField(field, padding);
         }
     }
 
     // Format methods
     //-----------------------------------------------------------------------
+
     /**
      * <p>Formats a {@code Date}, {@code Calendar} or
      * {@code Long} (milliseconds) object.</p>
-     * @deprecated Use {{@link #format(Date)}, {{@link #format(Calendar)}, {{@link #format(long)}, or {{@link #format(Object)}
-     * @param obj  the object to format
-     * @param toAppendTo  the buffer to append to
-     * @param pos  the position - ignored
+     *
+     * @param obj        the object to format
+     * @param toAppendTo the buffer to append to
+     * @param pos        the position - ignored
      * @return the buffer passed in
+     * @deprecated Use {{@link #format(Date)}, {{@link #format(Calendar)}, {{@link #format(long)}, or {{@link #format(Object)}
      */
     @Deprecated
     @Override
@@ -416,16 +417,17 @@ public class FastDatePrinter implements DatePrinter, Serializable {
             return format(((Long) obj).longValue(), toAppendTo);
         } else {
             throw new IllegalArgumentException("Unknown class: " +
-                (obj == null ? "<null>" : obj.getClass().getName()));
+                    (obj == null ? "<null>" : obj.getClass().getName()));
         }
     }
 
     /**
      * <p>Formats a {@code Date}, {@code Calendar} or
      * {@code Long} (milliseconds) object.</p>
-     * @since 3.5
-     * @param obj  the object to format
+     *
+     * @param obj the object to format
      * @return The formatted value.
+     * @since 3.5
      */
     String format(final Object obj) {
         if (obj instanceof Date) {
@@ -436,7 +438,7 @@ public class FastDatePrinter implements DatePrinter, Serializable {
             return format(((Long) obj).longValue());
         } else {
             throw new IllegalArgumentException("Unknown class: " +
-                (obj == null ? "<null>" : obj.getClass().getName()));
+                    (obj == null ? "<null>" : obj.getClass().getName()));
         }
     }
 
@@ -452,6 +454,7 @@ public class FastDatePrinter implements DatePrinter, Serializable {
 
     /**
      * Creates a String representation of the given Calendar by applying the rules of this printer to it.
+     *
      * @param c the Calender to apply the rules to.
      * @return a String representation of the given Calendar.
      */
@@ -461,6 +464,7 @@ public class FastDatePrinter implements DatePrinter, Serializable {
 
     /**
      * Creation method for new calender instances.
+     *
      * @return a new Calendar instance.
      */
     private Calendar newCalendar() {
@@ -552,9 +556,8 @@ public class FastDatePrinter implements DatePrinter, Serializable {
      * specified calendar.
      *
      * @param calendar the calendar to format
-     * @param buf the buffer to format into
+     * @param buf      the buffer to format into
      * @return the specified string buffer
-     *
      * @deprecated use {@link #format(Calendar)} or {@link #format(Calendar, Appendable)}
      */
     @Deprecated
@@ -566,9 +569,9 @@ public class FastDatePrinter implements DatePrinter, Serializable {
      * <p>Performs the formatting by applying the rules to the
      * specified calendar.</p>
      *
-     * @param calendar  the calendar to format
-     * @param buf  the buffer to format into
-     * @param <B> the Appendable class type, usually StringBuilder or StringBuffer.
+     * @param calendar the calendar to format
+     * @param buf      the buffer to format into
+     * @param <B>      the Appendable class type, usually StringBuilder or StringBuffer.
      * @return the specified string buffer
      */
     private <B extends Appendable> B applyRules(final Calendar calendar, final B buf) {
@@ -623,10 +626,11 @@ public class FastDatePrinter implements DatePrinter, Serializable {
 
     // Basics
     //-----------------------------------------------------------------------
+
     /**
      * <p>Compares two objects for equality.</p>
      *
-     * @param obj  the object to compare to
+     * @param obj the object to compare to
      * @return {@code true} if equal
      */
     @Override
@@ -636,8 +640,8 @@ public class FastDatePrinter implements DatePrinter, Serializable {
         }
         final FastDatePrinter other = (FastDatePrinter) obj;
         return mPattern.equals(other.mPattern)
-            && mTimeZone.equals(other.mTimeZone)
-            && mLocale.equals(other.mLocale);
+                && mTimeZone.equals(other.mTimeZone)
+                && mLocale.equals(other.mLocale);
     }
 
     /**
@@ -662,12 +666,13 @@ public class FastDatePrinter implements DatePrinter, Serializable {
 
     // Serializing
     //-----------------------------------------------------------------------
+
     /**
      * Create the object after serialization. This implementation reinitializes the
      * transient properties.
      *
      * @param in ObjectInputStream from which the object is being deserialized.
-     * @throws IOException if there is an IO issue.
+     * @throws IOException            if there is an IO issue.
      * @throws ClassNotFoundException if a class cannot be found.
      */
     private void readObject(final ObjectInputStream in) throws IOException, ClassNotFoundException {
@@ -679,7 +684,7 @@ public class FastDatePrinter implements DatePrinter, Serializable {
      * Appends two digits to the given buffer.
      *
      * @param buffer the buffer to append to.
-     * @param value the value to append digits from.
+     * @param value  the value to append digits from.
      */
     private static void appendDigits(final Appendable buffer, final int value) throws IOException {
         buffer.append((char) (value / 10 + '0'));
@@ -692,7 +697,7 @@ public class FastDatePrinter implements DatePrinter, Serializable {
      * Appends all digits to the given buffer.
      *
      * @param buffer the buffer to append to.
-     * @param value the value to append digits from.
+     * @param value  the value to append digits from.
      */
     private static void appendFullDigits(final Appendable buffer, int value, int minFieldWidth) throws IOException {
         // specialized paths for 1 to 4 digits -> avoid the memory allocation from the temporary work array
@@ -716,25 +721,25 @@ public class FastDatePrinter implements DatePrinter, Serializable {
             }
 
             switch (nDigits) {
-            case 4:
-                buffer.append((char) (value / 1000 + '0'));
-                value %= 1000;
-            case 3:
-                if (value >= 100) {
-                    buffer.append((char) (value / 100 + '0'));
-                    value %= 100;
-                } else {
-                    buffer.append('0');
-                }
-            case 2:
-                if (value >= 10) {
-                    buffer.append((char) (value / 10 + '0'));
-                    value %= 10;
-                } else {
-                    buffer.append('0');
-                }
-            case 1:
-                buffer.append((char) (value + '0'));
+                case 4:
+                    buffer.append((char) (value / 1000 + '0'));
+                    value %= 1000;
+                case 3:
+                    if (value >= 100) {
+                        buffer.append((char) (value / 100 + '0'));
+                        value %= 100;
+                    } else {
+                        buffer.append('0');
+                    }
+                case 2:
+                    if (value >= 10) {
+                        buffer.append((char) (value / 10 + '0'));
+                        value %= 10;
+                    } else {
+                        buffer.append('0');
+                    }
+                case 1:
+                    buffer.append((char) (value + '0'));
             }
         } else {
             // more memory allocation path works for any digits
@@ -762,6 +767,7 @@ public class FastDatePrinter implements DatePrinter, Serializable {
 
     // Rules
     //-----------------------------------------------------------------------
+
     /**
      * <p>Inner class defining a rule.</p>
      */
@@ -776,7 +782,7 @@ public class FastDatePrinter implements DatePrinter, Serializable {
         /**
          * Appends the value of the specified calendar to the output buffer based on the rule implementation.
          *
-         * @param buf the output buffer
+         * @param buf      the output buffer
          * @param calendar calendar to be appended
          * @throws IOException if an I/O error occurs.
          */
@@ -791,7 +797,7 @@ public class FastDatePrinter implements DatePrinter, Serializable {
          * Appends the specified value to the output buffer based on the rule implementation.
          *
          * @param buffer the output buffer
-         * @param value the value to be appended
+         * @param value  the value to be appended
          * @throws IOException if an I/O error occurs.
          */
         void appendTo(Appendable buffer, int value) throws IOException;
@@ -874,7 +880,7 @@ public class FastDatePrinter implements DatePrinter, Serializable {
          * Constructs an instance of {@code TextField}
          * with the specified field and values.
          *
-         * @param field the field
+         * @param field  the field
          * @param values the field values
          */
         TextField(final int field, final String[] values) {
@@ -888,7 +894,7 @@ public class FastDatePrinter implements DatePrinter, Serializable {
         @Override
         public int estimateLength() {
             int max = 0;
-            for (int i=mValues.length; --i >= 0; ) {
+            for (int i = mValues.length; --i >= 0; ) {
                 final int len = mValues[i].length();
                 if (len > max) {
                     max = len;
@@ -947,7 +953,7 @@ public class FastDatePrinter implements DatePrinter, Serializable {
             } else if (value < 100) {
                 appendDigits(buffer, value);
             } else {
-               appendFullDigits(buffer, value, 1);
+                appendFullDigits(buffer, value, 1);
             }
         }
     }
@@ -960,7 +966,6 @@ public class FastDatePrinter implements DatePrinter, Serializable {
 
         /**
          * Constructs an instance of {@code UnpaddedMonthField}.
-         *
          */
         UnpaddedMonthField() {
         }
@@ -1005,7 +1010,7 @@ public class FastDatePrinter implements DatePrinter, Serializable {
          * Constructs an instance of {@code PaddedNumberField}.
          *
          * @param field the field
-         * @param size size of the output field
+         * @param size  size of the output field
          */
         PaddedNumberField(final int field, final int size) {
             if (size < 3) {
@@ -1305,14 +1310,15 @@ public class FastDatePrinter implements DatePrinter, Serializable {
     //-----------------------------------------------------------------------
 
     private static final ConcurrentMap<TimeZoneDisplayKey, String> cTimeZoneDisplayCache =
-        new ConcurrentHashMap<>(7);
+            new ConcurrentHashMap<>(7);
+
     /**
      * <p>Gets the time zone display name, using a cache for performance.</p>
      *
-     * @param tz  the zone to query
-     * @param daylight  true if daylight savings
-     * @param style  the style to use {@code TimeZone.LONG} or {@code TimeZone.SHORT}
-     * @param locale  the locale to use
+     * @param tz       the zone to query
+     * @param daylight true if daylight savings
+     * @param style    the style to use {@code TimeZone.LONG} or {@code TimeZone.SHORT}
+     * @param locale   the locale to use
      * @return the textual name of the time zone
      */
     static String getTimeZoneDisplay(final TimeZone tz, final boolean daylight, final int style, final Locale locale) {
@@ -1323,7 +1329,7 @@ public class FastDatePrinter implements DatePrinter, Serializable {
             value = tz.getDisplayName(daylight, style, locale);
             final String prior = cTimeZoneDisplayCache.putIfAbsent(key, value);
             if (prior != null) {
-                value= prior;
+                value = prior;
             }
         }
         return value;
@@ -1342,8 +1348,8 @@ public class FastDatePrinter implements DatePrinter, Serializable {
          * Constructs an instance of {@code TimeZoneNameRule} with the specified properties.
          *
          * @param timeZone the time zone
-         * @param locale the locale
-         * @param style the style
+         * @param locale   the locale
+         * @param style    the style
          */
         TimeZoneNameRule(final TimeZone timeZone, final Locale locale, final int style) {
             mLocale = LocaleUtils.toLocale(locale);
@@ -1450,18 +1456,18 @@ public class FastDatePrinter implements DatePrinter, Serializable {
          *
          * @param tokenLen a token indicating the length of the TimeZone String to be formatted.
          * @return a Iso8601_Rule that can format TimeZone String of length {@code tokenLen}. If no such
-         *          rule exists, an IllegalArgumentException will be thrown.
+         * rule exists, an IllegalArgumentException will be thrown.
          */
         static Iso8601_Rule getRule(final int tokenLen) {
-            switch(tokenLen) {
-            case 1:
-                return ISO8601_HOURS;
-            case 2:
-                return ISO8601_HOURS_MINUTES;
-            case 3:
-                return ISO8601_HOURS_COLON_MINUTES;
-            default:
-                throw new IllegalArgumentException("invalid number of X");
+            switch (tokenLen) {
+                case 1:
+                    return ISO8601_HOURS;
+                case 2:
+                    return ISO8601_HOURS_MINUTES;
+                case 3:
+                    return ISO8601_HOURS_COLON_MINUTES;
+                default:
+                    throw new IllegalArgumentException("invalid number of X");
             }
         }
 
@@ -1505,11 +1511,11 @@ public class FastDatePrinter implements DatePrinter, Serializable {
             final int hours = offset / (60 * 60 * 1000);
             appendDigits(buffer, hours);
 
-            if (length<5) {
+            if (length < 5) {
                 return;
             }
 
-            if (length==6) {
+            if (length == 6) {
                 buffer.append(':');
             }
 
@@ -1519,6 +1525,7 @@ public class FastDatePrinter implements DatePrinter, Serializable {
     }
 
     // ----------------------------------------------------------------------
+
     /**
      * <p>Inner class that acts as a compound key for time zone names.</p>
      */
@@ -1532,8 +1539,8 @@ public class FastDatePrinter implements DatePrinter, Serializable {
          *
          * @param timeZone the time zone
          * @param daylight adjust the style for daylight saving time if {@code true}
-         * @param style the time zone style
-         * @param locale the time zone locale
+         * @param style    the time zone style
+         * @param locale   the time zone locale
          */
         TimeZoneDisplayKey(final TimeZone timeZone,
                            final boolean daylight, final int style, final Locale locale) {
@@ -1551,7 +1558,7 @@ public class FastDatePrinter implements DatePrinter, Serializable {
          */
         @Override
         public int hashCode() {
-            return (mStyle * 31 + mLocale.hashCode() ) * 31 + mTimeZone.hashCode();
+            return (mStyle * 31 + mLocale.hashCode()) * 31 + mTimeZone.hashCode();
         }
 
         /**
@@ -1565,9 +1572,9 @@ public class FastDatePrinter implements DatePrinter, Serializable {
             if (obj instanceof TimeZoneDisplayKey) {
                 final TimeZoneDisplayKey other = (TimeZoneDisplayKey) obj;
                 return
-                    mTimeZone.equals(other.mTimeZone) &&
-                    mStyle == other.mStyle &&
-                    mLocale.equals(other.mLocale);
+                        mTimeZone.equals(other.mTimeZone) &&
+                                mStyle == other.mStyle &&
+                                mLocale.equals(other.mLocale);
             }
             return false;
         }

@@ -34,14 +34,18 @@ import java.util.Objects;
  * {@link ConcurrentInitializer}.
  * </p>
  *
- * @since 3.0
  * @param <T> the type of the object managed by this initializer
+ * @since 3.0
  */
 public class ConstantInitializer<T> implements ConcurrentInitializer<T> {
-    /** Constant for the format of the string representation. */
+    /**
+     * Constant for the format of the string representation.
+     */
     private static final String FMT_TO_STRING = "ConstantInitializer@%d [ object = %s ]";
 
-    /** Stores the managed object. */
+    /**
+     * Stores the managed object.
+     */
     private final T object;
 
     /**

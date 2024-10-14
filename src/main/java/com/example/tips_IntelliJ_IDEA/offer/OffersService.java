@@ -23,11 +23,16 @@ public class OffersService {
     }
 
 
-    public void add(String accountId, Offer offer) {
-        if (List.of(AccountStatus.TO_ACTIVATE, AccountStatus.BLOCKED).contains(accountStatusClient.getAccountStatus(accountId))) {
+    public void add(Offer offer, String accountId1) {
+        if (accountId1 != null && accountId1.isEmpty()) {
+            throw new IllegalArgumentException();
+
+        }
+        AccountStatus accountStatus = accountStatusClient.getAccountStatus(accountId1);
+        if (List.of(AccountStatus.TO_ACTIVATE, AccountStatus.BLOCKED).contains(accountStatus)) {
             throw new IncorrectAccountStatusException();
         }
-        offersRepository.addOffer(accountId, offer);
+        offersRepository.addOffer(accountId1, offer);
     }
 
     private void validate(Integer limit, Integer offset) {

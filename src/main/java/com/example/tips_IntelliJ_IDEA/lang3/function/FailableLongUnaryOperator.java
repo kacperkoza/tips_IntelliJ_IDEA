@@ -28,7 +28,9 @@ import java.util.function.LongUnaryOperator;
  */
 public interface FailableLongUnaryOperator<E extends Throwable> {
 
-    /** NOP singleton */
+    /**
+     * NOP singleton
+     */
     @SuppressWarnings("rawtypes")
     FailableLongUnaryOperator NOP = t -> 0L;
 

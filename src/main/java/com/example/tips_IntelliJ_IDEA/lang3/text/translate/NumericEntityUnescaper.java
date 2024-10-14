@@ -25,7 +25,7 @@ import java.util.EnumSet;
 /**
  * Translate XML numeric entities of the form &amp;#[xX]?\d+;? to
  * the specific codepoint.
- *
+ * <p>
  * Note that the semicolon is optional.
  *
  * @since 3.0
@@ -36,7 +36,9 @@ import java.util.EnumSet;
 @Deprecated
 public class NumericEntityUnescaper extends CharSequenceTranslator {
 
-    /** Enumerates NumericEntityUnescaper options for unescaping. */
+    /**
+     * Enumerates NumericEntityUnescaper options for unescaping.
+     */
     public enum OPTION {
 
         /**
@@ -60,16 +62,16 @@ public class NumericEntityUnescaper extends CharSequenceTranslator {
 
     /**
      * Create a UnicodeUnescaper.
-     *
+     * <p>
      * The constructor takes a list of options, only one type of which is currently
      * available (whether to allow, error or ignore the semicolon on the end of a
      * numeric entity to being missing).
-     *
+     * <p>
      * For example, to support numeric entities without a ';':
-     *    new NumericEntityUnescaper(NumericEntityUnescaper.OPTION.semiColonOptional)
+     * new NumericEntityUnescaper(NumericEntityUnescaper.OPTION.semiColonOptional)
      * and to throw an IllegalArgumentException when they're missing:
-     *    new NumericEntityUnescaper(NumericEntityUnescaper.OPTION.errorIfNoSemiColon)
-     *
+     * new NumericEntityUnescaper(NumericEntityUnescaper.OPTION.errorIfNoSemiColon)
+     * <p>
      * Note that the default behavior is to ignore them.
      *
      * @param options to apply to this unescaper
@@ -116,9 +118,9 @@ public class NumericEntityUnescaper extends CharSequenceTranslator {
 
             int end = start;
             // Note that this supports character codes without a ; on the end
-            while (end < seqEnd && ( input.charAt(end) >= '0' && input.charAt(end) <= '9' ||
-                                    input.charAt(end) >= 'a' && input.charAt(end) <= 'f' ||
-                                    input.charAt(end) >= 'A' && input.charAt(end) <= 'F' ) ) {
+            while (end < seqEnd && (input.charAt(end) >= '0' && input.charAt(end) <= '9' ||
+                    input.charAt(end) >= 'a' && input.charAt(end) <= 'f' ||
+                    input.charAt(end) >= 'A' && input.charAt(end) <= 'F')) {
                 end++;
             }
 
@@ -127,8 +129,7 @@ public class NumericEntityUnescaper extends CharSequenceTranslator {
             if (!semiNext) {
                 if (isSet(OPTION.semiColonRequired)) {
                     return 0;
-                } else
-                if (isSet(OPTION.errorIfNoSemiColon)) {
+                } else if (isSet(OPTION.errorIfNoSemiColon)) {
                     throw new IllegalArgumentException("Semi-colon required at end of numeric entity");
                 }
             }
@@ -140,7 +141,7 @@ public class NumericEntityUnescaper extends CharSequenceTranslator {
                 } else {
                     entityValue = Integer.parseInt(input.subSequence(start, end).toString(), 10);
                 }
-            } catch(final NumberFormatException nfe) {
+            } catch (final NumberFormatException nfe) {
                 return 0;
             }
 

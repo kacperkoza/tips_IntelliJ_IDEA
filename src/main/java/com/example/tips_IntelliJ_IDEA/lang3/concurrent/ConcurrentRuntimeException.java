@@ -60,7 +60,7 @@ public class ConcurrentRuntimeException extends RuntimeException {
      * Creates a new instance of {@code ConcurrentRuntimeException} and
      * initializes it with the given message and cause.
      *
-     * @param msg the error message
+     * @param msg   the error message
      * @param cause the cause of this exception
      * @throws IllegalArgumentException if the cause is not a checked exception
      */

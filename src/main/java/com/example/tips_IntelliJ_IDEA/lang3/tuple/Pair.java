@@ -35,7 +35,6 @@ import java.util.Objects;
  *
  * @param <L> the left element type
  * @param <R> the right element type
- *
  * @since 3.0
  */
 public abstract class Pair<L, R> implements Map.Entry<L, R>, Comparable<Pair<L, R>>, Serializable {
@@ -61,7 +60,9 @@ public abstract class Pair<L, R> implements Map.Entry<L, R>, Comparable<Pair<L, 
 
     }
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = 4954918890077093841L;
 
     /**
@@ -80,7 +81,6 @@ public abstract class Pair<L, R> implements Map.Entry<L, R>, Comparable<Pair<L, 
      * @param <L> the left element type
      * @param <R> the right element type
      * @return the empty array singleton that can be assigned without compiler warning.
-     *
      * @since 3.10.
      */
     @SuppressWarnings("unchecked")
@@ -94,10 +94,10 @@ public abstract class Pair<L, R> implements Map.Entry<L, R>, Comparable<Pair<L, 
      * <p>This factory allows the pair to be created using inference to
      * obtain the generic types.</p>
      *
-     * @param <L> the left element type
-     * @param <R> the right element type
+     * @param <L>   the left element type
+     * @param <R>   the right element type
      * @param left  the left element, may be null
-     * @param right  the right element, may be null
+     * @param right the right element, may be null
      * @return a pair formed from the two parameters, not null
      */
     public static <L, R> Pair<L, R> of(final L left, final R right) {
@@ -110,8 +110,8 @@ public abstract class Pair<L, R> implements Map.Entry<L, R>, Comparable<Pair<L, 
      * <p>This factory allows the pair to be created using inference to
      * obtain the generic types.</p>
      *
-     * @param <L> the left element type
-     * @param <R> the right element type
+     * @param <L>  the left element type
+     * @param <R>  the right element type
      * @param pair the existing pair.
      * @return a pair formed from the two parameters, not null
      * @since 3.10
@@ -121,23 +121,24 @@ public abstract class Pair<L, R> implements Map.Entry<L, R>, Comparable<Pair<L, 
     }
 
     //-----------------------------------------------------------------------
+
     /**
      * <p>Compares the pair based on the left element followed by the right element.
      * The types must be {@code Comparable}.</p>
      *
-     * @param other  the other pair, not null
+     * @param other the other pair, not null
      * @return negative if this is less, zero if equal, positive if greater
      */
     @Override
     public int compareTo(final Pair<L, R> other) {
-      return new CompareToBuilder().append(getLeft(), other.getLeft())
-              .append(getRight(), other.getRight()).toComparison();
+        return new CompareToBuilder().append(getLeft(), other.getLeft())
+                .append(getRight(), other.getRight()).toComparison();
     }
 
     /**
      * <p>Compares this pair to another based on the two elements.</p>
      *
-     * @param obj  the object to compare to, null returns false
+     * @param obj the object to compare to, null returns false
      * @return true if the elements of the pair are equal
      */
     @Override
@@ -167,6 +168,7 @@ public abstract class Pair<L, R> implements Map.Entry<L, R>, Comparable<Pair<L, 
     }
 
     //-----------------------------------------------------------------------
+
     /**
      * <p>Gets the left element from this pair.</p>
      *
@@ -228,7 +230,7 @@ public abstract class Pair<L, R> implements Map.Entry<L, R>, Comparable<Pair<L, 
      * element (key) and {@code %2$s} for the right element (value).
      * The default format used by {@code toString()} is {@code (%1$s,%2$s)}.</p>
      *
-     * @param format  the format string, optionally containing {@code %1$s} and {@code %2$s}, not null
+     * @param format the format string, optionally containing {@code %1$s} and {@code %2$s}, not null
      * @return the formatted string, not null
      */
     public String toString(final String format) {

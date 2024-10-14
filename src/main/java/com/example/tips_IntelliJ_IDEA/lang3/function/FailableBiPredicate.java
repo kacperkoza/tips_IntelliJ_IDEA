@@ -31,11 +31,15 @@ import java.util.function.BiPredicate;
 @FunctionalInterface
 public interface FailableBiPredicate<T, U, E extends Throwable> {
 
-    /** FALSE singleton */
+    /**
+     * FALSE singleton
+     */
     @SuppressWarnings("rawtypes")
     FailableBiPredicate FALSE = (t, u) -> false;
 
-    /** TRUE singleton */
+    /**
+     * TRUE singleton
+     */
     @SuppressWarnings("rawtypes")
     FailableBiPredicate TRUE = (t, u) -> true;
 

@@ -30,7 +30,9 @@ import java.util.function.ToLongBiFunction;
 @FunctionalInterface
 public interface FailableToLongBiFunction<T, U, E extends Throwable> {
 
-    /** NOP singleton */
+    /**
+     * NOP singleton
+     */
     @SuppressWarnings("rawtypes")
     FailableToLongBiFunction NOP = (t, u) -> 0;
 

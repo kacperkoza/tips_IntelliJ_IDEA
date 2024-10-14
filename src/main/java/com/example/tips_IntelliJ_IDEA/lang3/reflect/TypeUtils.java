@@ -22,21 +22,8 @@ import com.example.tips_IntelliJ_IDEA.lang3.ObjectUtils;
 import com.example.tips_IntelliJ_IDEA.lang3.Validate;
 import com.example.tips_IntelliJ_IDEA.lang3.builder.Builder;
 
-import java.lang.reflect.Array;
-import java.lang.reflect.GenericArrayType;
-import java.lang.reflect.GenericDeclaration;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-import java.lang.reflect.TypeVariable;
-import java.lang.reflect.WildcardType;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
+import java.lang.reflect.*;
+import java.util.*;
 
 /**
  * Utility methods focusing on type inspection, particularly with regard to
@@ -48,6 +35,7 @@ public class TypeUtils {
 
     /**
      * GenericArrayType implementation class.
+     *
      * @since 3.2
      */
     private static final class GenericArrayTypeImpl implements GenericArrayType {
@@ -55,6 +43,7 @@ public class TypeUtils {
 
         /**
          * Constructor
+         *
          * @param componentType of this array type
          */
         private GenericArrayTypeImpl(final Type componentType) {
@@ -98,6 +87,7 @@ public class TypeUtils {
 
     /**
      * ParameterizedType implementation class.
+     *
      * @since 3.2
      */
     private static final class ParameterizedTypeImpl implements ParameterizedType {
@@ -107,8 +97,9 @@ public class TypeUtils {
 
         /**
          * Constructor
-         * @param rawClass type
-         * @param useOwner owner type to use, if any
+         *
+         * @param rawClass      type
+         * @param useOwner      owner type to use, if any
          * @param typeArguments formal type arguments
          */
         private ParameterizedTypeImpl(final Class<?> rawClass, final Type useOwner, final Type[] typeArguments) {
@@ -174,12 +165,14 @@ public class TypeUtils {
 
     /**
      * {@link WildcardType} builder.
+     *
      * @since 3.2
      */
     public static class WildcardTypeBuilder implements Builder<WildcardType> {
         private Type[] upperBounds;
 
         private Type[] lowerBounds;
+
         /**
          * Constructor
          */
@@ -196,6 +189,7 @@ public class TypeUtils {
 
         /**
          * Specify lower bounds of the wildcard type to build.
+         *
          * @param bounds to set
          * @return {@code this}
          */
@@ -206,6 +200,7 @@ public class TypeUtils {
 
         /**
          * Specify upper bounds of the wildcard type to build.
+         *
          * @param bounds to set
          * @return {@code this}
          */
@@ -217,6 +212,7 @@ public class TypeUtils {
 
     /**
      * WildcardType implementation class.
+     *
      * @since 3.2
      */
     private static final class WildcardTypeImpl implements WildcardType {
@@ -225,6 +221,7 @@ public class TypeUtils {
 
         /**
          * Constructor
+         *
          * @param upperBounds of this type
          * @param lowerBounds of this type
          */
@@ -280,6 +277,7 @@ public class TypeUtils {
 
     /**
      * A wildcard instance matching {@code ?}.
+     *
      * @since 3.2
      */
     public static final WildcardType WILDCARD_ALL = wildcardType().withUpperBounds(Object.class).build();
@@ -288,13 +286,13 @@ public class TypeUtils {
      * Appends {@code types} to {@code builder} with separator {@code sep}.
      *
      * @param builder destination
-     * @param sep separator
-     * @param types to append
+     * @param sep     separator
+     * @param types   to append
      * @return {@code builder}
      * @since 3.2
      */
     private static <T> StringBuilder appendAllTo(final StringBuilder builder, final String sep,
-        @SuppressWarnings("unchecked") final T... types) {
+                                                 @SuppressWarnings("unchecked") final T... types) {
         Validate.notEmpty(Validate.noNullElements(types));
         if (types.length > 0) {
             builder.append(toString(types[0]));
@@ -306,7 +304,7 @@ public class TypeUtils {
     }
 
     private static void appendRecursiveTypes(final StringBuilder builder, final int[] recursiveTypeIndexes,
-        final Type[] argumentTypes) {
+                                             final Type[] argumentTypes) {
         for (int i = 0; i < recursiveTypeIndexes.length; i++) {
             appendAllTo(builder.append('<'), ", ", argumentTypes[i].toString()).append('>');
         }
@@ -370,7 +368,7 @@ public class TypeUtils {
         if (type instanceof WildcardType) {
             final WildcardType wild = (WildcardType) type;
             return containsTypeVariables(getImplicitLowerBounds(wild)[0])
-                || containsTypeVariables(getImplicitUpperBounds(wild)[0]);
+                    || containsTypeVariables(getImplicitUpperBounds(wild)[0]);
         }
         if (type instanceof GenericArrayType) {
             return containsTypeVariables(((GenericArrayType) type).getGenericComponentType());
@@ -379,7 +377,7 @@ public class TypeUtils {
     }
 
     private static boolean containsVariableTypeSameParametrizedTypeBound(final TypeVariable<?> typeVariable,
-        final ParameterizedType parameterizedType) {
+                                                                         final ParameterizedType parameterizedType) {
         return ArrayUtils.contains(typeVariable.getBounds(), parameterizedType);
     }
 
@@ -407,15 +405,15 @@ public class TypeUtils {
      * Collection<?>>}.
      * </p>
      *
-     * @param cls the class whose type parameters are to be determined, not {@code null}
+     * @param cls                    the class whose type parameters are to be determined, not {@code null}
      * @param superParameterizedType the super type from which {@code cls}'s type
-     * arguments are to be determined, not {@code null}
+     *                               arguments are to be determined, not {@code null}
      * @return a {@code Map} of the type assignments that could be determined
      * for the type variables in each type in the inheritance hierarchy from
      * {@code type} to {@code toClass} inclusive.
      */
     public static Map<TypeVariable<?>, Type> determineTypeArguments(final Class<?> cls,
-            final ParameterizedType superParameterizedType) {
+                                                                    final ParameterizedType superParameterizedType) {
         Validate.notNull(cls, "cls");
         Validate.notNull(superParameterizedType, "superParameterizedType");
 
@@ -453,20 +451,20 @@ public class TypeUtils {
      * Tests whether {@code t} equals {@code a}.
      *
      * @param genericArrayType LHS
-     * @param type RHS
+     * @param type             RHS
      * @return boolean
      * @since 3.2
      */
     private static boolean equals(final GenericArrayType genericArrayType, final Type type) {
         return type instanceof GenericArrayType
-            && equals(genericArrayType.getGenericComponentType(), ((GenericArrayType) type).getGenericComponentType());
+                && equals(genericArrayType.getGenericComponentType(), ((GenericArrayType) type).getGenericComponentType());
     }
 
     /**
      * Tests whether {@code t} equals {@code p}.
      *
      * @param parameterizedType LHS
-     * @param type RHS
+     * @param type              RHS
      * @return boolean
      * @since 3.2
      */
@@ -474,7 +472,7 @@ public class TypeUtils {
         if (type instanceof ParameterizedType) {
             final ParameterizedType other = (ParameterizedType) type;
             if (equals(parameterizedType.getRawType(), other.getRawType())
-                && equals(parameterizedType.getOwnerType(), other.getOwnerType())) {
+                    && equals(parameterizedType.getOwnerType(), other.getOwnerType())) {
                 return equals(parameterizedType.getActualTypeArguments(), other.getActualTypeArguments());
             }
         }
@@ -529,7 +527,7 @@ public class TypeUtils {
      * Tests whether {@code t} equals {@code w}.
      *
      * @param wildcardType LHS
-     * @param type RHS
+     * @param type         RHS
      * @return boolean
      * @since 3.2
      */
@@ -537,7 +535,7 @@ public class TypeUtils {
         if (type instanceof WildcardType) {
             final WildcardType other = (WildcardType) type;
             return equals(getImplicitLowerBounds(wildcardType), getImplicitLowerBounds(other))
-                && equals(getImplicitUpperBounds(wildcardType), getImplicitUpperBounds(other));
+                    && equals(getImplicitUpperBounds(wildcardType), getImplicitUpperBounds(other));
         }
         return false;
     }
@@ -545,7 +543,7 @@ public class TypeUtils {
     /**
      * Helper method to establish the formal parameters for a parameterized type.
      *
-     * @param mappings map containing the assignments
+     * @param mappings  map containing the assignments
      * @param variables expected map keys
      * @return array of map values corresponding to specified keys
      */
@@ -561,11 +559,11 @@ public class TypeUtils {
 
     private static int[] findRecursiveTypes(final ParameterizedType parameterizedType) {
         final Type[] filteredArgumentTypes = Arrays.copyOf(parameterizedType.getActualTypeArguments(),
-            parameterizedType.getActualTypeArguments().length);
+                parameterizedType.getActualTypeArguments().length);
         int[] indexesToRemove = {};
         for (int i = 0; i < filteredArgumentTypes.length; i++) {
             if ((filteredArgumentTypes[i] instanceof TypeVariable<?>) && containsVariableTypeSameParametrizedTypeBound(
-                ((TypeVariable<?>) filteredArgumentTypes[i]), parameterizedType)) {
+                    ((TypeVariable<?>) filteredArgumentTypes[i]), parameterizedType)) {
                 indexesToRemove = ArrayUtils.add(indexesToRemove, i);
             }
         }
@@ -616,7 +614,7 @@ public class TypeUtils {
      * Gets the closest parent type to the
      * super class specified by {@code superClass}.
      *
-     * @param cls the class in question
+     * @param cls        the class in question
      * @param superClass the super class
      * @return the closes parent type
      */
@@ -673,7 +671,7 @@ public class TypeUtils {
         Validate.notNull(typeVariable, "typeVariable");
         final Type[] bounds = typeVariable.getBounds();
 
-        return bounds.length == 0 ? new Type[] { Object.class } : normalizeUpperBounds(bounds);
+        return bounds.length == 0 ? new Type[]{Object.class} : normalizeUpperBounds(bounds);
     }
 
     /**
@@ -689,7 +687,7 @@ public class TypeUtils {
         Validate.notNull(wildcardType, "wildcardType");
         final Type[] bounds = wildcardType.getLowerBounds();
 
-        return bounds.length == 0 ? new Type[] { null } : bounds;
+        return bounds.length == 0 ? new Type[]{null} : bounds;
     }
 
     /**
@@ -706,7 +704,7 @@ public class TypeUtils {
         Validate.notNull(wildcardType, "wildcardType");
         final Type[] bounds = wildcardType.getUpperBounds();
 
-        return bounds.length == 0 ? new Type[] { Object.class } : normalizeUpperBounds(bounds);
+        return bounds.length == 0 ? new Type[]{Object.class} : normalizeUpperBounds(bounds);
     }
 
     /**
@@ -738,7 +736,7 @@ public class TypeUtils {
      * {@link Class} instance, it is already raw; if you know you have a
      * {@link ParameterizedType}, its raw type is only a method call away.
      *
-     * @param type to resolve
+     * @param type          to resolve
      * @param assigningType type to be resolved against
      * @return the resolved {@link Class} object or {@code null} if
      * the type could not be resolved
@@ -810,13 +808,13 @@ public class TypeUtils {
     /**
      * Gets a map of the type arguments of a class in the context of {@code toClass}.
      *
-     * @param cls the class in question
-     * @param toClass the context class
+     * @param cls               the class in question
+     * @param toClass           the context class
      * @param subtypeVarAssigns a map with type variables
      * @return the {@code Map} with type arguments
      */
     private static Map<TypeVariable<?>, Type> getTypeArguments(Class<?> cls, final Class<?> toClass,
-            final Map<TypeVariable<?>, Type> subtypeVarAssigns) {
+                                                               final Map<TypeVariable<?>, Type> subtypeVarAssigns) {
         // make sure they're assignable
         if (!isAssignable(cls, toClass)) {
             return null;
@@ -868,7 +866,7 @@ public class TypeUtils {
      * Gets a map of the type arguments of a parameterized type in the context of {@code toClass}.
      *
      * @param parameterizedType the parameterized type
-     * @param toClass the class
+     * @param toClass           the class
      * @param subtypeVarAssigns a map with type variables
      * @return the {@code Map} with type arguments
      */
@@ -949,10 +947,10 @@ public class TypeUtils {
      * {@code toClass} hierarchy.
      * </p>
      *
-     * @param type the type from which to determine the type parameters of
-     * {@code toClass}
+     * @param type    the type from which to determine the type parameters of
+     *                {@code toClass}
      * @param toClass the class whose type parameters are to be determined based
-     * on the subtype {@code type}
+     *                on the subtype {@code type}
      * @return a {@code Map} of the type assignments for the type variables in
      * each type in the inheritance hierarchy from {@code type} to
      * {@code toClass} inclusive.
@@ -964,13 +962,13 @@ public class TypeUtils {
     /**
      * Gets a map of the type arguments of {@code type} in the context of {@code toClass}.
      *
-     * @param type the type in question
-     * @param toClass the class
+     * @param type              the type in question
+     * @param toClass           the class
      * @param subtypeVarAssigns a map with type variables
      * @return the {@code Map} with type arguments
      */
     private static Map<TypeVariable<?>, Type> getTypeArguments(final Type type, final Class<?> toClass,
-            final Map<TypeVariable<?>, Type> subtypeVarAssigns) {
+                                                               final Map<TypeVariable<?>, Type> subtypeVarAssigns) {
         if (type instanceof Class<?>) {
             return getTypeArguments((Class<?>) type, toClass, subtypeVarAssigns);
         }
@@ -1024,7 +1022,7 @@ public class TypeUtils {
      * Tests if the subject type may be implicitly cast to the target class
      * following the Java generics rules.
      *
-     * @param type the subject type to be assigned to the target type
+     * @param type    the subject type to be assigned to the target type
      * @param toClass the target class
      * @return {@code true} if {@code type} is assignable to {@code toClass}.
      */
@@ -1074,7 +1072,7 @@ public class TypeUtils {
             return toClass.equals(Object.class)
                     || toClass.isArray()
                     && isAssignable(((GenericArrayType) type).getGenericComponentType(), toClass
-                            .getComponentType());
+                    .getComponentType());
         }
 
         // wildcard types are not assignable to a class (though one would think
@@ -1090,14 +1088,14 @@ public class TypeUtils {
      * Tests if the subject type may be implicitly cast to the target
      * generic array type following the Java generics rules.
      *
-     * @param type the subject type to be assigned to the target type
+     * @param type               the subject type to be assigned to the target type
      * @param toGenericArrayType the target generic array type
-     * @param typeVarAssigns a map with type variables
+     * @param typeVarAssigns     a map with type variables
      * @return {@code true} if {@code type} is assignable to
      * {@code toGenericArrayType}.
      */
     private static boolean isAssignable(final Type type, final GenericArrayType toGenericArrayType,
-            final Map<TypeVariable<?>, Type> typeVarAssigns) {
+                                        final Map<TypeVariable<?>, Type> typeVarAssigns) {
         if (type == null) {
             return true;
         }
@@ -1166,13 +1164,13 @@ public class TypeUtils {
      * Tests if the subject type may be implicitly cast to the target
      * parameterized type following the Java generics rules.
      *
-     * @param type the subject type to be assigned to the target type
+     * @param type                the subject type to be assigned to the target type
      * @param toParameterizedType the target parameterized type
-     * @param typeVarAssigns a map with type variables
+     * @param typeVarAssigns      a map with type variables
      * @return {@code true} if {@code type} is assignable to {@code toType}.
      */
     private static boolean isAssignable(final Type type, final ParameterizedType toParameterizedType,
-            final Map<TypeVariable<?>, Type> typeVarAssigns) {
+                                        final Map<TypeVariable<?>, Type> typeVarAssigns) {
         if (type == null) {
             return true;
         }
@@ -1230,7 +1228,7 @@ public class TypeUtils {
             if (fromTypeArg != null && toTypeArg != null
                     && !toTypeArg.equals(fromTypeArg)
                     && !(toTypeArg instanceof WildcardType && isAssignable(fromTypeArg, toTypeArg,
-                            typeVarAssigns))) {
+                    typeVarAssigns))) {
                 return false;
             }
         }
@@ -1243,7 +1241,7 @@ public class TypeUtils {
      * objects, the method returns the result of
      * {@link ClassUtils#isAssignable(Class, Class)}.
      *
-     * @param type the subject type to be assigned to the target type
+     * @param type   the subject type to be assigned to the target type
      * @param toType the target type
      * @return {@code true} if {@code type} is assignable to {@code toType}.
      */
@@ -1255,13 +1253,13 @@ public class TypeUtils {
      * Tests if the subject type may be implicitly cast to the target type
      * following the Java generics rules.
      *
-     * @param type the subject type to be assigned to the target type
-     * @param toType the target type
+     * @param type           the subject type to be assigned to the target type
+     * @param toType         the target type
      * @param typeVarAssigns optional map of type variable assignments
      * @return {@code true} if {@code type} is assignable to {@code toType}.
      */
     private static boolean isAssignable(final Type type, final Type toType,
-            final Map<TypeVariable<?>, Type> typeVarAssigns) {
+                                        final Map<TypeVariable<?>, Type> typeVarAssigns) {
         if (toType == null || toType instanceof Class<?>) {
             return isAssignable(type, (Class<?>) toType);
         }
@@ -1289,14 +1287,14 @@ public class TypeUtils {
      * Tests if the subject type may be implicitly cast to the target type
      * variable following the Java generics rules.
      *
-     * @param type the subject type to be assigned to the target type
+     * @param type           the subject type to be assigned to the target type
      * @param toTypeVariable the target type variable
      * @param typeVarAssigns a map with type variables
      * @return {@code true} if {@code type} is assignable to
      * {@code toTypeVariable}.
      */
     private static boolean isAssignable(final Type type, final TypeVariable<?> toTypeVariable,
-            final Map<TypeVariable<?>, Type> typeVarAssigns) {
+                                        final Map<TypeVariable<?>, Type> typeVarAssigns) {
         if (type == null) {
             return true;
         }
@@ -1337,14 +1335,14 @@ public class TypeUtils {
      * Tests if the subject type may be implicitly cast to the target
      * wildcard type following the Java generics rules.
      *
-     * @param type the subject type to be assigned to the target type
+     * @param type           the subject type to be assigned to the target type
      * @param toWildcardType the target wildcard type
      * @param typeVarAssigns a map with type variables
      * @return {@code true} if {@code type} is assignable to
      * {@code toWildcardType}.
      */
     private static boolean isAssignable(final Type type, final WildcardType toWildcardType,
-            final Map<TypeVariable<?>, Type> typeVarAssigns) {
+                                        final Map<TypeVariable<?>, Type> typeVarAssigns) {
         if (type == null) {
             return true;
         }
@@ -1425,7 +1423,7 @@ public class TypeUtils {
      * following the Java generics rules.
      *
      * @param value the value to be checked
-     * @param type the target type
+     * @param type  the target type
      * @return {@code true} if {@code value} is an instance of {@code type}.
      */
     public static boolean isInstance(final Object value, final Type type) {
@@ -1440,13 +1438,13 @@ public class TypeUtils {
     /**
      * Maps type variables.
      *
-     * @param <T> the generic type of the class in question
-     * @param cls the class in question
+     * @param <T>               the generic type of the class in question
+     * @param cls               the class in question
      * @param parameterizedType the parameterized type
-     * @param typeVarAssigns the map to be filled
+     * @param typeVarAssigns    the map to be filled
      */
     private static <T> void mapTypeVariablesToArguments(final Class<T> cls,
-            final ParameterizedType parameterizedType, final Map<TypeVariable<?>, Type> typeVarAssigns) {
+                                                        final ParameterizedType parameterizedType, final Map<TypeVariable<?>, Type> typeVarAssigns) {
         // capture the type variables from the owner type that have assignments
         final Type ownerType = parameterizedType.getOwnerType();
 
@@ -1475,7 +1473,7 @@ public class TypeUtils {
 
             // argument of parameterizedType is a type variable of cls
             if (typeVarList.contains(typeArg)
-            // type variable of parameterizedType has an assignment in
+                    // type variable of parameterizedType has an assignment in
                     // the super type.
                     && typeVarAssigns.containsKey(typeVar)) {
                 // map the assignment to the cls's type variable
@@ -1504,7 +1502,7 @@ public class TypeUtils {
      * <pre>&lt;K extends java.util.List&lt;String&gt;&gt;</pre>
      *
      * @param bounds an array of types representing the upper bounds of either
-     * {@link WildcardType} or {@link TypeVariable}, not {@code null}.
+     *               {@link WildcardType} or {@link TypeVariable}, not {@code null}.
      * @return an array containing the values from {@code bounds} minus the
      * redundant types.
      */
@@ -1538,23 +1536,23 @@ public class TypeUtils {
     /**
      * Creates a parameterized type instance.
      *
-     * @param rawClass the raw class to create a parameterized type instance for
+     * @param rawClass        the raw class to create a parameterized type instance for
      * @param typeVariableMap the map used for parameterization
      * @return {@link ParameterizedType}
      * @since 3.2
      */
     public static final ParameterizedType parameterize(final Class<?> rawClass,
-        final Map<TypeVariable<?>, Type> typeVariableMap) {
+                                                       final Map<TypeVariable<?>, Type> typeVariableMap) {
         Validate.notNull(rawClass, "rawClass");
         Validate.notNull(typeVariableMap, "typeVariableMap");
         return parameterizeWithOwner(null, rawClass,
-            extractTypeArgumentsFrom(typeVariableMap, rawClass.getTypeParameters()));
+                extractTypeArgumentsFrom(typeVariableMap, rawClass.getTypeParameters()));
     }
 
     /**
      * Creates a parameterized type instance.
      *
-     * @param rawClass the raw class to create a parameterized type instance for
+     * @param rawClass      the raw class to create a parameterized type instance for
      * @param typeArguments the types used for parameterization
      * @return {@link ParameterizedType}
      * @since 3.2
@@ -1601,32 +1599,31 @@ public class TypeUtils {
     /**
      * Creates a parameterized type instance.
      *
-     * @param owner the owning type
-     * @param rawClass the raw class to create a parameterized type instance for
+     * @param owner           the owning type
+     * @param rawClass        the raw class to create a parameterized type instance for
      * @param typeVariableMap the map used for parameterization
      * @return {@link ParameterizedType}
      * @since 3.2
      */
     public static final ParameterizedType parameterizeWithOwner(final Type owner, final Class<?> rawClass,
-        final Map<TypeVariable<?>, Type> typeVariableMap) {
+                                                                final Map<TypeVariable<?>, Type> typeVariableMap) {
         Validate.notNull(rawClass, "rawClass");
         Validate.notNull(typeVariableMap, "typeVariableMap");
         return parameterizeWithOwner(owner, rawClass,
-            extractTypeArgumentsFrom(typeVariableMap, rawClass.getTypeParameters()));
+                extractTypeArgumentsFrom(typeVariableMap, rawClass.getTypeParameters()));
     }
 
     /**
      * Creates a parameterized type instance.
      *
-     * @param owner the owning type
-     * @param rawClass the raw class to create a parameterized type instance for
+     * @param owner         the owning type
+     * @param rawClass      the raw class to create a parameterized type instance for
      * @param typeArguments the types used for parameterization
-     *
      * @return {@link ParameterizedType}
      * @since 3.2
      */
     public static final ParameterizedType parameterizeWithOwner(final Type owner, final Class<?> rawClass,
-        final Type... typeArguments) {
+                                                                final Type... typeArguments) {
         Validate.notNull(rawClass, "rawClass");
         final Type useOwner;
         if (rawClass.getEnclosingClass() == null) {
@@ -1636,13 +1633,13 @@ public class TypeUtils {
             useOwner = rawClass.getEnclosingClass();
         } else {
             Validate.isTrue(isAssignable(owner, rawClass.getEnclosingClass()),
-                "%s is invalid owner type for parameterized %s", owner, rawClass);
+                    "%s is invalid owner type for parameterized %s", owner, rawClass);
             useOwner = owner;
         }
         Validate.noNullElements(typeArguments, "null type argument at index %s");
         Validate.isTrue(rawClass.getTypeParameters().length == typeArguments.length,
-            "invalid number of type parameters specified: expected %d, got %d", rawClass.getTypeParameters().length,
-            typeArguments.length);
+                "invalid number of type parameters specified: expected %d, got %d", rawClass.getTypeParameters().length,
+                typeArguments.length);
 
         return new ParameterizedTypeImpl(rawClass, useOwner, typeArguments);
     }
@@ -1650,7 +1647,7 @@ public class TypeUtils {
     /**
      * Finds the mapping for {@code type} in {@code typeVarAssigns}.
      *
-     * @param type the type to be replaced
+     * @param type           the type to be replaced
      * @param typeVarAssigns the map with type variables
      * @return the replaced type
      * @throws IllegalArgumentException if the type cannot be substituted
@@ -1737,7 +1734,7 @@ public class TypeUtils {
      * in {@code typeVarAssigns}.
      *
      * @param typeVariableMap specifies the potential types to be assigned to the
-     * type variables, not {@code null}.
+     *                        type variables, not {@code null}.
      * @return whether or not the types can be assigned to their respective type
      * variables.
      */
@@ -1780,7 +1777,7 @@ public class TypeUtils {
      * Unrolls variables in a type bounds array.
      *
      * @param typeArguments assignments {@link Map}
-     * @param bounds in which to expand variables
+     * @param bounds        in which to expand variables
      * @return {@code bounds} with any variables reassigned
      * @since 3.2
      */
@@ -1802,13 +1799,13 @@ public class TypeUtils {
      * Look up {@code var} in {@code typeVarAssigns} <em>transitively</em>,
      * i.e. keep looking until the value found is <em>not</em> a type variable.
      *
-     * @param typeVariable the type variable to look up
+     * @param typeVariable   the type variable to look up
      * @param typeVarAssigns the map used for the look up
      * @return Type or {@code null} if some variable was not in the map
      * @since 3.2
      */
     private static Type unrollVariableAssignments(TypeVariable<?> typeVariable,
-        final Map<TypeVariable<?>, Type> typeVarAssigns) {
+                                                  final Map<TypeVariable<?>, Type> typeVarAssigns) {
         Type result;
         do {
             result = typeVarAssigns.get(typeVariable);
@@ -1825,7 +1822,7 @@ public class TypeUtils {
      * Gets a type representing {@code type} with variable assignments "unrolled."
      *
      * @param typeArguments as from {@link TypeUtils#getTypeArguments(Type, Class)}
-     * @param type the type to unroll variable assignments for
+     * @param type          the type to unroll variable assignments for
      * @return Type
      * @since 3.2
      */
@@ -1858,7 +1855,7 @@ public class TypeUtils {
             if (type instanceof WildcardType) {
                 final WildcardType wild = (WildcardType) type;
                 return wildcardType().withUpperBounds(unrollBounds(typeArguments, wild.getUpperBounds()))
-                    .withLowerBounds(unrollBounds(typeArguments, wild.getLowerBounds())).build();
+                        .withLowerBounds(unrollBounds(typeArguments, wild.getLowerBounds())).build();
             }
         }
         return type;
@@ -1896,7 +1893,7 @@ public class TypeUtils {
     /**
      * Wraps the specified {@link Class} in a {@link Typed} wrapper.
      *
-     * @param <T> generic type
+     * @param <T>  generic type
      * @param type to wrap
      * @return Typed&lt;T&gt;
      * @since 3.2
@@ -1908,7 +1905,7 @@ public class TypeUtils {
     /**
      * Wraps the specified {@link Type} in a {@link Typed} wrapper.
      *
-     * @param <T> inferred generic type
+     * @param <T>  inferred generic type
      * @param type to wrap
      * @return Typed&lt;T&gt;
      * @since 3.2

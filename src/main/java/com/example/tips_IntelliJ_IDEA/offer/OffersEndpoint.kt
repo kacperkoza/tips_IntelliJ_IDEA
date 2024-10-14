@@ -23,7 +23,7 @@ class OffersEndpoint(
         @PathVariable("userId") userId: String,
         @RequestBody offer: Offer
     ) {
-        offersService.add(userId, offer)
+        offersService.add(offer, accountId)
     }
 }
 

@@ -39,7 +39,7 @@ public class InheritanceUtils {
     /**
      * <p>Returns the number of inheritance hops between two classes.</p>
      *
-     * @param child the child class, may be {@code null}
+     * @param child  the child class, may be {@code null}
      * @param parent the parent class, may be {@code null}
      * @return the number of generations between the child and parent; 0 if the same class;
      * -1 if the classes are not related as child and parent (includes where either class is null)

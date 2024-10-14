@@ -28,7 +28,9 @@ import java.util.function.IntToDoubleFunction;
 @FunctionalInterface
 public interface FailableIntToDoubleFunction<E extends Throwable> {
 
-    /** NOP singleton */
+    /**
+     * NOP singleton
+     */
     @SuppressWarnings("rawtypes")
     FailableIntToDoubleFunction NOP = t -> 0d;
 

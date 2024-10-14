@@ -74,8 +74,8 @@ package com.example.tips_IntelliJ_IDEA.lang3.concurrent;
  * (only an access to a <b>volatile</b> member field).
  * </p>
  *
- * @since 3.0
  * @param <T> the type of the object managed by this initializer class
+ * @since 3.0
  */
 public abstract class LazyInitializer<T> implements ConcurrentInitializer<T> {
 
@@ -91,7 +91,7 @@ public abstract class LazyInitializer<T> implements ConcurrentInitializer<T> {
      *
      * @return the object initialized by this {@code LazyInitializer}
      * @throws ConcurrentException if an error occurred during initialization of
-     * the object
+     *                             the object
      */
     @Override
     public T get() throws ConcurrentException {

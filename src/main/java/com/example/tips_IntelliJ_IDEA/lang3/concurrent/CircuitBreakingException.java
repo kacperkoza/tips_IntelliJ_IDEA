@@ -21,6 +21,7 @@ package com.example.tips_IntelliJ_IDEA.lang3.concurrent;
  * An exception class used for reporting runtime error conditions related to
  * circuit breakers.
  * </p>
+ *
  * @since 3.5
  */
 public class CircuitBreakingException extends RuntimeException {
@@ -39,7 +40,7 @@ public class CircuitBreakingException extends RuntimeException {
      * Creates a new instance of {@code CircuitBreakingException} and initializes it with the given message and cause.
      *
      * @param message the error message
-     * @param cause the cause of this exception
+     * @param cause   the cause of this exception
      */
     public CircuitBreakingException(final String message, final Throwable cause) {
         super(message, cause);

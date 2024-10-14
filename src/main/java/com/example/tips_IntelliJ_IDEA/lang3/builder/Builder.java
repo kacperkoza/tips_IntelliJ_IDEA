@@ -63,7 +63,7 @@ package com.example.tips_IntelliJ_IDEA.lang3.builder;
  *     }
  * }
  * </code></pre>
- *
+ * <p>
  * Example Builder Usage:
  * <pre><code>
  * Font bold14ptSansSerifFont = new FontBuilder(Font.SANS_SERIF).bold()
@@ -71,9 +71,7 @@ package com.example.tips_IntelliJ_IDEA.lang3.builder;
  *                                                              .build();
  * </code></pre>
  *
- *
  * @param <T> the type of object that the builder will construct or compute.
- *
  * @since 3.0
  */
 @FunctionalInterface

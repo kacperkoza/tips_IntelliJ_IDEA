@@ -30,11 +30,15 @@ import java.util.function.Predicate;
 @FunctionalInterface
 public interface FailablePredicate<T, E extends Throwable> {
 
-    /** FALSE singleton */
+    /**
+     * FALSE singleton
+     */
     @SuppressWarnings("rawtypes")
     FailablePredicate FALSE = t -> false;
 
-    /** TRUE singleton */
+    /**
+     * TRUE singleton
+     */
     @SuppressWarnings("rawtypes")
     FailablePredicate TRUE = t -> true;
 

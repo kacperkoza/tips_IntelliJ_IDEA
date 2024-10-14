@@ -28,7 +28,9 @@ import java.util.function.LongToIntFunction;
 @FunctionalInterface
 public interface FailableLongToIntFunction<E extends Throwable> {
 
-    /** NOP singleton */
+    /**
+     * NOP singleton
+     */
     @SuppressWarnings("rawtypes")
     FailableLongToIntFunction NOP = t -> 0;
 

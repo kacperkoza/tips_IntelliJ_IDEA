@@ -18,11 +18,7 @@ package com.example.tips_IntelliJ_IDEA.lang3.reflect;
 
 import com.example.tips_IntelliJ_IDEA.lang3.ClassUtils;
 
-import java.lang.reflect.AccessibleObject;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Member;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
+import java.lang.reflect.*;
 
 /**
  * Contains common code for working with {@link Method Methods}/{@link Constructor Constructors},
@@ -35,13 +31,15 @@ abstract class MemberUtils {
 
     private static final int ACCESS_TEST = Modifier.PUBLIC | Modifier.PROTECTED | Modifier.PRIVATE;
 
-    /** Array of primitive number types ordered by "promotability" */
-    private static final Class<?>[] ORDERED_PRIMITIVE_TYPES = { Byte.TYPE, Short.TYPE,
-            Character.TYPE, Integer.TYPE, Long.TYPE, Float.TYPE, Double.TYPE };
+    /**
+     * Array of primitive number types ordered by "promotability"
+     */
+    private static final Class<?>[] ORDERED_PRIMITIVE_TYPES = {Byte.TYPE, Short.TYPE,
+            Character.TYPE, Integer.TYPE, Long.TYPE, Float.TYPE, Double.TYPE};
 
     /**
      * XXX Default access superclass workaround.
-     *
+     * <p>
      * When a {@code public} class has a default access superclass with {@code public} members,
      * these members are accessible. Calling them from compiled code works fine.
      * Unfortunately, on some JVMs, using reflection to invoke these members
@@ -49,6 +47,7 @@ abstract class MemberUtils {
      * Calling {@code setAccessible(true)} solves the problem but will only work from
      * sufficiently privileged code. Better workarounds would be gratefully
      * accepted.
+     *
      * @param o the AccessibleObject to set as accessible
      * @return a boolean indicating whether the accessibility of the object was set to true.
      */
@@ -70,6 +69,7 @@ abstract class MemberUtils {
 
     /**
      * Returns whether a given set of modifiers implies package access.
+     *
      * @param modifiers to test
      * @return {@code true} unless {@code package}/{@code protected}/{@code private} modifier detected
      */
@@ -79,6 +79,7 @@ abstract class MemberUtils {
 
     /**
      * Returns whether a {@link Member} is accessible.
+     *
      * @param m Member to check
      * @return {@code true} if {@code m} is accessible
      */
@@ -92,15 +93,15 @@ abstract class MemberUtils {
      * by the results of the comparison would return the best match first
      * (least).
      *
-     * @param left the "left" Constructor
-     * @param right the "right" Constructor
+     * @param left   the "left" Constructor
+     * @param right  the "right" Constructor
      * @param actual the runtime parameter types to match against
-     * {@code left}/{@code right}
+     *               {@code left}/{@code right}
      * @return int consistent with {@code compare} semantics
      * @since 3.5
      */
     static int compareConstructorFit(final Constructor<?> left, final Constructor<?> right, final Class<?>[] actual) {
-      return compareParameterTypes(Executable.of(left), Executable.of(right), actual);
+        return compareParameterTypes(Executable.of(left), Executable.of(right), actual);
     }
 
     /**
@@ -109,15 +110,15 @@ abstract class MemberUtils {
      * by the results of the comparison would return the best match first
      * (least).
      *
-     * @param left the "left" Method
-     * @param right the "right" Method
+     * @param left   the "left" Method
+     * @param right  the "right" Method
      * @param actual the runtime parameter types to match against
-     * {@code left}/{@code right}
+     *               {@code left}/{@code right}
      * @return int consistent with {@code compare} semantics
      * @since 3.5
      */
     static int compareMethodFit(final Method left, final Method right, final Class<?>[] actual) {
-      return compareParameterTypes(Executable.of(left), Executable.of(right), actual);
+        return compareParameterTypes(Executable.of(left), Executable.of(right), actual);
     }
 
     /**
@@ -126,10 +127,10 @@ abstract class MemberUtils {
      * by the results of the comparison would return the best match first
      * (least).
      *
-     * @param left the "left" Executable
-     * @param right the "right" Executable
+     * @param left   the "left" Executable
+     * @param right  the "right" Executable
      * @param actual the runtime parameter types to match against
-     * {@code left}/{@code right}
+     *               {@code left}/{@code right}
      * @return int consistent with {@code compare} semantics
      */
     private static int compareParameterTypes(final Executable left, final Executable right, final Class<?>[] actual) {
@@ -141,7 +142,8 @@ abstract class MemberUtils {
     /**
      * Returns the sum of the object transformation cost for each class in the
      * source argument list.
-     * @param srcArgs The source arguments
+     *
+     * @param srcArgs    The source arguments
      * @param executable The executable to calculate transformation costs for
      * @return The total transformation cost
      */
@@ -151,7 +153,7 @@ abstract class MemberUtils {
 
         // "source" and "destination" are the actual and declared args respectively.
         float totalCost = 0.0f;
-        final long normalArgsLen = isVarArgs ? destArgs.length-1 : destArgs.length;
+        final long normalArgsLen = isVarArgs ? destArgs.length - 1 : destArgs.length;
         if (srcArgs.length < normalArgsLen) {
             return Float.MAX_VALUE;
         }
@@ -162,19 +164,19 @@ abstract class MemberUtils {
             // When isVarArgs is true, srcArgs and dstArgs may differ in length.
             // There are two special cases to consider:
             final boolean noVarArgsPassed = srcArgs.length < destArgs.length;
-            final boolean explicitArrayForVarargs = srcArgs.length == destArgs.length && srcArgs[srcArgs.length-1] != null && srcArgs[srcArgs.length-1].isArray();
+            final boolean explicitArrayForVarargs = srcArgs.length == destArgs.length && srcArgs[srcArgs.length - 1] != null && srcArgs[srcArgs.length - 1].isArray();
 
             final float varArgsCost = 0.001f;
-            final Class<?> destClass = destArgs[destArgs.length-1].getComponentType();
+            final Class<?> destClass = destArgs[destArgs.length - 1].getComponentType();
             if (noVarArgsPassed) {
                 // When no varargs passed, the best match is the most generic matching type, not the most specific.
                 totalCost += getObjectTransformationCost(destClass, Object.class) + varArgsCost;
             } else if (explicitArrayForVarargs) {
-                final Class<?> sourceClass = srcArgs[srcArgs.length-1].getComponentType();
+                final Class<?> sourceClass = srcArgs[srcArgs.length - 1].getComponentType();
                 totalCost += getObjectTransformationCost(sourceClass, destClass) + varArgsCost;
             } else {
                 // This is typical varargs case.
-                for (int i = destArgs.length-1; i < srcArgs.length; i++) {
+                for (int i = destArgs.length - 1; i < srcArgs.length; i++) {
                     final Class<?> srcClass = srcArgs[i];
                     totalCost += getObjectTransformationCost(srcClass, destClass) + varArgsCost;
                 }
@@ -187,7 +189,8 @@ abstract class MemberUtils {
      * Gets the number of steps required needed to turn the source class into
      * the destination class. This represents the number of steps in the object
      * hierarchy graph.
-     * @param srcClass The source class
+     *
+     * @param srcClass  The source class
      * @param destClass The destination class
      * @return The cost of transforming an object
      */
@@ -222,7 +225,8 @@ abstract class MemberUtils {
     /**
      * Gets the number of steps required to promote a primitive number to another
      * type.
-     * @param srcClass the (primitive) source class
+     *
+     * @param srcClass  the (primitive) source class
      * @param destClass the (primitive) destination class
      * @return The cost of promoting the primitive
      */
@@ -249,11 +253,11 @@ abstract class MemberUtils {
     }
 
     static boolean isMatchingMethod(final Method method, final Class<?>[] parameterTypes) {
-      return isMatchingExecutable(Executable.of(method), parameterTypes);
+        return isMatchingExecutable(Executable.of(method), parameterTypes);
     }
 
     static boolean isMatchingConstructor(final Constructor<?> method, final Class<?>[] parameterTypes) {
-      return isMatchingExecutable(Executable.of(method), parameterTypes);
+        return isMatchingExecutable(Executable.of(method), parameterTypes);
     }
 
     private static boolean isMatchingExecutable(final Executable method, final Class<?>[] parameterTypes) {
@@ -286,34 +290,34 @@ abstract class MemberUtils {
      * providing a common representation for function signatures for Constructors and Methods.</p>
      */
     private static final class Executable {
-      private final Class<?>[] parameterTypes;
-      private final boolean  isVarArgs;
+        private final Class<?>[] parameterTypes;
+        private final boolean isVarArgs;
 
-      private static Executable of(final Method method) {
-          return new Executable(method);
-      }
+        private static Executable of(final Method method) {
+            return new Executable(method);
+        }
 
-      private static Executable of(final Constructor<?> constructor) {
-          return new Executable(constructor);
-      }
+        private static Executable of(final Constructor<?> constructor) {
+            return new Executable(constructor);
+        }
 
-      private Executable(final Method method) {
-        parameterTypes = method.getParameterTypes();
-        isVarArgs = method.isVarArgs();
-      }
+        private Executable(final Method method) {
+            parameterTypes = method.getParameterTypes();
+            isVarArgs = method.isVarArgs();
+        }
 
-      private Executable(final Constructor<?> constructor) {
-        parameterTypes = constructor.getParameterTypes();
-        isVarArgs = constructor.isVarArgs();
-      }
+        private Executable(final Constructor<?> constructor) {
+            parameterTypes = constructor.getParameterTypes();
+            isVarArgs = constructor.isVarArgs();
+        }
 
-      public Class<?>[] getParameterTypes() {
-          return parameterTypes;
-      }
+        public Class<?>[] getParameterTypes() {
+            return parameterTypes;
+        }
 
-      public boolean isVarArgs() {
-          return isVarArgs;
-      }
+        public boolean isVarArgs() {
+            return isVarArgs;
+        }
     }
 
 }

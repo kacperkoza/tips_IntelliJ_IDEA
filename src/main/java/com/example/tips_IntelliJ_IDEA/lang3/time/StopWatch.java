@@ -79,10 +79,12 @@ public class StopWatch {
             boolean isStarted() {
                 return true;
             }
+
             @Override
             boolean isStopped() {
                 return false;
             }
+
             @Override
             boolean isSuspended() {
                 return false;
@@ -93,10 +95,12 @@ public class StopWatch {
             boolean isStarted() {
                 return false;
             }
+
             @Override
             boolean isStopped() {
                 return true;
             }
+
             @Override
             boolean isSuspended() {
                 return false;
@@ -107,10 +111,12 @@ public class StopWatch {
             boolean isStarted() {
                 return true;
             }
+
             @Override
             boolean isStopped() {
                 return false;
             }
+
             @Override
             boolean isSuspended() {
                 return true;
@@ -121,10 +127,12 @@ public class StopWatch {
             boolean isStarted() {
                 return false;
             }
+
             @Override
             boolean isStopped() {
                 return true;
             }
+
             @Override
             boolean isSuspended() {
                 return false;
@@ -156,7 +164,7 @@ public class StopWatch {
          * </p>
          *
          * @return boolean
-         *             If the StopWatch is suspended.
+         * If the StopWatch is suspended.
          */
         abstract boolean isSuspended();
     }
@@ -167,7 +175,6 @@ public class StopWatch {
      * Creates a stopwatch for convenience.
      *
      * @return StopWatch a stopwatch.
-     *
      * @since 3.10
      */
     public static StopWatch create() {
@@ -178,7 +185,6 @@ public class StopWatch {
      * Creates a started stopwatch for convenience.
      *
      * @return StopWatch a stopwatch that's already been started.
-     *
      * @since 3.5
      */
     public static StopWatch createStarted() {
@@ -241,6 +247,7 @@ public class StopWatch {
      * <p>
      * Constructor.
      * </p>
+     *
      * @param message A message for string presentation.
      * @since 3.10
      */
@@ -313,9 +320,7 @@ public class StopWatch {
      * </p>
      *
      * @return the split time in nanoseconds
-     *
-     * @throws IllegalStateException
-     *             if the StopWatch has not yet been split.
+     * @throws IllegalStateException if the StopWatch has not yet been split.
      * @since 3.0
      */
     public long getSplitNanoTime() {
@@ -335,9 +340,7 @@ public class StopWatch {
      * </p>
      *
      * @return the split time in milliseconds
-     *
-     * @throws IllegalStateException
-     *             if the StopWatch has not yet been split.
+     * @throws IllegalStateException if the StopWatch has not yet been split.
      * @since 2.1
      */
     public long getSplitTime() {
@@ -349,7 +352,7 @@ public class StopWatch {
      * UTC.
      *
      * @return the time this stopwatch was started in milliseconds, between the current time and midnight, January 1,
-     *         1970 UTC.
+     * 1970 UTC.
      * @throws IllegalStateException if this StopWatch has not been started
      * @since 2.4
      */
@@ -366,7 +369,7 @@ public class StopWatch {
      * UTC.
      *
      * @return the time this stopwatch was started in milliseconds, between the current time and midnight, January 1,
-     *         1970 UTC.
+     * 1970 UTC.
      * @throws IllegalStateException if this StopWatch has not been started
      * @since 3.12.0
      */
@@ -445,7 +448,7 @@ public class StopWatch {
      * </p>
      *
      * @return boolean
-     *             If the StopWatch is suspended.
+     * If the StopWatch is suspended.
      * @since 3.2
      */
     public boolean isSuspended() {
@@ -476,8 +479,7 @@ public class StopWatch {
      * resume calls in the total time.
      * </p>
      *
-     * @throws IllegalStateException
-     *             if the StopWatch has not been suspended.
+     * @throws IllegalStateException if the StopWatch has not been suspended.
      */
     public void resume() {
         if (this.runningState != State.SUSPENDED) {
@@ -497,8 +499,7 @@ public class StopWatch {
      * enabling {@link #unsplit()} to continue the timing from the original start point.
      * </p>
      *
-     * @throws IllegalStateException
-     *             if the StopWatch is not running.
+     * @throws IllegalStateException if the StopWatch is not running.
      */
     public void split() {
         if (this.runningState != State.RUNNING) {
@@ -517,8 +518,7 @@ public class StopWatch {
      * This method starts a new timing session, clearing any previous values.
      * </p>
      *
-     * @throws IllegalStateException
-     *             if the StopWatch is already running.
+     * @throws IllegalStateException if the StopWatch is already running.
      */
     public void start() {
         if (this.runningState == State.STOPPED) {
@@ -541,8 +541,7 @@ public class StopWatch {
      * This method ends a new timing session, allowing the time to be retrieved.
      * </p>
      *
-     * @throws IllegalStateException
-     *             if the StopWatch is not running.
+     * @throws IllegalStateException if the StopWatch is not running.
      */
     public void stop() {
         if (this.runningState != State.RUNNING && this.runningState != State.SUSPENDED) {
@@ -565,8 +564,7 @@ public class StopWatch {
      * resume calls in the total time.
      * </p>
      *
-     * @throws IllegalStateException
-     *             if the StopWatch is not currently running.
+     * @throws IllegalStateException if the StopWatch is not currently running.
      */
     public void suspend() {
         if (this.runningState != State.RUNNING) {
@@ -625,8 +623,7 @@ public class StopWatch {
      * continue.
      * </p>
      *
-     * @throws IllegalStateException
-     *             if the StopWatch has not been split.
+     * @throws IllegalStateException if the StopWatch has not been split.
      */
     public void unsplit() {
         if (this.splitState != SplitState.SPLIT) {

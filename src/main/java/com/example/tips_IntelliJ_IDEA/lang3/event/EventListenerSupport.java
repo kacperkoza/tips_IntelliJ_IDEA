@@ -19,11 +19,7 @@ package com.example.tips_IntelliJ_IDEA.lang3.event;
 
 import com.example.tips_IntelliJ_IDEA.lang3.Validate;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
+import java.io.*;
 import java.lang.reflect.Array;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -63,12 +59,13 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * </p>
  *
  * @param <L> the type of event listener that is supported by this proxy.
- *
  * @since 3.0
  */
 public class EventListenerSupport<L> implements Serializable {
 
-    /** Serialization version */
+    /**
+     * Serialization version
+     */
     private static final long serialVersionUID = 3593265990380473632L;
 
     /**
@@ -93,17 +90,15 @@ public class EventListenerSupport<L> implements Serializable {
      * Creates an EventListenerSupport object which supports the specified
      * listener type.
      *
-     * @param <T> the type of the listener interface
+     * @param <T>               the type of the listener interface
      * @param listenerInterface the type of listener interface that will receive
-     *        events posted using this class.
-     *
+     *                          events posted using this class.
      * @return an EventListenerSupport object which supports the specified
-     *         listener type.
-     *
-     * @throws NullPointerException if {@code listenerInterface} is
-     *         {@code null}.
+     * listener type.
+     * @throws NullPointerException     if {@code listenerInterface} is
+     *                                  {@code null}.
      * @throws IllegalArgumentException if {@code listenerInterface} is
-     *         not an interface.
+     *                                  not an interface.
      */
     public static <T> EventListenerSupport<T> create(final Class<T> listenerInterface) {
         return new EventListenerSupport<>(listenerInterface);
@@ -114,12 +109,11 @@ public class EventListenerSupport<L> implements Serializable {
      * listener interface.
      *
      * @param listenerInterface the type of listener interface that will receive
-     *        events posted using this class.
-     *
-     * @throws NullPointerException if {@code listenerInterface} is
-     *         {@code null}.
+     *                          events posted using this class.
+     * @throws NullPointerException     if {@code listenerInterface} is
+     *                                  {@code null}.
      * @throws IllegalArgumentException if {@code listenerInterface} is
-     *         not an interface.
+     *                                  not an interface.
      */
     public EventListenerSupport(final Class<L> listenerInterface) {
         this(listenerInterface, Thread.currentThread().getContextClassLoader());
@@ -132,11 +126,10 @@ public class EventListenerSupport<L> implements Serializable {
      *
      * @param listenerInterface the listener interface.
      * @param classLoader       the class loader.
-     *
-     * @throws NullPointerException if {@code listenerInterface} or
-     *         {@code classLoader} is {@code null}.
+     * @throws NullPointerException     if {@code listenerInterface} or
+     *                                  {@code classLoader} is {@code null}.
      * @throws IllegalArgumentException if {@code listenerInterface} is
-     *         not an interface.
+     *                                  not an interface.
      */
     public EventListenerSupport(final Class<L> listenerInterface, final ClassLoader classLoader) {
         this();
@@ -174,9 +167,8 @@ public class EventListenerSupport<L> implements Serializable {
      * Registers an event listener.
      *
      * @param listener the event listener (may not be {@code null}).
-     *
      * @throws NullPointerException if {@code listener} is
-     *         {@code null}.
+     *                              {@code null}.
      */
     public void addListener(final L listener) {
         addListener(listener, true);
@@ -186,10 +178,9 @@ public class EventListenerSupport<L> implements Serializable {
      * Registers an event listener.  Will not add a pre-existing listener
      * object to the list if {@code allowDuplicate} is false.
      *
-     * @param listener the event listener (may not be {@code null}).
+     * @param listener       the event listener (may not be {@code null}).
      * @param allowDuplicate the flag for determining if duplicate listener
-     * objects are allowed to be registered.
-     *
+     *                       objects are allowed to be registered.
      * @throws NullPointerException if {@code listener} is {@code null}.
      * @since 3.5
      */
@@ -213,9 +204,8 @@ public class EventListenerSupport<L> implements Serializable {
      * Unregisters an event listener.
      *
      * @param listener the event listener (may not be {@code null}).
-     *
      * @throws NullPointerException if {@code listener} is
-     *         {@code null}.
+     *                              {@code null}.
      */
     public void removeListener(final L listener) {
         Validate.notNull(listener, "listener");
@@ -226,6 +216,7 @@ public class EventListenerSupport<L> implements Serializable {
      * Gets an array containing the currently registered listeners.
      * Modification to this array's elements will have no effect on the
      * {@link EventListenerSupport} instance.
+     *
      * @return L[]
      */
     public L[] getListeners() {
@@ -234,6 +225,7 @@ public class EventListenerSupport<L> implements Serializable {
 
     /**
      * Serialize.
+     *
      * @param objectOutputStream the output stream
      * @throws IOException if an IO error occurs
      */
@@ -260,50 +252,51 @@ public class EventListenerSupport<L> implements Serializable {
 
     /**
      * Deserialize.
+     *
      * @param objectInputStream the input stream
-     * @throws IOException if an IO error occurs
+     * @throws IOException            if an IO error occurs
      * @throws ClassNotFoundException if the class cannot be resolved
      */
     private void readObject(final ObjectInputStream objectInputStream) throws IOException, ClassNotFoundException {
         @SuppressWarnings("unchecked") // Will throw CCE here if not correct
-        final
-        L[] srcListeners = (L[]) objectInputStream.readObject();
+        final L[] srcListeners = (L[]) objectInputStream.readObject();
 
         this.listeners = new CopyOnWriteArrayList<>(srcListeners);
 
         @SuppressWarnings("unchecked") // Will throw CCE here if not correct
-        final
-        Class<L> listenerInterface = (Class<L>) srcListeners.getClass().getComponentType();
+        final Class<L> listenerInterface = (Class<L>) srcListeners.getClass().getComponentType();
 
         initializeTransientFields(listenerInterface, Thread.currentThread().getContextClassLoader());
     }
 
     /**
      * Initialize transient fields.
+     *
      * @param listenerInterface the class of the listener interface
-     * @param classLoader the class loader to be used
+     * @param classLoader       the class loader to be used
      */
     private void initializeTransientFields(final Class<L> listenerInterface, final ClassLoader classLoader) {
         @SuppressWarnings("unchecked") // Will throw CCE here if not correct
-        final
-        L[] array = (L[]) Array.newInstance(listenerInterface, 0);
+        final L[] array = (L[]) Array.newInstance(listenerInterface, 0);
         this.prototypeArray = array;
         createProxy(listenerInterface, classLoader);
     }
 
     /**
      * Create the proxy object.
+     *
      * @param listenerInterface the class of the listener interface
-     * @param classLoader the class loader to be used
+     * @param classLoader       the class loader to be used
      */
     private void createProxy(final Class<L> listenerInterface, final ClassLoader classLoader) {
         proxy = listenerInterface.cast(Proxy.newProxyInstance(classLoader,
-                new Class[] { listenerInterface }, createInvocationHandler()));
+                new Class[]{listenerInterface}, createInvocationHandler()));
     }
 
     /**
      * Create the {@link InvocationHandler} responsible for broadcasting calls
      * to the managed listeners.  Subclasses can override to provide custom behavior.
+     *
      * @return ProxyInvocationHandler
      */
     protected InvocationHandler createInvocationHandler() {
@@ -320,10 +313,10 @@ public class EventListenerSupport<L> implements Serializable {
          * the proxy listener object.
          *
          * @param unusedProxy the proxy object representing a listener on which the
-         *        invocation was called; not used
-         * @param method the listener method that will be called on all of the
-         *        listeners.
-         * @param args event arguments to propagate to the listeners.
+         *                    invocation was called; not used
+         * @param method      the listener method that will be called on all of the
+         *                    listeners.
+         * @param args        event arguments to propagate to the listeners.
          * @return the result of the method call
          * @throws Throwable if an error occurs
          */

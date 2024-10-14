@@ -28,7 +28,9 @@ import java.util.function.DoubleUnaryOperator;
  */
 public interface FailableDoubleUnaryOperator<E extends Throwable> {
 
-    /** NOP singleton */
+    /**
+     * NOP singleton
+     */
     @SuppressWarnings("rawtypes")
     FailableDoubleUnaryOperator NOP = t -> 0d;
 
@@ -58,7 +60,7 @@ public interface FailableDoubleUnaryOperator<E extends Throwable> {
      *
      * @param after the operator to apply after this one.
      * @return a composed {@code FailableDoubleUnaryOperator} like
-     *         {@link DoubleUnaryOperator#andThen(DoubleUnaryOperator)}.
+     * {@link DoubleUnaryOperator#andThen(DoubleUnaryOperator)}.
      * @throws NullPointerException if after is null.
      * @see #compose(FailableDoubleUnaryOperator)
      */
@@ -82,7 +84,7 @@ public interface FailableDoubleUnaryOperator<E extends Throwable> {
      *
      * @param before the operator to apply before this one.
      * @return a composed {@code FailableDoubleUnaryOperator} like
-     *         {@link DoubleUnaryOperator#compose(DoubleUnaryOperator)}.
+     * {@link DoubleUnaryOperator#compose(DoubleUnaryOperator)}.
      * @throws NullPointerException if before is null.
      * @see #andThen(FailableDoubleUnaryOperator)
      */

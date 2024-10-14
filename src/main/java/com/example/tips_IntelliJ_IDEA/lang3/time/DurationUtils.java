@@ -43,7 +43,7 @@ public class DurationUtils {
     /**
      * Accepts the function with the duration as a long milliseconds and int nanoseconds.
      *
-     * @param <T> The function exception.
+     * @param <T>      The function exception.
      * @param consumer Accepting function.
      * @param duration The duration to pick apart.
      * @throws T See the function signature.
@@ -91,22 +91,22 @@ public class DurationUtils {
     static ChronoUnit toChronoUnit(final TimeUnit timeUnit) {
         // TODO when using Java >= 9: Use TimeUnit.toChronoUnit().
         switch (Objects.requireNonNull(timeUnit)) {
-        case NANOSECONDS:
-            return ChronoUnit.NANOS;
-        case MICROSECONDS:
-            return ChronoUnit.MICROS;
-        case MILLISECONDS:
-            return ChronoUnit.MILLIS;
-        case SECONDS:
-            return ChronoUnit.SECONDS;
-        case MINUTES:
-            return ChronoUnit.MINUTES;
-        case HOURS:
-            return ChronoUnit.HOURS;
-        case DAYS:
-            return ChronoUnit.DAYS;
-        default:
-            throw new IllegalArgumentException(timeUnit.toString());
+            case NANOSECONDS:
+                return ChronoUnit.NANOS;
+            case MICROSECONDS:
+                return ChronoUnit.MICROS;
+            case MILLISECONDS:
+                return ChronoUnit.MILLIS;
+            case SECONDS:
+                return ChronoUnit.SECONDS;
+            case MINUTES:
+                return ChronoUnit.MINUTES;
+            case HOURS:
+                return ChronoUnit.HOURS;
+            case DAYS:
+                return ChronoUnit.DAYS;
+            default:
+                throw new IllegalArgumentException(timeUnit.toString());
         }
     }
 

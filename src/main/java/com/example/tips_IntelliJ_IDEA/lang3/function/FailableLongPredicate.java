@@ -29,11 +29,15 @@ import java.util.function.LongPredicate;
 @FunctionalInterface
 public interface FailableLongPredicate<E extends Throwable> {
 
-    /** FALSE singleton */
+    /**
+     * FALSE singleton
+     */
     @SuppressWarnings("rawtypes")
     FailableLongPredicate FALSE = t -> false;
 
-    /** TRUE singleton */
+    /**
+     * TRUE singleton
+     */
     @SuppressWarnings("rawtypes")
     FailableLongPredicate TRUE = t -> true;
 

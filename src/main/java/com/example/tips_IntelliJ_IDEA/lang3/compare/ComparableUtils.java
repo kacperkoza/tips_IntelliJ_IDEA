@@ -126,8 +126,8 @@ public class ComparableUtils {
     /**
      * Checks if {@code [b <= a <= c]} or {@code [b >= a >= c]} where the {@code a} is the tested object.
      *
-     * @param b the object to compare to the tested object
-     * @param c the object to compare to the tested object
+     * @param b   the object to compare to the tested object
+     * @param c   the object to compare to the tested object
      * @param <A> type of the test object
      * @return a predicate for true if the tested object is between b and c
      */
@@ -138,8 +138,8 @@ public class ComparableUtils {
     /**
      * Checks if {@code (b < a < c)} or {@code (b > a > c)} where the {@code a} is the tested object.
      *
-     * @param b the object to compare to the tested object
-     * @param c the object to compare to the tested object
+     * @param b   the object to compare to the tested object
+     * @param c   the object to compare to the tested object
      * @param <A> type of the test object
      * @return a predicate for true if the tested object is between b and c and not equal to those
      */
@@ -150,7 +150,7 @@ public class ComparableUtils {
     /**
      * Checks if the tested object is greater than or equal to {@code b}
      *
-     * @param b the object to compare to the tested object
+     * @param b   the object to compare to the tested object
      * @param <A> type of the test object
      * @return a predicate for true if the value returned by {@link Comparable#compareTo}
      * is greater than or equal to {@code 0}
@@ -162,7 +162,7 @@ public class ComparableUtils {
     /**
      * Checks if the tested object is greater than {@code b}
      *
-     * @param b the object to compare to the tested object
+     * @param b   the object to compare to the tested object
      * @param <A> type of the test object
      * @return a predicate for true if the value returned by {@link Comparable#compareTo} is greater than {@code 0}
      */
@@ -173,7 +173,7 @@ public class ComparableUtils {
     /**
      * Provides access to the available methods
      *
-     * @param a base object in the further comparison
+     * @param a   base object in the further comparison
      * @param <A> type of the base object
      * @return a builder object with further methods
      */
@@ -184,7 +184,7 @@ public class ComparableUtils {
     /**
      * Checks if the tested object is less than or equal to {@code b}
      *
-     * @param b the object to compare to the tested object
+     * @param b   the object to compare to the tested object
      * @param <A> type of the test object
      * @return a predicate for true if the value returned by {@link Comparable#compareTo}
      * is less than or equal to {@code 0}
@@ -196,7 +196,7 @@ public class ComparableUtils {
     /**
      * Checks if the tested object is less than {@code b}
      *
-     * @param b the object to compare to the tested object
+     * @param b   the object to compare to the tested object
      * @param <A> type of the test object
      * @return a predicate for true if the value returned by {@link Comparable#compareTo} is less than {@code 0}
      */
@@ -204,5 +204,6 @@ public class ComparableUtils {
         return a -> is(a).lessThan(b);
     }
 
-    private ComparableUtils() {}
+    private ComparableUtils() {
+    }
 }

@@ -29,7 +29,9 @@ import java.util.function.LongConsumer;
 @FunctionalInterface
 public interface FailableLongConsumer<E extends Throwable> {
 
-    /** NOP singleton */
+    /**
+     * NOP singleton
+     */
     @SuppressWarnings("rawtypes")
     FailableLongConsumer NOP = t -> {/* NOP */};
 

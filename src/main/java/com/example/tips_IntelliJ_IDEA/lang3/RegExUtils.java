@@ -22,6 +22,7 @@ import java.util.regex.Pattern;
 
 /**
  * <p>Helpers to process Strings using regular expressions.</p>
+ *
  * @see Pattern
  * @since 3.8
  */
@@ -29,7 +30,7 @@ public class RegExUtils {
 
     /**
      * <p>Removes each substring of the text String that matches the given regular expression pattern.</p>
-     *
+     * <p>
      * This method is a {@code null} safe equivalent to:
      * <ul>
      *  <li>{@code pattern.matcher(text).replaceAll(StringUtils.EMPTY)}</li>
@@ -51,10 +52,9 @@ public class RegExUtils {
      * </pre>
      *
      * @param text  text to remove from, may be null
-     * @param regex  the regular expression to which this string is to be matched
-     * @return  the text with any removes processed,
-     *              {@code null} if null String input
-     *
+     * @param regex the regular expression to which this string is to be matched
+     * @return the text with any removes processed,
+     * {@code null} if null String input
      * @see #replaceAll(String, Pattern, String)
      * @see java.util.regex.Matcher#replaceAll(String)
      * @see Pattern
@@ -65,7 +65,7 @@ public class RegExUtils {
 
     /**
      * <p>Removes each substring of the text String that matches the given regular expression.</p>
-     *
+     * <p>
      * This method is a {@code null} safe equivalent to:
      * <ul>
      *  <li>{@code text.replaceAll(regex, StringUtils.EMPTY)}</li>
@@ -92,13 +92,10 @@ public class RegExUtils {
      * </pre>
      *
      * @param text  text to remove from, may be null
-     * @param regex  the regular expression to which this string is to be matched
-     * @return  the text with any removes processed,
-     *              {@code null} if null String input
-     *
-     * @throws  java.util.regex.PatternSyntaxException
-     *              if the regular expression's syntax is invalid
-     *
+     * @param regex the regular expression to which this string is to be matched
+     * @return the text with any removes processed,
+     * {@code null} if null String input
+     * @throws java.util.regex.PatternSyntaxException if the regular expression's syntax is invalid
      * @see #replaceAll(String, String, String)
      * @see #removePattern(String, String)
      * @see String#replaceAll(String, String)
@@ -111,7 +108,7 @@ public class RegExUtils {
 
     /**
      * <p>Removes the first substring of the text string that matches the given regular expression pattern.</p>
-     *
+     * <p>
      * This method is a {@code null} safe equivalent to:
      * <ul>
      *  <li>{@code pattern.matcher(text).replaceFirst(StringUtils.EMPTY)}</li>
@@ -133,10 +130,9 @@ public class RegExUtils {
      * </pre>
      *
      * @param text  text to remove from, may be null
-     * @param regex  the regular expression pattern to which this string is to be matched
-     * @return  the text with the first replacement processed,
-     *              {@code null} if null String input
-     *
+     * @param regex the regular expression pattern to which this string is to be matched
+     * @return the text with the first replacement processed,
+     * {@code null} if null String input
      * @see #replaceFirst(String, Pattern, String)
      * @see java.util.regex.Matcher#replaceFirst(String)
      * @see Pattern
@@ -147,7 +143,7 @@ public class RegExUtils {
 
     /**
      * <p>Removes the first substring of the text string that matches the given regular expression.</p>
-     *
+     * <p>
      * This method is a {@code null} safe equivalent to:
      * <ul>
      *  <li>{@code text.replaceFirst(regex, StringUtils.EMPTY)}</li>
@@ -174,13 +170,10 @@ public class RegExUtils {
      * </pre>
      *
      * @param text  text to remove from, may be null
-     * @param regex  the regular expression to which this string is to be matched
-     * @return  the text with the first replacement processed,
-     *              {@code null} if null String input
-     *
-     * @throws  java.util.regex.PatternSyntaxException
-     *              if the regular expression's syntax is invalid
-     *
+     * @param regex the regular expression to which this string is to be matched
+     * @return the text with the first replacement processed,
+     * {@code null} if null String input
+     * @throws java.util.regex.PatternSyntaxException if the regular expression's syntax is invalid
      * @see #replaceFirst(String, String, String)
      * @see String#replaceFirst(String, String)
      * @see Pattern
@@ -192,7 +185,7 @@ public class RegExUtils {
 
     /**
      * <p>Removes each substring of the source String that matches the given regular expression using the DOTALL option.</p>
-     *
+     * <p>
      * This call is a {@code null} safe equivalent to:
      * <ul>
      * <li>{@code text.replaceAll(&quot;(?s)&quot; + regex, StringUtils.EMPTY)}</li>
@@ -208,10 +201,8 @@ public class RegExUtils {
      * StringUtils.removePattern("ABCabc123", "[a-z]")    = "ABC123"
      * </pre>
      *
-     * @param text
-     *            the source string
-     * @param regex
-     *            the regular expression to which this string is to be matched
+     * @param text  the source string
+     * @param regex the regular expression to which this string is to be matched
      * @return The resulting {@code String}
      * @see #replacePattern(String, String, String)
      * @see String#replaceAll(String, String)
@@ -223,7 +214,7 @@ public class RegExUtils {
 
     /**
      * <p>Replaces each substring of the text String that matches the given regular expression pattern with the given replacement.</p>
-     *
+     * <p>
      * This method is a {@code null} safe equivalent to:
      * <ul>
      *  <li>{@code pattern.matcher(text).replaceAll(replacement)}</li>
@@ -248,12 +239,11 @@ public class RegExUtils {
      * StringUtils.replaceAll("Lorem ipsum  dolor   sit", Pattern.compile("( +)([a-z]+)"), "_$2")  = "Lorem_ipsum_dolor_sit"
      * </pre>
      *
-     * @param text  text to search and replace in, may be null
-     * @param regex  the regular expression pattern to which this string is to be matched
-     * @param replacement  the string to be substituted for each match
-     * @return  the text with any replacements processed,
-     *              {@code null} if null String input
-     *
+     * @param text        text to search and replace in, may be null
+     * @param regex       the regular expression pattern to which this string is to be matched
+     * @param replacement the string to be substituted for each match
+     * @return the text with any replacements processed,
+     * {@code null} if null String input
      * @see java.util.regex.Matcher#replaceAll(String)
      * @see Pattern
      */
@@ -267,7 +257,7 @@ public class RegExUtils {
     /**
      * <p>Replaces each substring of the text String that matches the given regular expression
      * with the given replacement.</p>
-     *
+     * <p>
      * This method is a {@code null} safe equivalent to:
      * <ul>
      *  <li>{@code text.replaceAll(regex, replacement)}</li>
@@ -297,15 +287,12 @@ public class RegExUtils {
      * StringUtils.replaceAll("Lorem ipsum  dolor   sit", "( +)([a-z]+)", "_$2")  = "Lorem_ipsum_dolor_sit"
      * </pre>
      *
-     * @param text  text to search and replace in, may be null
-     * @param regex  the regular expression to which this string is to be matched
-     * @param replacement  the string to be substituted for each match
-     * @return  the text with any replacements processed,
-     *              {@code null} if null String input
-     *
-     * @throws  java.util.regex.PatternSyntaxException
-     *              if the regular expression's syntax is invalid
-     *
+     * @param text        text to search and replace in, may be null
+     * @param regex       the regular expression to which this string is to be matched
+     * @param replacement the string to be substituted for each match
+     * @return the text with any replacements processed,
+     * {@code null} if null String input
+     * @throws java.util.regex.PatternSyntaxException if the regular expression's syntax is invalid
      * @see #replacePattern(String, String, String)
      * @see String#replaceAll(String, String)
      * @see Pattern
@@ -321,7 +308,7 @@ public class RegExUtils {
     /**
      * <p>Replaces the first substring of the text string that matches the given regular expression pattern
      * with the given replacement.</p>
-     *
+     * <p>
      * This method is a {@code null} safe equivalent to:
      * <ul>
      *  <li>{@code pattern.matcher(text).replaceFirst(replacement)}</li>
@@ -345,17 +332,16 @@ public class RegExUtils {
      * StringUtils.replaceFirst("Lorem ipsum  dolor   sit", Pattern.compile("( +)([a-z]+)"), "_$2")  = "Lorem_ipsum  dolor   sit"
      * </pre>
      *
-     * @param text  text to search and replace in, may be null
-     * @param regex  the regular expression pattern to which this string is to be matched
-     * @param replacement  the string to be substituted for the first match
-     * @return  the text with the first replacement processed,
-     *              {@code null} if null String input
-     *
+     * @param text        text to search and replace in, may be null
+     * @param regex       the regular expression pattern to which this string is to be matched
+     * @param replacement the string to be substituted for the first match
+     * @return the text with the first replacement processed,
+     * {@code null} if null String input
      * @see java.util.regex.Matcher#replaceFirst(String)
      * @see Pattern
      */
     public static String replaceFirst(final String text, final Pattern regex, final String replacement) {
-        if (text == null || regex == null|| replacement == null ) {
+        if (text == null || regex == null || replacement == null) {
             return text;
         }
         return regex.matcher(text).replaceFirst(replacement);
@@ -364,7 +350,7 @@ public class RegExUtils {
     /**
      * <p>Replaces the first substring of the text string that matches the given regular expression
      * with the given replacement.</p>
-     *
+     * <p>
      * This method is a {@code null} safe equivalent to:
      * <ul>
      *  <li>{@code text.replaceFirst(regex, replacement)}</li>
@@ -393,21 +379,18 @@ public class RegExUtils {
      * StringUtils.replaceFirst("Lorem ipsum  dolor   sit", "( +)([a-z]+)", "_$2")  = "Lorem_ipsum  dolor   sit"
      * </pre>
      *
-     * @param text  text to search and replace in, may be null
-     * @param regex  the regular expression to which this string is to be matched
-     * @param replacement  the string to be substituted for the first match
-     * @return  the text with the first replacement processed,
-     *              {@code null} if null String input
-     *
-     * @throws  java.util.regex.PatternSyntaxException
-     *              if the regular expression's syntax is invalid
-     *
+     * @param text        text to search and replace in, may be null
+     * @param regex       the regular expression to which this string is to be matched
+     * @param replacement the string to be substituted for the first match
+     * @return the text with the first replacement processed,
+     * {@code null} if null String input
+     * @throws java.util.regex.PatternSyntaxException if the regular expression's syntax is invalid
      * @see String#replaceFirst(String, String)
      * @see Pattern
      * @see Pattern#DOTALL
      */
     public static String replaceFirst(final String text, final String regex, final String replacement) {
-        if (text == null || regex == null|| replacement == null ) {
+        if (text == null || regex == null || replacement == null) {
             return text;
         }
         return text.replaceFirst(regex, replacement);
@@ -416,7 +399,7 @@ public class RegExUtils {
     /**
      * <p>Replaces each substring of the source String that matches the given regular expression with the given
      * replacement using the {@link Pattern#DOTALL} option. DOTALL is also known as single-line mode in Perl.</p>
-     *
+     * <p>
      * This call is a {@code null} safe equivalent to:
      * <ul>
      * <li>{@code text.replaceAll(&quot;(?s)&quot; + regex, replacement)}</li>
@@ -439,12 +422,9 @@ public class RegExUtils {
      * StringUtils.replacePattern("Lorem ipsum  dolor   sit", "( +)([a-z]+)", "_$2")  = "Lorem_ipsum_dolor_sit"
      * </pre>
      *
-     * @param text
-     *            the source string
-     * @param regex
-     *            the regular expression to which this string is to be matched
-     * @param replacement
-     *            the string to be substituted for each match
+     * @param text        the source string
+     * @param regex       the regular expression to which this string is to be matched
+     * @param replacement the string to be substituted for each match
      * @return The resulting {@code String}
      * @see #replaceAll(String, String, String)
      * @see String#replaceAll(String, String)

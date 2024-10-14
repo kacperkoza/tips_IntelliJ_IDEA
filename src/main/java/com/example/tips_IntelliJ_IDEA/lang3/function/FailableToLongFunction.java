@@ -29,7 +29,9 @@ import java.util.function.ToLongFunction;
 @FunctionalInterface
 public interface FailableToLongFunction<T, E extends Throwable> {
 
-    /** NOP singleton */
+    /**
+     * NOP singleton
+     */
     @SuppressWarnings("rawtypes")
     FailableToLongFunction NOP = t -> 0L;
 

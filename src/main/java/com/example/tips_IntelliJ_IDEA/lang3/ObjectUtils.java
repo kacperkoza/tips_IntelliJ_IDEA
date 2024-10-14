@@ -45,6 +45,7 @@ import java.util.function.Supplier;
  * Each method documents its behavior in more detail.</p>
  *
  * <p>#ThreadSafe#</p>
+ *
  * @since 1.0
  */
 //@Immutable
@@ -54,6 +55,7 @@ public class ObjectUtils {
 
     // Null
     //-----------------------------------------------------------------------
+
     /**
      * <p>Class used as a null placeholder where {@code null}
      * has another meaning.</p>
@@ -232,6 +234,7 @@ public class ObjectUtils {
 
     // cloning
     //-----------------------------------------------------------------------
+
     /**
      * <p>Clone an object.</p>
      *
@@ -261,14 +264,14 @@ public class ObjectUtils {
                     result = clone.invoke(obj);
                 } catch (final NoSuchMethodException e) {
                     throw new CloneFailedException("Cloneable type "
-                        + obj.getClass().getName()
-                        + " has no clone method", e);
+                            + obj.getClass().getName()
+                            + " has no clone method", e);
                 } catch (final IllegalAccessException e) {
                     throw new CloneFailedException("Cannot clone Cloneable type "
-                        + obj.getClass().getName(), e);
+                            + obj.getClass().getName(), e);
                 } catch (final InvocationTargetException e) {
                     throw new CloneFailedException("Exception cloning Cloneable type "
-                        + obj.getClass().getName(), e.getCause());
+                            + obj.getClass().getName(), e.getCause());
                 }
             }
             @SuppressWarnings("unchecked") // OK because input is of type T
@@ -605,6 +608,7 @@ public class ObjectUtils {
 
     // Null-safe equals/hashCode
     //-----------------------------------------------------------------------
+
     /**
      * <p>Compares two objects for equality, where either one or both
      * objects may be {@code null}.</p>
@@ -813,12 +817,13 @@ public class ObjectUtils {
     public static void identityToString(final Appendable appendable, final Object object) throws IOException {
         Validate.notNull(object, "object");
         appendable.append(object.getClass().getName())
-              .append(AT_SIGN)
-              .append(Integer.toHexString(System.identityHashCode(object)));
+                .append(AT_SIGN)
+                .append(Integer.toHexString(System.identityHashCode(object)));
     }
 
     // Identity ToString
     //-----------------------------------------------------------------------
+
     /**
      * <p>Gets the toString that would be produced by {@code Object}
      * if a class did not override toString itself. {@code null}
@@ -861,21 +866,21 @@ public class ObjectUtils {
      * ObjectUtils.identityToString(builder, Boolean.TRUE)  = builder.append("java.lang.Boolean@7fa")
      * </pre>
      *
-     * @param builder  the builder to append to
+     * @param builder the builder to append to
      * @param object  the object to create a toString for
      * @since 3.2
      * @deprecated as of 3.6, because StrBuilder was moved to commons-text,
-     *  use one of the other {@code identityToString} methods instead
+     * use one of the other {@code identityToString} methods instead
      */
     @Deprecated
     public static void identityToString(final StrBuilder builder, final Object object) {
         Validate.notNull(object, "object");
         final String name = object.getClass().getName();
         final String hexString = Integer.toHexString(System.identityHashCode(object));
-        builder.ensureCapacity(builder.length() +  name.length() + 1 + hexString.length());
+        builder.ensureCapacity(builder.length() + name.length() + 1 + hexString.length());
         builder.append(name)
-              .append(AT_SIGN)
-              .append(hexString);
+                .append(AT_SIGN)
+                .append(hexString);
     }
 
     /**
@@ -889,8 +894,8 @@ public class ObjectUtils {
      * ObjectUtils.identityToString(buf, Boolean.TRUE)  = buf.append("java.lang.Boolean@7fa")
      * </pre>
      *
-     * @param buffer  the buffer to append to
-     * @param object  the object to create a toString for
+     * @param buffer the buffer to append to
+     * @param object the object to create a toString for
      * @since 2.4
      */
     public static void identityToString(final StringBuffer buffer, final Object object) {
@@ -899,8 +904,8 @@ public class ObjectUtils {
         final String hexString = Integer.toHexString(System.identityHashCode(object));
         buffer.ensureCapacity(buffer.length() + name.length() + 1 + hexString.length());
         buffer.append(name)
-              .append(AT_SIGN)
-              .append(hexString);
+                .append(AT_SIGN)
+                .append(hexString);
     }
 
     /**
@@ -914,7 +919,7 @@ public class ObjectUtils {
      * ObjectUtils.identityToString(builder, Boolean.TRUE)  = builder.append("java.lang.Boolean@7fa")
      * </pre>
      *
-     * @param builder  the builder to append to
+     * @param builder the builder to append to
      * @param object  the object to create a toString for
      * @since 3.2
      */
@@ -922,10 +927,10 @@ public class ObjectUtils {
         Validate.notNull(object, "object");
         final String name = object.getClass().getName();
         final String hexString = Integer.toHexString(System.identityHashCode(object));
-        builder.ensureCapacity(builder.length() +  name.length() + 1 + hexString.length());
+        builder.ensureCapacity(builder.length() + name.length() + 1 + hexString.length());
         builder.append(name)
-              .append(AT_SIGN)
-              .append(hexString);
+                .append(AT_SIGN)
+                .append(hexString);
     }
 
 
@@ -952,9 +957,10 @@ public class ObjectUtils {
 
     // Empty checks
     //-----------------------------------------------------------------------
+
     /**
      * <p>Checks if an Object is empty or null.</p>
-     *
+     * <p>
      * The following types are supported:
      * <ul>
      * <li>{@link CharSequence}: Considered empty if its length is zero.</li>
@@ -972,7 +978,7 @@ public class ObjectUtils {
      * ObjectUtils.isEmpty(1234)             = false
      * </pre>
      *
-     * @param object  the {@code Object} to test, may be {@code null}
+     * @param object the {@code Object} to test, may be {@code null}
      * @return {@code true} if the object has a supported type and is empty or null,
      * {@code false} otherwise
      * @since 3.9
@@ -998,7 +1004,7 @@ public class ObjectUtils {
 
     /**
      * <p>Checks if an Object is not empty and not null.</p>
-     *
+     * <p>
      * The following types are supported:
      * <ul>
      * <li>{@link CharSequence}: Considered empty if its length is zero.</li>
@@ -1016,7 +1022,7 @@ public class ObjectUtils {
      * ObjectUtils.isNotEmpty(1234)             = true
      * </pre>
      *
-     * @param object  the {@code Object} to test, may be {@code null}
+     * @param object the {@code Object} to test, may be {@code null}
      * @return {@code true} if the object has an unsupported type or is not empty
      * and not null, {@code false} otherwise
      * @since 3.9
@@ -1028,10 +1034,9 @@ public class ObjectUtils {
     /**
      * <p>Null safe comparison of Comparables.</p>
      *
-     * @param <T> type of the values processed by this method
+     * @param <T>    type of the values processed by this method
      * @param values the set of comparable values, may be null
-     * @return
-     *  <ul>
+     * @return <ul>
      *   <li>If any objects are non-null and unequal, the greater object.
      *   <li>If all objects are non-null and equal, the first.
      *   <li>If any of the comparables are null, the greater of the non-null objects.
@@ -1054,11 +1059,12 @@ public class ObjectUtils {
     /**
      * Find the "best guess" middle value among comparables. If there is an even
      * number of total values, the lower of the two middle values will be returned.
-     * @param <T> type of values processed by this method
+     *
+     * @param <T>        type of values processed by this method
      * @param comparator to use for comparisons
-     * @param items to compare
+     * @param items      to compare
      * @return T at middle position
-     * @throws NullPointerException if items or comparator is {@code null}
+     * @throws NullPointerException     if items or comparator is {@code null}
      * @throws IllegalArgumentException if items is empty or contains {@code null} values
      * @since 3.0.1
      */
@@ -1070,18 +1076,18 @@ public class ObjectUtils {
         final TreeSet<T> sort = new TreeSet<>(comparator);
         Collections.addAll(sort, items);
         @SuppressWarnings("unchecked") //we know all items added were T instances
-        final
-        T result = (T) sort.toArray()[(sort.size() - 1) / 2];
+        final T result = (T) sort.toArray()[(sort.size() - 1) / 2];
         return result;
     }
 
     /**
      * Find the "best guess" middle value among comparables. If there is an even
      * number of total values, the lower of the two middle values will be returned.
-     * @param <T> type of values processed by this method
+     *
+     * @param <T>   type of values processed by this method
      * @param items to compare
      * @return T at middle position
-     * @throws NullPointerException if items is {@code null}
+     * @throws NullPointerException     if items is {@code null}
      * @throws IllegalArgumentException if items is empty or contains {@code null} values
      * @since 3.0.1
      */
@@ -1098,13 +1104,13 @@ public class ObjectUtils {
 
     // Comparable
     //-----------------------------------------------------------------------
+
     /**
      * <p>Null safe comparison of Comparables.</p>
      *
-     * @param <T> type of the values processed by this method
+     * @param <T>    type of the values processed by this method
      * @param values the set of comparable values, may be null
-     * @return
-     *  <ul>
+     * @return <ul>
      *   <li>If any objects are non-null and unequal, the lesser object.
      *   <li>If all objects are non-null and equal, the first.
      *   <li>If any of the comparables are null, the lesser of the non-null objects.
@@ -1127,10 +1133,11 @@ public class ObjectUtils {
 
     // Mode
     //-----------------------------------------------------------------------
+
     /**
      * Find the most frequently occurring item.
      *
-     * @param <T> type of values processed by this method
+     * @param <T>   type of values processed by this method
      * @param items to check
      * @return most populous T, {@code null} if non-unique or no items supplied
      * @since 3.0.1
@@ -1178,8 +1185,8 @@ public class ObjectUtils {
      * ObjectUtils.notEqual(Boolean.TRUE, Boolean.FALSE) = true
      * </pre>
      *
-     * @param object1  the first object, may be {@code null}
-     * @param object2  the second object, may be {@code null}
+     * @param object1 the first object, may be {@code null}
+     * @param object2 the second object, may be {@code null}
      * @return {@code false} if the values of both objects are the same
      */
     public static boolean notEqual(final Object object1, final Object object2) {
@@ -1208,7 +1215,7 @@ public class ObjectUtils {
      * @see #isEmpty(Object)
      * @since 3.12.0
      */
-    public static <T> T  requireNonEmpty(final T obj) {
+    public static <T> T requireNonEmpty(final T obj) {
         return requireNonEmpty(obj, "object");
     }
 
@@ -1226,8 +1233,8 @@ public class ObjectUtils {
      *
      * </blockquote>
      *
-     * @param <T> the type of the reference.
-     * @param obj the object reference to check for nullity.
+     * @param <T>     the type of the reference.
+     * @param obj     the object reference to check for nullity.
      * @param message the exception message.
      * @return {@code obj} if not {@code null}.
      * @throws NullPointerException     if {@code obj} is {@code null}.
@@ -1246,6 +1253,7 @@ public class ObjectUtils {
 
     // ToString
     //-----------------------------------------------------------------------
+
     /**
      * <p>Gets the {@code toString} of an {@code Object} returning
      * an empty string ("") if {@code null} input.</p>
@@ -1257,10 +1265,10 @@ public class ObjectUtils {
      * ObjectUtils.toString(Boolean.TRUE) = "true"
      * </pre>
      *
+     * @param obj the Object to {@code toString}, may be null
+     * @return the passed in Object's toString, or {@code ""} if {@code null} input
      * @see StringUtils#defaultString(String)
      * @see String#valueOf(Object)
-     * @param obj  the Object to {@code toString}, may be null
-     * @return the passed in Object's toString, or {@code ""} if {@code null} input
      * @since 2.0
      * @deprecated this method has been replaced by {@code java.util.Objects.toString(Object)} in Java 7 and will be
      * removed in future releases. Note however that said method will return "null" for null references, while this
@@ -1270,6 +1278,7 @@ public class ObjectUtils {
     public static String toString(final Object obj) {
         return obj == null ? StringUtils.EMPTY : obj.toString();
     }
+
     /**
      * <p>Gets the {@code toString} of an {@code Object} returning
      * a specified text if {@code null} input.</p>
@@ -1282,11 +1291,11 @@ public class ObjectUtils {
      * ObjectUtils.toString(Boolean.TRUE, "null") = "true"
      * </pre>
      *
-     * @see StringUtils#defaultString(String,String)
-     * @see String#valueOf(Object)
-     * @param obj  the Object to {@code toString}, may be null
-     * @param nullStr  the String to return if {@code null} input, may be null
+     * @param obj     the Object to {@code toString}, may be null
+     * @param nullStr the String to return if {@code null} input, may be null
      * @return the passed in Object's toString, or {@code nullStr} if {@code null} input
+     * @see StringUtils#defaultString(String, String)
+     * @see String#valueOf(Object)
      * @since 2.0
      * @deprecated this method has been replaced by {@code java.util.Objects.toString(Object, String)} in Java 7 and
      * will be removed in future releases.
@@ -1311,8 +1320,8 @@ public class ObjectUtils {
      * ObjectUtils.toString(Boolean.TRUE, () -&gt; expensive()) = "true"
      * </pre>
      *
-     * @param obj  the Object to {@code toString}, may be null
-     * @param supplier  the Supplier of String used on {@code null} input, may be null
+     * @param obj      the Object to {@code toString}, may be null
+     * @param supplier the Supplier of String used on {@code null} input, may be null
      * @return the passed in Object's toString, or {@code nullStr} if {@code null} input
      * @since 3.11
      */
@@ -1323,13 +1332,13 @@ public class ObjectUtils {
     /**
      * Calls {@link Object#wait(long, int)} for the given Duration.
      *
-     * @param obj The receiver of the wait call.
+     * @param obj      The receiver of the wait call.
      * @param duration How long to wait.
-     * @throws IllegalArgumentException if the timeout duration is negative.
+     * @throws IllegalArgumentException     if the timeout duration is negative.
      * @throws IllegalMonitorStateException if the current thread is not the owner of the {@code obj}'s monitor.
-     * @throws InterruptedException if any thread interrupted the current thread before or while the current thread was
-     *         waiting for a notification. The <em>interrupted status</em> of the current thread is cleared when this
-     *         exception is thrown.
+     * @throws InterruptedException         if any thread interrupted the current thread before or while the current thread was
+     *                                      waiting for a notification. The <em>interrupted status</em> of the current thread is cleared when this
+     *                                      exception is thrown.
      * @see Object#wait(long, int)
      * @since 3.12.0
      */

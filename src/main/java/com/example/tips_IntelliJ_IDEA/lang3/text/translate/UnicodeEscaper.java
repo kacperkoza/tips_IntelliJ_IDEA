@@ -47,8 +47,8 @@ public class UnicodeEscaper extends CodePointTranslator {
      * and {@code above} boundaries are inclusive when {@code between} is
      * {@code true} and exclusive when it is {@code false}. </p>
      *
-     * @param below int value representing the lowest codepoint boundary
-     * @param above int value representing the highest codepoint boundary
+     * @param below   int value representing the lowest codepoint boundary
+     * @param above   int value representing the highest codepoint boundary
      * @param between whether to escape between the boundaries or outside them
      */
     protected UnicodeEscaper(final int below, final int above, final boolean between) {
@@ -80,7 +80,7 @@ public class UnicodeEscaper extends CodePointTranslator {
     /**
      * <p>Constructs a {@code UnicodeEscaper} outside of the specified values (exclusive). </p>
      *
-     * @param codepointLow below which to escape
+     * @param codepointLow  below which to escape
      * @param codepointHigh above which to escape
      * @return the newly created {@code UnicodeEscaper} instance
      */
@@ -91,7 +91,7 @@ public class UnicodeEscaper extends CodePointTranslator {
     /**
      * <p>Constructs a {@code UnicodeEscaper} between the specified values (inclusive). </p>
      *
-     * @param codepointLow above which to escape
+     * @param codepointLow  above which to escape
      * @param codepointHigh below which to escape
      * @return the newly created {@code UnicodeEscaper} instance
      */
@@ -116,11 +116,11 @@ public class UnicodeEscaper extends CodePointTranslator {
         if (codepoint > 0xffff) {
             out.write(toUtf16Escape(codepoint));
         } else {
-          out.write("\\u");
-          out.write(HEX_DIGITS[(codepoint >> 12) & 15]);
-          out.write(HEX_DIGITS[(codepoint >> 8) & 15]);
-          out.write(HEX_DIGITS[(codepoint >> 4) & 15]);
-          out.write(HEX_DIGITS[(codepoint) & 15]);
+            out.write("\\u");
+            out.write(HEX_DIGITS[(codepoint >> 12) & 15]);
+            out.write(HEX_DIGITS[(codepoint >> 8) & 15]);
+            out.write(HEX_DIGITS[(codepoint >> 4) & 15]);
+            out.write(HEX_DIGITS[(codepoint) & 15]);
         }
         return true;
     }
@@ -128,10 +128,8 @@ public class UnicodeEscaper extends CodePointTranslator {
     /**
      * Converts the given codepoint to a hex string of the form {@code "\\uXXXX"}
      *
-     * @param codepoint
-     *            a Unicode code point
+     * @param codepoint a Unicode code point
      * @return the hex string for the given codepoint
-     *
      * @since 3.2
      */
     protected String toUtf16Escape(final int codepoint) {

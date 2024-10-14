@@ -79,18 +79,24 @@ import java.util.concurrent.Future;
  * operation is complete or to cancel the operation.
  * </p>
  *
- * @since 3.0
  * @param <T> the type of the object managed by this initializer class
+ * @since 3.0
  */
 public abstract class BackgroundInitializer<T> implements
         ConcurrentInitializer<T> {
-    /** The external executor service for executing tasks. */
+    /**
+     * The external executor service for executing tasks.
+     */
     private ExecutorService externalExecutor; // @GuardedBy("this")
 
-    /** A reference to the executor service that is actually used. */
+    /**
+     * A reference to the executor service that is actually used.
+     */
     private ExecutorService executor; // @GuardedBy("this")
 
-    /** Stores the handle to the background task. */
+    /**
+     * Stores the handle to the background task.
+     */
     private Future<T> future;  // @GuardedBy("this")
 
     /**
@@ -109,7 +115,7 @@ public abstract class BackgroundInitializer<T> implements
      * ExecutorService} is created.
      *
      * @param exec an external {@code ExecutorService} to be used for task
-     * execution
+     *             execution
      */
     protected BackgroundInitializer(final ExecutorService exec) {
         setExternalExecutor(exec);
@@ -147,7 +153,7 @@ public abstract class BackgroundInitializer<T> implements
      *
      * @param externalExecutor the {@code ExecutorService} to be used
      * @throws IllegalStateException if this initializer has already been
-     * started
+     *                               started
      */
     public final synchronized void setExternalExecutor(
             final ExecutorService externalExecutor) {
@@ -201,8 +207,8 @@ public abstract class BackgroundInitializer<T> implements
      * thrown.
      *
      * @return the object produced by this initializer
-     * @throws ConcurrentException if a checked exception occurred during
-     * background processing
+     * @throws ConcurrentException   if a checked exception occurred during
+     *                               background processing
      * @throws IllegalStateException if {@link #start()} has not been called
      */
     @Override
@@ -283,7 +289,7 @@ public abstract class BackgroundInitializer<T> implements
      * at the end of the task.
      *
      * @param execDestroy the {@code ExecutorService} to be destroyed by the
-     * task
+     *                    task
      * @return a task for the background initialization
      */
     private Callable<T> createTask(final ExecutorService execDestroy) {
@@ -301,7 +307,9 @@ public abstract class BackgroundInitializer<T> implements
     }
 
     private class InitializationTask implements Callable<T> {
-        /** Stores the executor service to be destroyed at the end. */
+        /**
+         * Stores the executor service to be destroyed at the end.
+         */
         private final ExecutorService execFinally;
 
         /**

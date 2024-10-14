@@ -41,9 +41,13 @@ public class LocaleUtils {
 
     // class to avoid synchronization (Init on demand)
     static class SyncAvoid {
-        /** Unmodifiable list of available locales. */
+        /**
+         * Unmodifiable list of available locales.
+         */
         private static final List<Locale> AVAILABLE_LOCALE_LIST;
-        /** Unmodifiable set of available locales. */
+        /**
+         * Unmodifiable set of available locales.
+         */
         private static final Set<Locale> AVAILABLE_LOCALE_SET;
 
         static {
@@ -53,13 +57,17 @@ public class LocaleUtils {
         }
     }
 
-    /** Concurrent map of language locales by country. */
+    /**
+     * Concurrent map of language locales by country.
+     */
     private static final ConcurrentMap<String, List<Locale>> cLanguagesByCountry =
-        new ConcurrentHashMap<>();
+            new ConcurrentHashMap<>();
 
-    /** Concurrent map of country locales by language. */
+    /**
+     * Concurrent map of country locales by language.
+     */
     private static final ConcurrentMap<String, List<Locale>> cCountriesByLanguage =
-        new ConcurrentHashMap<>();
+            new ConcurrentHashMap<>();
 
     /**
      * <p>Obtains an unmodifiable list of installed locales.</p>
@@ -93,7 +101,7 @@ public class LocaleUtils {
      * <p>This method takes a language code and searches to find the
      * countries available for that language. Variant locales are removed.</p>
      *
-     * @param languageCode  the 2 letter language code, null returns empty
+     * @param languageCode the 2 letter language code, null returns empty
      * @return an unmodifiable List of Locale objects, not null
      */
     public static List<Locale> countriesByLanguage(final String languageCode) {
@@ -107,7 +115,7 @@ public class LocaleUtils {
             for (final Locale locale : locales) {
                 if (languageCode.equals(locale.getLanguage()) &&
                         !locale.getCountry().isEmpty() &&
-                    locale.getVariant().isEmpty()) {
+                        locale.getVariant().isEmpty()) {
                     countries.add(locale);
                 }
             }
@@ -164,7 +172,7 @@ public class LocaleUtils {
      * <p>This method takes a country code and searches to find the
      * languages available for that country. Variant locales are removed.</p>
      *
-     * @param countryCode  the 2 letter country code, null returns empty
+     * @param countryCode the 2 letter country code, null returns empty
      * @return an unmodifiable List of Locale objects, not null
      */
     public static List<Locale> languagesByCountry(final String countryCode) {
@@ -177,7 +185,7 @@ public class LocaleUtils {
             final List<Locale> locales = availableLocaleList();
             for (final Locale locale : locales) {
                 if (countryCode.equals(locale.getCountry()) &&
-                    locale.getVariant().isEmpty()) {
+                        locale.getVariant().isEmpty()) {
                     langs.add(locale);
                 }
             }
@@ -197,7 +205,7 @@ public class LocaleUtils {
      *   = [Locale("fr", "CA", "xxx"), Locale("fr", "CA"), Locale("fr")]
      * </pre>
      *
-     * @param locale  the locale to start from
+     * @param locale the locale to start from
      * @return the unmodifiable list of Locale objects, 0 being locale, not null
      */
     public static List<Locale> localeLookupList(final Locale locale) {
@@ -217,8 +225,8 @@ public class LocaleUtils {
      * next more general and so on, finishing with the default locale.
      * The list will never contain the same locale twice.</p>
      *
-     * @param locale  the locale to start from, null returns empty list
-     * @param defaultLocale  the default locale to use if no other is found
+     * @param locale        the locale to start from, null returns empty list
+     * @param defaultLocale the default locale to use if no other is found
      * @return the unmodifiable list of Locale objects, 0 being locale, not null
      */
     public static List<Locale> localeLookupList(final Locale locale, final Locale defaultLocale) {
@@ -306,7 +314,7 @@ public class LocaleUtils {
      * The length must be correct.
      * </p>
      *
-     * @param str  the locale String to convert, null returns null
+     * @param str the locale String to convert, null returns null
      * @return a Locale, null if null input
      * @throws IllegalArgumentException if the string is an invalid format
      * @see Locale#forLanguageTag(String)

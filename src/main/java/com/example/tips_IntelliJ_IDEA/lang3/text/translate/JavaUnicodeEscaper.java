@@ -32,8 +32,7 @@ public class JavaUnicodeEscaper extends UnicodeEscaper {
      * Constructs a {@code JavaUnicodeEscaper} above the specified value (exclusive).
      * </p>
      *
-     * @param codepoint
-     *            above which to escape
+     * @param codepoint above which to escape
      * @return the newly created {@code UnicodeEscaper} instance
      */
     public static JavaUnicodeEscaper above(final int codepoint) {
@@ -45,8 +44,7 @@ public class JavaUnicodeEscaper extends UnicodeEscaper {
      * Constructs a {@code JavaUnicodeEscaper} below the specified value (exclusive).
      * </p>
      *
-     * @param codepoint
-     *            below which to escape
+     * @param codepoint below which to escape
      * @return the newly created {@code UnicodeEscaper} instance
      */
     public static JavaUnicodeEscaper below(final int codepoint) {
@@ -58,10 +56,8 @@ public class JavaUnicodeEscaper extends UnicodeEscaper {
      * Constructs a {@code JavaUnicodeEscaper} between the specified values (inclusive).
      * </p>
      *
-     * @param codepointLow
-     *            above which to escape
-     * @param codepointHigh
-     *            below which to escape
+     * @param codepointLow  above which to escape
+     * @param codepointHigh below which to escape
      * @return the newly created {@code UnicodeEscaper} instance
      */
     public static JavaUnicodeEscaper between(final int codepointLow, final int codepointHigh) {
@@ -73,10 +69,8 @@ public class JavaUnicodeEscaper extends UnicodeEscaper {
      * Constructs a {@code JavaUnicodeEscaper} outside of the specified values (exclusive).
      * </p>
      *
-     * @param codepointLow
-     *            below which to escape
-     * @param codepointHigh
-     *            above which to escape
+     * @param codepointLow  below which to escape
+     * @param codepointHigh above which to escape
      * @return the newly created {@code UnicodeEscaper} instance
      */
     public static JavaUnicodeEscaper outsideOf(final int codepointLow, final int codepointHigh) {
@@ -90,12 +84,9 @@ public class JavaUnicodeEscaper extends UnicodeEscaper {
      * {@code between} is {@code true} and exclusive when it is {@code false}.
      * </p>
      *
-     * @param below
-     *            int value representing the lowest codepoint boundary
-     * @param above
-     *            int value representing the highest codepoint boundary
-     * @param between
-     *            whether to escape between the boundaries or outside them
+     * @param below   int value representing the lowest codepoint boundary
+     * @param above   int value representing the highest codepoint boundary
+     * @param between whether to escape between the boundaries or outside them
      */
     public JavaUnicodeEscaper(final int below, final int above, final boolean between) {
         super(below, above, between);
@@ -104,8 +95,7 @@ public class JavaUnicodeEscaper extends UnicodeEscaper {
     /**
      * Converts the given codepoint to a hex string of the form {@code "\\uXXXX\\uXXXX"}
      *
-     * @param codepoint
-     *            a Unicode code point
+     * @param codepoint a Unicode code point
      * @return the hex string for the given codepoint
      */
     @Override
