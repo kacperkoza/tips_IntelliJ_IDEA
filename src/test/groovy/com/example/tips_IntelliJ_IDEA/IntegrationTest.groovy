@@ -19,5 +19,10 @@ class InegrationTest {
         return "http://localhost:$port$endpoint"
     }
 
+    def 'test'() {
+        expect:
+        true
+    }
+
 }
 

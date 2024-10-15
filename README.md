@@ -186,8 +186,21 @@ Find and use tools what you need, for example Bookmarks.
 
 `⌥ SIFT + LMB` - Add cursor in clicked place`
 
-### e. Run, Debug, 
+### e. Run, Debug
 
+`⌘ ⇧ R` - `Run` - runs single test or whole test class, depends on where you put the caret
+
+`⌘ R` - `Run` - Runs last configuration (see right top corner or `Edit configuration`)
+
+`⌘ ⇧ D` - `Debug` - depends on where you put the caret
+
+`⌘ D` - `Debug` - run `Debug` in the last configuration
+
+`View breakpoints` - by holding `⌥` select or deselect breakpoint options
+
+Check the other shortcuts for debugging, like `Evaluate Expression`, `Toggle Breakpoint` etc.
+
+Use `⌘ ⇧ T` for creating test classes and navigating between them and source code class (`Go to test`)
 
 ### e. Replace (in Files)
 

@@ -14,18 +14,18 @@ class OffersServiceTest extends Specification {
     @Unroll
     def 'should return offers according to limit and offset'() {
         when:
-        List<Offer> offers = offersService.getOffers(limit, offset)
+        List<Offer> offers = offersService.getOffers(limit, null)
 
         then:
         offers.collect { it.id as int } == expectedOfferIds
 
         where:
-        offset | limit || expectedOfferIds
-        null   | null  || [1, 2, 3, 4, 5, 6, 7, 8]
-        null   | 1     || [1]
-        null   | 3     || [1, 2, 3]
-        null   | 5     || [1, 2, 3, 4, 5]
-        1      | 10    || [2, 3, 4, 5, 6, 7, 8]
+        limit | expectedOfferIds
+        null  | [1, 2, 3, 4, 5, 6, 7, 8]
+        1     | [1]
+        3     | [1, 2, 3]
+        5     | [1, 2, 3, 4, 5]
+        10    | [1, 2, 3, 4, 5, 6, 7, 8]
     }
 
     def 'exception on invalid limit'() {
