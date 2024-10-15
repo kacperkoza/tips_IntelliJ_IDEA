@@ -24,7 +24,8 @@ Feedback form - https://forms.gle/SRinxkqQ7nhjadeK7
 
 - `Theme: dark/light`
 - `Keymap > Based on the macOS keymap`
-- `CMD , > Presentation Assistant`
+- `CMD , > Presentation Assistant`  
+**All shortcuts are in README.md.**
 - `Font > Size > 15`  
   Additionally: [X] - `Enable ligatures`
 - `Resolution - Scaled (1600x900)` for presentation purposes
@@ -74,6 +75,9 @@ Assign shortcut to any tool window from `Recent Files` (find it via `⌘ A`).
 ## 4. Assign new shortcut
 
 `⌘ ⇧ A` - find `Gradle` and assign new shortcut with `⌥ ⏎`
+
+[MEM]
+
 
 `⌘ ,` - `Keymap`
 
@@ -177,14 +181,14 @@ Find and use tools what you need, for example Bookmarks.
 
 ### d. Multi-line cursor, select all occurrences
 
-`⌥ + ⌥ + ↓ / ↑` - `Clone Caret Below / Above`
-
 `⌃ G` - `Add Selection for Next Occurrence`  
 `⌃ ⇧ G` - `Unselect Occurrence`
 
 `⌃ ⌘ G` - `Select All Occurrences`
 
 `⌥ SIFT + LMB` - Add cursor in clicked place`
+
+`⌥ + ⌥ + ↓ / ↑` - `Clone Caret Below / Above`
 
 ### e. Run, Debug
 
@@ -240,6 +244,10 @@ It conflicts with macOS shortcut: `Input sources` > `Select previous input sourc
 - `⌘ ⌥ V` - `Extract Variable`
 - `⌘ ⌥ N` - `Inline`
 
+`⌘ ⌥ ⇧ K` - `Convert Java File to Kotlin File`
+
+[MEM]
+
 More refactor tools is in `Refactor` menu. **Check difference between Java and Kotlin options.**
 
 ## 10. Copilot
@@ -263,7 +271,7 @@ b. ask for preparing `curl` request
 
 ## 11. Additionally
 
-- `Search Structurally`
+- `Search Structurally` / `Replace structurally`
 - `Help > Search`
 - `Help > Keymap Shortcuts PDF`
 - `Help > IntelliJ IDEA on YouTube`
