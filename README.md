@@ -36,7 +36,8 @@ Feedback form - https://forms.gle/SRinxkqQ7nhjadeK7
 `⌘ ⌥ ⇧ E` - `Navigate > Text`  
 `⌘ O` - `Go to class` - with exact line - `StringUtils:1500`  
 `⌘ ⇧ O` - `Go to file`  
-`⌘ ⌥ O` - `Go to symbol` - Filter with namespace - `String.contains`  
+`⌘ ⌥ O` - `Go to symbol`. 
+Filter with namespace - `String.contains`  
 `⌘ ⇧ A` - `Find action` - Find any action that you can use in IDE.  
 Find Action `Set Background Image`
 `⇧ ⇧` - `Search Everywhere`
