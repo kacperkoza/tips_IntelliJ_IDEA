@@ -37,7 +37,8 @@ Feedback form - https://forms.gle/SRinxkqQ7nhjadeK7
 `⌘ O` - `Go to class` - with exact line - `StringUtils:1500`  
 `⌘ ⇧ O` - `Go to file`  
 `⌘ ⌥ O` - `Go to symbol` - Filter with namespace - `String.contains`  
-`⌘ ⇧ A` - `Find action` - Find any action that you can use in IDE  
+`⌘ ⇧ A` - `Find action` - Find any action that you can use in IDE.  
+Find Action `Set Background Image`
 `⇧ ⇧` - `Search Everywhere`
 
 `⌥ ↑ OR ↓` - (in above windows) browse search history
@@ -194,7 +195,7 @@ Find and use tools what you need, for example Bookmarks.
 
 `⌘ ⇧ R` - `Run` - runs single test or whole test class, depends on where you put the caret
 
-`⌘ R` - `Run` - Runs last configuration (see right top corner or `Edit configuration`)
+`⌘ R` - `Run` - Runs last configuration (see right top corner or find action `Edit configuration`)
 
 `⌘ ⇧ D` - `Debug` - depends on where you put the caret
 
