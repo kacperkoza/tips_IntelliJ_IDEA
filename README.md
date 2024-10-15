@@ -69,6 +69,11 @@ Assign shortcut to any tool window from `Recent Files` (find it via `⌘ A`).
 
 `⌘ ,` - `Keymap`
 
+Click `⌘ ⇧ A` twice, to show disabled actions. It depends on the context, for example `Select File in Project View`
+is not available from the `Gradle` tab.
+
+Many shortcuts may have different meanings, depending on the context. For example, in `.md` files `⌘ B` is `Bold`.
+
 `⌃ ⌃` - Run Anything (Gradle, AppRunner, any configuration)
 
 ## 5. Tabs vs no tabs
@@ -106,8 +111,6 @@ Find and use tools what you need, for example Bookmarks.
 ### b. Next Highlighted Usage
 
 `⌘ B` - `Go to declaration or usages`
-
-Many shortcuts may have different meanings, depending on the context. For example, in `.md` files `⌘ B` is `Bold`.
 
 `⌘ ⌥  B` - `Go to Implementation`
 

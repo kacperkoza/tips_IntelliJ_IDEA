@@ -24,10 +24,6 @@ public class OffersService {
 
 
     public void add(Offer offer, String accountId) {
-        if (accountId == null || accountId.isEmpty()) {
-    throw new InvalidAccountException("Account ID cannot be null or empty");
-}
-
         if (List.of(AccountStatus.TO_ACTIVATE, AccountStatus.BLOCKED).contains(accountStatusClient.getAccountStatus(accountId))) {
             throw new IncorrectAccountStatusException();
         }
