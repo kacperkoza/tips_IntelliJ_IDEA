@@ -13,14 +13,16 @@
 ## 0. Introduction
 
 ## 1. Before we start
+
 - `Theme: dark/light`
 - `Keymap > Based on the macOS keymap`
 - `CMD , > Presentation Assistant`
 - `Font > Size > 15`  
-Additionally: [X] - `Enable ligatures`
+  Additionally: [X] - `Enable ligatures`
 - `Resolution - Scaled (1600x900)` for presentation purposes
 
 ## 2. Basic Navigation
+
 `⌘ ⇧ \` - `Go to endpoint`  
 `⌘ ⌥ ⇧ E` - `Navigate > Text`  
 `⌘ O` - `Go to class` - with exact line - `StringUtils:1500`  
@@ -88,7 +90,7 @@ Copy `curl.txt` and paste into `.http` scratch. Edit and then export as new cURL
 
 Scratch files are not detected by git. You can always create `.http` file in your project directory and keep it in git.
 
-Find and use tools what you need, for example Bookmarks. 
+Find and use tools what you need, for example Bookmarks.
 
 `⌘ ⇧ E` > `Bookmarks` (`⌘ 2`)
 
@@ -167,11 +169,14 @@ Many shortcuts may have different meanings, depending on the context. For exampl
 `⌥ + ⌥ + ↓ / ↑` - `Clone Caret Below / Above`
 
 `⌃ G` - `Add Selection for Next Occurrence`  
-`⌃ ⇧ G` - `Unselect Occurrence`  
+`⌃ ⇧ G` - `Unselect Occurrence`
 
 `⌃ ⌘ G` - `Select All Occurrences`
 
 `⌥ SIFT + LMB` - Add cursor in clicked place`
+
+### e. Run, Debug, 
+
 
 ### e. Replace (in Files)
 
@@ -185,10 +190,14 @@ Use it in `Project` view, to run optimizer on a whole directory:
 
 ### h. Live templates, Surround with, Complete current Statement
 
-`⌃ SPACE` - Basic Code Completion 
+`⌃ SPACE` - Basic Code Completion
 It conflicts with macOS shortcut: `Input sources` > `Select previous input source`
 
 `spgwt` - `Spock: given - when - then`
+
+`ifn` - `if not null (Live template)`
+
+`offerId.nn` - `Postfix completion`
 
 `⌘ ⌥ T` - `Surround With`
 
@@ -198,7 +207,7 @@ It conflicts with macOS shortcut: `Input sources` > `Select previous input sourc
 
 `⌘ F6` - `Change Signature`
 
-`F6` - `Move class/file` 
+`F6` - `Move class/file`
 
 `⌃ T` - `Refactor This` and choose what you need
 
@@ -213,14 +222,15 @@ More refactor tools is in `Refactor` menu. **Check difference between Java and K
 
 Enable suggestions
 
+```java
 if (accountId != null) {
-    // Copilot: accountId is not null
+// Copilot: accountId is not null
 }
+```
 
 `Open GitHub Copilot Chat Inline Chat` > "Write curl request for this endpoint"
 
-and of course - assign a shortcut if you use it frequently
-
+and of course, assign a shortcut if you use it frequently
 
 ## 11. Additionally
 
@@ -230,7 +240,6 @@ and of course - assign a shortcut if you use it frequently
 - `Help > IntelliJ IDEA on YouTube`
 - `Help > My Productivity`
 - `Help > Change memory settings`
-
 
 ## Resources
 
@@ -247,6 +256,8 @@ https://blog.jetbrains.com/idea/2022/10/top-underrated-shortcuts/
 http://courses.ics.hawaii.edu/ics314s17/morea/development-environments/reading-intellij-macos-configuration.html
 
 https://itectec.com/askdifferent/macos-how-to-disable-the-minimize-command-m-shortcut-in-mavericks
+
+https://www.youtube.com/watch?v=NUndgK7f1_Q
 
 Plugins:
 - Key Promoter X (annoying, in my opinion)

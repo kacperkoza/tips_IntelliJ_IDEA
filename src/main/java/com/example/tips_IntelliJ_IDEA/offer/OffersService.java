@@ -23,16 +23,15 @@ public class OffersService {
     }
 
 
-    public void add(Offer offer, String accountId1) {
-        if (accountId1 != null && accountId1.isEmpty()) {
-            throw new IllegalArgumentException();
+    public void add(Offer offer, String accountId) {
+        if (accountId == null || accountId.isEmpty()) {
+    throw new InvalidAccountException("Account ID cannot be null or empty");
+}
 
-        }
-        AccountStatus accountStatus = accountStatusClient.getAccountStatus(accountId1);
-        if (List.of(AccountStatus.TO_ACTIVATE, AccountStatus.BLOCKED).contains(accountStatus)) {
+        if (List.of(AccountStatus.TO_ACTIVATE, AccountStatus.BLOCKED).contains(accountStatusClient.getAccountStatus(accountId))) {
             throw new IncorrectAccountStatusException();
         }
-        offersRepository.addOffer(accountId1, offer);
+        offersRepository.addOffer(accountId, offer);
     }
 
     private void validate(Integer limit, Integer offset) {
