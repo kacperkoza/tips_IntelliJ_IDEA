@@ -202,7 +202,7 @@ Check the other shortcuts for debugging, like `Evaluate Expression`, `Toggle Bre
 
 Use `⌘ ⇧ T` for creating test classes and navigating between them and source code class (`Go to test`)
 
-### e. Replace (in Files)
+### f. Replace (in Files)
 
 `⌘ R` - `Replace`  
 `⌘ ⇧ R` - `Replace in Files`
@@ -212,7 +212,7 @@ Use it in `Project` view, to run optimizer on a whole directory:
 `⌘ ⌥ I` - `Auto-Indent Lines`  
 `⌃ ⌥ O` - `Optimize Imports`
 
-### h. Live templates, Surround with, Complete current Statement
+### g. Live templates, Surround with, Complete current Statement
 
 `⌃ SPACE` - Basic Code Completion
 It conflicts with macOS shortcut: `Input sources` > `Select previous input source`
@@ -245,7 +245,6 @@ More refactor tools is in `Refactor` menu. **Check difference between Java and K
 ## 10. Copilot
 
 `Copilot: Enable completions`
-
 
 a. start suggesting, for example `if` statement
 ```java
