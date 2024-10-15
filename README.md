@@ -1,3 +1,11 @@
+### JetBrains IDE - beyond the shift-shit
+#### JUGtoberfest Poznań, 16.10.2024
+
+Feedback form - https://forms.gle/SRinxkqQ7nhjadeK7
+
+## Legend
+
+
 `⌘` - command  
 `⌥` - option / ALT  
 `⌃` - control / CTRL  
@@ -223,17 +231,23 @@ More refactor tools is in `Refactor` menu. **Check difference between Java and K
 
 ## 10. Copilot
 
-Enable suggestions
+`Copilot: Enable completions`
 
+
+a. start suggesting, for example `if` statement
 ```java
 if (accountId != null) {
 // Copilot: accountId is not null
 }
 ```
 
-`Open GitHub Copilot Chat Inline Chat` > "Write curl request for this endpoint"
+- `Open GitHub Copilot Chat Inline Chat` and type "check account id for null or empty and throw appropriate exception"  
+- ask for creating a new exception  
+- ask for anything else
 
-and of course, assign a shortcut if you use it frequently
+b. ask for preparing `curl` request
+
+- `Open GitHub Copilot Chat Inline Chat` and type "Write curl request for this endpoint"
 
 ## 11. Additionally
 
