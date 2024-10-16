@@ -78,9 +78,6 @@ Assign shortcut to any tool window from `Recent Files` (find it via `⌘ A`).
 
 `⌘ ⇧ A` - find `Gradle` and assign new shortcut with `⌥ ⏎`
 
-**[MEM]**
-
-
 `⌘ ,` - `Keymap`
 
 Click `⌘ ⇧ A` twice, to show disabled actions. It depends on the context, for example `Select File in Project View`
@@ -150,8 +147,6 @@ Find and use tools what you need, for example Bookmarks.
 `⌘ ⇧ ⌫` - `Navigate > Last Edit Location`
 
 ### e. Annotate
-
-**[MEM]**
 
 `Find Action` - `Git | Current File: Annotate with Git Blame`
 
@@ -251,8 +246,6 @@ It conflicts with macOS shortcut: `Input sources` > `Select previous input sourc
 - `⌘ ⌥ N` - `Inline`
 
 `⌘ ⌥ ⇧ K` - `Convert Java File to Kotlin File`
-
-**[MEM]**
 
 More refactor tools is in `Refactor` menu. **Check difference between Java and Kotlin options.**
 
