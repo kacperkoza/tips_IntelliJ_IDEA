@@ -32,14 +32,14 @@ Feedback form - https://forms.gle/SRinxkqQ7nhjadeK7
 
 ## 2. Basic Navigation
 
-`⌘ ⇧ \` - `Go to endpoint`  
-`⌘ ⌥ ⇧ E` - `Navigate > Text`  
 `⌘ O` - `Go to class` - with exact line - `StringUtils:1500`  
 `⌘ ⇧ O` - `Go to file`  
 `⌘ ⌥ O` - `Go to symbol`. 
 Filter with namespace - `String.contains`  
 `⌘ ⇧ A` - `Find action` - Find any action that you can use in IDE.  
 Find Action `Set Background Image`
+`⌘ ⌥ ⇧ E` - `Navigate > Text`  
+`⌘ ⇧ \` - `Go to endpoint`  
 `⇧ ⇧` - `Search Everywhere`
 
 `⌥ ↑ OR ↓` - (in above windows) browse search history
@@ -78,7 +78,7 @@ Assign shortcut to any tool window from `Recent Files` (find it via `⌘ A`).
 
 `⌘ ⇧ A` - find `Gradle` and assign new shortcut with `⌥ ⏎`
 
-[MEM]
+**[MEM]**
 
 
 `⌘ ,` - `Keymap`
@@ -108,6 +108,8 @@ For example, you can assign `⌘ ⇧ W` for `Close other tabs`.
 Copy `curl.txt` and paste into `.http` scratch. Edit and then export as new cURL.
 
 Scratch files are not detected by git. You can always create `.http` file in your project directory and keep it in git.
+
+### b. Bookmarks
 
 Find and use tools what you need, for example Bookmarks.
 
@@ -148,6 +150,8 @@ Find and use tools what you need, for example Bookmarks.
 `⌘ ⇧ ⌫` - `Navigate > Last Edit Location`
 
 ### e. Annotate
+
+**[MEM]**
 
 `Find Action` - `Git | Current File: Annotate with Git Blame`
 
@@ -248,7 +252,7 @@ It conflicts with macOS shortcut: `Input sources` > `Select previous input sourc
 
 `⌘ ⌥ ⇧ K` - `Convert Java File to Kotlin File`
 
-[MEM]
+**[MEM]**
 
 More refactor tools is in `Refactor` menu. **Check difference between Java and Kotlin options.**
 
