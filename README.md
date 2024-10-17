@@ -32,19 +32,25 @@ Feedback form - https://forms.gle/SRinxkqQ7nhjadeK7
 
 ## 2. Basic Navigation
 
-`⌘ O` - `Go to class` - with exact line - `StringUtils:1500`  
-`⌘ ⇧ O` - `Go to file`  
-`⌘ ⌥ O` - `Go to symbol`. 
-Filter with namespace - `String.contains`  
+`⌘ O` - `Go to class` - with exact line - `StringUtils:1500`.
+
+`⌘ ⇧ O` - `Go to file`
+
+`⌘ ⌥ O` - `Go to symbol`.  
+Filter with namespace - `String.contains`
+
 `⌘ ⇧ A` - `Find action` - Find any action that you can use in IDE.  
-Find Action `Set Background Image`
-`⌘ ⌥ ⇧ E` - `Navigate > Text`  
-`⌘ ⇧ \` - `Go to endpoint`  
+Find Action `Set Background Image`  
+
+`⌘ ⌥ ⇧ E` - `Navigate > Text`
+
+`⌘ ⇧ \` - `Go to endpoint`
+
 `⇧ ⇧` - `Search Everywhere`
 
-`⌥ ↑ OR ↓` - (in above windows) browse search history
+`⌥ ↑ OR ↓` - browse search history (in windoes above)
 
-`⇧ ⇧` -> 2+2*2
+`⇧ ⇧` -> `2`+2*2
 
 ## 3. Switching between windows
 
@@ -56,27 +62,27 @@ Find Action `Set Background Image`
 
 You can filter the result list by typing some text.
 
-`⌘ ⇧ 1` - `Select File in Project View`
+Find action `Select File in Project View` and assign new shortcut with `⌥ ⏎`.
 
 `⌘ ⇧ E` - `Recent Locations`
 
-`⌘ 1` - `Project`   
+`⌘ 1` - `Project`  
 `⌘ 4` - `Run`  
 `⌘ 5` - `Debug`
 
-Use `ESCAPE` to go back from tool window to editor.
+Use `ESCAPE` to go back from any tool window to editor.
 
 `⌃ ⌥ ← / →` - `Stretch (tool window) to Left / Right`
 
 `⌘ ⇧ '` - `Maximixe Tool Window`
 
-Use it to adjust width and height of any other tool window, for example `Recent Files`
-
-Assign shortcut to any tool window from `Recent Files` (find it via `⌘ A`).
+Use it to adjust width and height of any other tool window, for example `Recent Files`.
 
 ## 4. Assign new shortcut
 
-`⌘ ⇧ A` - find `Gradle` and assign new shortcut with `⌥ ⏎`
+Assign shortcut to any tool window from `Recent Files`.
+
+`⌘ ⇧ A` - find `Gradle` and assign new shortcut with `⌥ ⏎`.
 
 `⌘ ,` - `Keymap`
 
@@ -112,6 +118,12 @@ Find and use tools what you need, for example Bookmarks.
 
 `⌘ ⇧ E` > `Bookmarks` (`⌘ 2`)
 
+`F3` - `Toggle Bookmark`
+
+`⌃ ⇧ 1/2/3/...` - `Toggle Bookmark 1/2/3/...`
+
+`⌃ 1/2/3/...` - `Go to bookmark 1/2/3/...`
+
 ## 7. Navigating inside file
 
 ### a. File Structure, Next Highlighted Error, Go to Line
@@ -137,8 +149,7 @@ Find and use tools what you need, for example Bookmarks.
 
 ### c. Next / previous method
 
-`⌃ ⇧ ↑` - `Previous Method`
-
+`⌃ ⇧ ↑` - `Previous Method`  
 `⌃ ⇧ ↓` - `Next Method`
 
 ### d. Last Edit Location
@@ -149,6 +160,8 @@ Find and use tools what you need, for example Bookmarks.
 ### e. Annotate
 
 `Find Action` - `Git | Current File: Annotate with Git Blame`
+
+Assign shortcut, if you use it frequently
 
 ## 8. Editing a file
 
@@ -195,11 +208,11 @@ Find and use tools what you need, for example Bookmarks.
 
 `⌘ ⇧ R` - `Run` - runs single test or whole test class, depends on where you put the caret
 
-`⌘ R` - `Run` - Runs last configuration (see right top corner or find action `Edit configuration`)
+`⌘ R` - `Run` - Runs last configuration (see right top corner or even better - find action `Edit configuration`)
 
 `⌘ ⇧ D` - `Debug` - depends on where you put the caret
 
-`⌘ D` - `Debug` - run `Debug` in the last configuration
+`⌘ D` - `Debug` - run `Debug` from the last configuration
 
 `View breakpoints` - by holding `⌥` select or deselect breakpoint options
 
@@ -267,6 +280,8 @@ if (accountId != null) {
 b. ask for preparing `curl` request
 
 - `Open GitHub Copilot Chat Inline Chat` and type "Write curl request for this endpoint"
+
+c. ask for method refactoring, for example `OffersService.getOffersPaginated(...)`
 
 ## 11. Additionally
 
