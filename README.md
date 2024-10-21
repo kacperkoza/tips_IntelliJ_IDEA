@@ -1,7 +1,4 @@
 ### JetBrains IDE - beyond the shift-shit
-#### JUGtoberfest Poznań, 16.10.2024
-
-Feedback form - https://forms.gle/SRinxkqQ7nhjadeK7
 
 ## Legend
 
