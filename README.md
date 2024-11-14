@@ -25,6 +25,7 @@
 **All shortcuts are in README.md.**
 - `Font > Size > 15`  
   Additionally: [X] - `Enable ligatures`
+- `⌃ ⌥ -/=` - `Zoom in/out IDE`
 - `Resolution - Scaled (1600x900)` for presentation purposes
 
 ## 2. Basic Navigation
