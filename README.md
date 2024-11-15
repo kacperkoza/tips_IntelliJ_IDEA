@@ -284,6 +284,7 @@ c. ask for method refactoring, for example `OffersService.getOffersPaginated(...
 ## 11. Additionally
 
 - `Search Structurally` / `Replace structurally`
+- `Project View Options`
 - `Help > Search`
 - `Help > Keymap Shortcuts PDF`
 - `Help > IntelliJ IDEA on YouTube`
