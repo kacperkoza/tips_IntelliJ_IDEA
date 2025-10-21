@@ -31,7 +31,7 @@ public class OffersService {
     }
 
     private void validate(Integer limit, Integer offset) {
-        if (limit != null && limit <= 0 || offset != null && offset <= 0) {
+        if (limit != null && limit < 0 || offset != null && offset < 0) {
             throw new InvalidPaginationException();
         }
     }

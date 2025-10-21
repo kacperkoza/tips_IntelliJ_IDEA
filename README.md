@@ -15,18 +15,26 @@
 `⌫` - backspace  
 `LMB` - left mouse button
 
-## 0. Introduction
+## 0. Before we start
 
-## 1. Before we start
-
-- `Theme: dark/light`
-- `Keymap > Based on the macOS keymap`
+- `Theme: light / dark`?
 - `CMD , > Presentation Assistant`  
 **All shortcuts are in README.md.**
-- `Font > Size > 15`  
-  Additionally: [X] - `Enable ligatures`
+- `Keymap > Based on the macOS keymap`
 - `⌃ ⌥ -/=` - `Zoom in/out IDE`
-- `Resolution - Scaled (1600x900)` for presentation purposes
+
+## 1. Copilot 
+
+Run app:  
+`⌃ ⌃` - Run anything
+
+`⌘ ⇧ \` - `Go to Endpoint` - for example `offers`
+
+Generate curl with copilot inline chat. Get id,title,status with the `jq` (ask copilot)
+
+Open gradle tab with `⌘ ⇧ A` (and type `Gradle`). Filter `Gradle` tab with `test` or `run`
+
+`⌥ ⏎` - and `Open GitHub Copilot Inline Chat`
 
 ## 2. Basic Navigation
 
@@ -48,7 +56,7 @@ Find Action `Set Background Image`
 
 `⌥ ↑ OR ↓` - browse search history (in windoes above)
 
-`⇧ ⇧` -> `2`+2*2
+`⇧ ⇧` -> `2+2*2`
 
 ## 3. Switching between windows
 
@@ -76,7 +84,7 @@ Use `ESCAPE` to go back from any tool window to editor.
 
 Use it to adjust width and height of any other tool window, for example `Recent Files`.
 
-## 4. Assign new shortcut
+## 4. Assign new shortcut, keymap
 
 Assign shortcut to any tool window from `Recent Files`.
 
@@ -90,6 +98,8 @@ is not available from the `Gradle` tab.
 Many shortcuts may have different meanings, depending on the context. For example, in `.md` files `⌘ B` is `Bold`.
 
 `⌃ ⌃` - Run Anything (Gradle, AppRunner, any configuration)
+
+Check mappings for `Increase/Decrease width/height` and `Stretch to Left/Right/Top/Bottom`.
 
 ## 5. Tabs vs no tabs
 
@@ -230,6 +240,8 @@ Use it in `Project` view, to run optimizer on a whole directory:
 
 ### g. Live templates, Surround with, Complete current Statement
 
+Create Live template for `dpa` => `console.log()
+
 `⌃ SPACE` - Basic Code Completion
 It conflicts with macOS shortcut: `Input sources` > `Select previous input source`
 
@@ -260,28 +272,7 @@ It conflicts with macOS shortcut: `Input sources` > `Select previous input sourc
 
 More refactor tools is in `Refactor` menu. **Check difference between Java and Kotlin options.**
 
-## 10. Copilot
-
-`Copilot: Enable completions`
-
-a. start suggesting, for example `if` statement
-```java
-if (accountId != null) {
-// Copilot: accountId is not null
-}
-```
-
-- `Open GitHub Copilot Chat Inline Chat` and type "check account id for null or empty and throw appropriate exception"  
-- ask for creating a new exception  
-- ask for anything else
-
-b. ask for preparing `curl` request
-
-- `Open GitHub Copilot Chat Inline Chat` and type "Write curl request for this endpoint"
-
-c. ask for method refactoring, for example `OffersService.getOffersPaginated(...)`
-
-## 11. Additionally
+## 10. Additionally
 
 - `Search Structurally` / `Replace structurally`
 - `Project View Options`
