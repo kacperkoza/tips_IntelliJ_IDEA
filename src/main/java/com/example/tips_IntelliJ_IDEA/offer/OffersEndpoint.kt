@@ -27,12 +27,4 @@ class OffersEndpoint(
     }
 }
 
-data class Offers(
-    val offers: List<Offer>,
-)
 
-data class Offer(
-    val id: Long,
-    val title: String,
-    val image: URI,
-)
